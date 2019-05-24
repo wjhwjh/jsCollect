@@ -7,7 +7,69 @@
 <body>
 
 <script>
+    /*
+    * 2019/5/24
+    * https://github.com/yym-yumeng123/Scripting-algorithm/issues/3
+    * */
 
+    /*
+    * map遍历数组每个元素，每次调用回调函数后返回一个新数组
+    *
+    * 不改变原数组
+    *
+    * 回调函数的功能自己定义
+    * */
+
+
+    let arr = [{name: 'aa'}, {age: '14'}]
+
+    let data = {
+        rows: [
+            ["Lisa", 16, "Female", "2000-12-01"],
+            ["Bob", 22, "Male", "1996-01-21"]],
+        metaData: [{name: "name", note: ''}, {name: "age", note: ''}, {name: "gender", note: ''}, {
+            name: "birthday",
+            note: ''
+        }
+        ]
+    };
+
+
+    /*重新格式化一个数组*/
+    let kvArray = [{key: 1, value: 10},
+        {key: 1, value: 20},
+        {key: 3, value: 30}];
+
+    let newArry = kvArray.map(function (item, i) {
+        let obj = {};
+        // 为对动态添加属性和属性值
+        obj[item.key] = item.value;
+
+        console.log(i)
+        return obj
+    })
+
+
+    console.log(newArry); //返回一个新数组  [{1: 10}, {2: 20}, {3: 30}]， 原数组没有改变
+
+    /*原生js实现map*/
+    // 回调函数作为参数
+    let map = function (arr, fn) {
+        let newArry = [];
+        for (let i=0 ,len=arr.length; i<len; i++){
+            //数组的每一项作为参数回调函数的第一个参数，索引值作为回调函数的第二个参数，返回值存放在新数组中
+            newArry.push(fn(arr[i], i))
+        }
+        // 返回改变后的数组
+        return newArry
+    }
+
+    // 使用map方法的时候，定义回调函数要完成的功能
+    let m = map([1,2,3], function (item, index) {
+        console.log(index);
+        return item*2
+    })
+    console.log(m);
 </script>
 </body>
 </html>
