@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--https://segmentfault.com/q/1010000015758919?_ea=5207394-->
+
+<script>
+    function fn() {
+        console.log(this)
+    }
+
+    fn();
+    let obj = {}
+    obj.a = fn;
+    obj.a();
+
+    function f() {
+        console.log(arguments)
+    }
+
+
+    f(1,2,4)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>this和argument的区别</title>
+</head>
+<body>
+<script>
+
+    /*
+    * 函数中this指向, 在执行的时候谁调用函数，this就指向谁
+    *
+    * 可以是window对象、自定义对象、DOM对象
+    *
+    * es6中的箭头函数压根就没有this，this指的是当前环境下的顶层对象
+    * */
+    function fn() {
+        console.log(this)
+    }
+
+    function fn1() {
+        console.log()
+    }
+
+    function fn2() {
+        fn1();  // 这里fn1的上级作用域仍然是全局，可以看作是window.fn1,所以是window在调用
+    }
+
+    fn();
+    let obj = {}
+    obj.a = fn;
+    obj.a();
+    document.onclick = fn;
+
+    /*箭头函数--------------------------*/
+    // 对于普通情况来说，箭头函数也不难理解，对于在回调函数中箭头函数中的this就不同了
+    let arr = [1,2,3,4]
+
+    arr.forEach(function (item,i) {
+         if (i===0)console.log('普通函数',this)
+    })
+
+    arr.forEach((item,i)=>{
+        if (i===0)console.log('普通函数',this)
+    })
+
+    obj.b = fn;
+    obj.b();
+
+    /*argument--------------------------------*/
+    /*
+    * 类数组和数组的区别
+    *
+    * 类数组没有数组的方法，但是有length属性
+    *
+    * 把数组转化为类数组
+    * */
+    function f() {
+        console.log(arguments)
+        let arr = [].slice.call(arguments)
+        let ar = Array.from(arguments);
+        console.log(arr)
+        console.log(ar)
+    }
+
+    f(1, 2, 4)
+
+
+</script>
+</body>
+</html>
