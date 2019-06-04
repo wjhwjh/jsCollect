@@ -7,66 +7,23 @@
 <body>
 
 <script>
-  let str = " b ook , de sk, pag,bag, a ni moa, food, pag, page, desk, bag, animoa";
-  // 要求： 去重单词， 去单词两端的空格， 单词排序
-/*  * 数组和字符串
-  *
-  * 整体来看，数组是一个复杂数据类型，字符串是string数据类型
-  *
-  * 数组对象有的方法和字符串的相类似，但有不同，这包括数组与数组之间的操作关系
-  * 对数组项进行操作
-  *
-  * 字符串同样，有字符串与字符串之间的关系，字符串自身的操作
-  *
-  * 这样就能把相关的string对象属性进行分类
-  *
-  * 按功能对字符串分类
-  *
-  * 截取字符串中一个或多个，则不改变原串
-  * str.slice() [start, end) 两个参数指的是索引值，这里是闭开区间
-  * str.substring(from, to) 返回的子串包括 开始 处的字符，但不包括 结束 处的字符
-  * 这两个方法基本区别， subString的参数不分先后，并只能用于字符串
-  * slice()参数只能是从小到大，并可以用于数组
-  * str.substr(from, length)  抽取从 开始 下标开始的指定数目的字符。第二个参数是指截取字符串的长度
-  *
-  *
-  *
-  * 字符串的拼接则改变原串
-  * 字符串替换改变原串
-  * 字符串切割改变原串
-  * 字符串查找不改变原串
-  *
-  *
-  *
-  *
-  *
-  *
-  * 1. 作用
-  * 2. 是否改变原数组
-  * 3. 用
-  *
-  *
-  * str.split  一个字符串的方法，把字符串转化为数组的方法。 不改变原字符串。
-  *
-  * str.join     把数组中的每一项以指定的形式链接
-  *
-  * str.replace
-  *
-  * str.slice    不改变原数组
-  * str.subString  不改变原字符串或是数组
-  * str.subStr
-  * str.join     把数组中的每一项以指定的形式链接
-  * str.concat   拼接2个或多个数组
-  * str.trim     去掉前后空格
-  * str.splice
-  *
-  *
-  *
-  *
-  *
-  * */
+    let str = " b ook , de sk, pag,bag, a ni moa, food, pag, page, desk, bag, animoa";
+    // 要求： 去重单词， 去单词两端的空格， 单词排序
 
-
+    // 先去掉字符串中空格，把字符串转化为数组
+    let atrNew = str.replace(/\s/g, '').split(',');
+    let len=atrNew.length;
+    console.log(len)
+    // 对数组进行遍历，去重和排序
+    for (let i=atrNew.length-1; i>0; i--){
+        console.log(atrNew.length)
+        for (let j=i-1; j>0; j--){
+            if(atrNew[i] === atrNew[j]){
+                atrNew.splice(i,1)
+                break;
+            }
+        }
+    }
 
 
 
