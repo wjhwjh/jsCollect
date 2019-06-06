@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>内容居中对齐</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        .box1, .box2, .box3{
+            width: 100px;
+            height: 200px;
+            border: 1px solid #ddd;
+            margin: 30px;
+        }
+        .box1{
+            display: table;
+        }
+        .box1 p{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .box2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box3{
+            vertical-align: middle;
+        }
+        .box3:before,  .box3:after{
+            content: '';
+            display: inline-block;
+            clear: both;
+            vertical-align: middle;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box1">
+    <p>喜报！四川地区5月份毕业学员薪资高达20K</p>
+</div>
+
+<div class="box2">
+  <p>喜报！四川地区5月份毕业学员薪资高达20K</p>
+</div>
+
+<div class="box3">
+   喜报！四川
+</div>
+
+</body>
+</html>
