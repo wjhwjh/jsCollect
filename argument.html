@@ -47,6 +47,16 @@
     obj.b = fn;
     obj.b();
 
+     obj.c = function () {
+         console.log('c---', this)
+     }
+    obj.d = ()=> {
+        console.log('d---', this)
+    }
+
+    obj.c()  // obj
+    obj.d()  // 指向window
+
     /*argument--------------------------------*/
     /*
     * 类数组和数组的区别
