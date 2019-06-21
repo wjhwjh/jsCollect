@@ -8,7 +8,16 @@
 <!--https://segmentfault.com/q/1010000015758919?_ea=5207394-->
 
 <script>
+  let obj = {
+    id: 'this is my id',
+    a: function () {
+        console.log(this);
+        console.log(this.id);
+    }
+  }
 
+  console.log(obj.a())
+  setTimeout(obj.a, 1000)
 
 </script>
 
