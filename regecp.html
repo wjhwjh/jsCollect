@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /*
+   *  如何思考
+   * */
+   let d = 1869281964001;
+   let date = new Date(d);
+   // 把时间撮转化为指定的时间格式
+   let gormatDate = function (date, fmt) {
+      console.log(fmt)
+
+       if(/(y+)/.test(fmt)){
+           fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+
+
+
+       }
+
+       let o = {
+           'M+': date.getMonth() + 1,
+           'd+': date.getDate(),
+           'h+': date.getHours(),
+           'm+': date.getMinutes(),
+           's+': date.getSeconds()
+       };
+       for (let k in o) {
+           if (new RegExp(`(${k})`).test(fmt)) {
+               let str = o[k] + '';
+               fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
+
+               //console.log( RegExp.$1.length)
+           }
+       }
+
+       console.log(fmt)
+   }
+
+
+   function padLeftZero(str) {
+       console.log(str);
+       return ('00' + str).substr(str.length);
+   }
+
+   gormatDate(date, 'yyyy-MM-dd hh:mm')
+
+
+
+
+</script>
+</body>
+</html>
