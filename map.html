@@ -19,8 +19,6 @@
     *
     * 回调函数的功能自己定义
     * */
-
-
     let arr = [{name: 'aa'}, {age: '14'}]
 
     let data = {
@@ -33,45 +31,68 @@
         }
         ]
     };
-
-
-    /*重新格式化一个数组*/
-    let kvArray = [{key: 1, value: 10},
-        {key: 1, value: 20},
-        {key: 3, value: 30}];
-
-    let newArry = kvArray.map(function (item, i) {
-        let obj = {};
-        // 为对动态添加属性和属性值
-        obj[item.key] = item.value;
-
-        console.log(i)
-        return obj
+    // 对象属性的键名是另一个数组项对象中的键值时
+    let arrReault = data.rows.map(item => {
+        let r = item.map((item1, index) => {
+            return {
+                [data.metaData[index].name]: item1
+            }
+        })
+        return r
     })
 
+    console.log(arrReault);
 
-    console.log(newArry); //返回一个新数组  [{1: 10}, {2: 20}, {3: 30}]， 原数组没有改变
+    console.log('---------------------------------');
 
-    /*原生js实现map*/
-    // 回调函数作为参数
-    let map = function (arr, fn) {
-        let newArry = [];
-        for (var i=0 ,len=arr.length; i<len; i++){
-            //数组的每一项作为参数回调函数的第一个参数，索引值作为回调函数的第二个参数，返回值存放在新数组中
-            newArry.push(fn(arr[i], i)) // arr[i]和i都是函数的形参
+    let a = ['a', 'b', 'c', 'd']
+
+   /*
+   * 1. 计算新数组的长度，向上取整
+   * 2. 根据新数长度遍历，截取原来的数组
+   * */
+    let result =function chunk(arg, n){
+        let arr=[]
+        let len = Math.ceil(arg.length/n);
+        for (let i=0; i<len; i++ ){
+            arr.push(arg.slice(i*n, (i+1)*n))
         }
 
-        console.log('-----------------',newArry)
-        // 返回改变后的数组
-        return newArry
-    }
+        return arr
+    };
+    // slice截取原数组中指定开始和结束位置长度的数组， 返回的是截取后的数组
+    console.log( result(a, 3) );
+    console.log( result(a, 2) );
+    console.log( a.slice(0, 3));
+    console.log( a );
 
-    // 使用map方法的时候，定义回调函数要完成的功能
-    let m = map([1,2,3], function (item, index) {
-        console.log('----index',index);
-        return item*2
-    })
-    console.log(m);
+    console.log('---------------------------------');
+
+
+
+/*
+*1. 遇到过哪些技术难题？如何解决的？
+*
+*
+*
+*
+*2. 平时的一些学习方法？以及如何平衡工作和学习上的关系？目前关注哪些技术方向（技术栈）
+*
+*   学习既是工作，工作是学习的指引，也是学习的方向。
+*
+*   学习方法，第一 是看书， 看书更基础，也更有连贯性； 第二 社区， 看牛人的总结和一些遇到问题的解决方案，挖坑埋坑的过程；
+*
+*   第三 也会在github上找一些完整的代码，阅读
+*
+*
+*   目前关注的 js 底层原理
+*
+* */
+
+
+
+
+
 </script>
 </body>
 </html>

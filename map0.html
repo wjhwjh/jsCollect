@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*重新格式化一个数组*/
+    let kvArray = [{key: 1, value: 10},
+        {key: 1, value: 20},
+        {key: 3, value: 30}];
+
+    let newArry = kvArray.map(function (item, i) {
+        let obj = {};
+        // 为对动态添加属性和属性值
+        obj[item.key] = item.value;
+
+        console.log(i)
+        return obj
+    })
+
+
+    console.log(newArry); //返回一个新数组  [{1: 10}, {2: 20}, {3: 30}]， 原数组没有改变
+
+    /*原生js实现map*/
+    // 回调函数作为参数
+    let map = function (arr, fn) {
+        let newArry = [];
+        for (var i=0 ,len=arr.length; i<len; i++){
+            //数组的每一项作为参数回调函数的第一个参数，索引值作为回调函数的第二个参数，返回值存放在新数组中
+            newArry.push(fn(arr[i], i)) // arr[i]和i都是函数的形参
+        }
+
+        console.log('-----------------',newArry)
+        // 返回改变后的数组
+        return newArry
+    }
+
+    // 使用map方法的时候，定义回调函数要完成的功能
+    let m = map([1,2,3], function (item, index) {
+        console.log('----index',index);
+        return item*2
+    })
+    console.log(m);
+
+</script>
+</body>
+</html>
