@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端图片预览压缩上传</title>
+    <style>
+        .clear::after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .fl {
+            float: left;
+        }
+        .list-img li {
+            position: relative;
+            margin-right: 10px;
+            list-style: none;
+        }
+        .list-img img {
+            display: inline-block;
+            width: 50px;
+            height:50px;
+        }
+        .list-img input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 50px;
+            height:50px;
+            opacity: 0;
+        }
+        .list-img i {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 15px;
+            height: 15px;
+            background: url(../images/icon_del.png) no-repeat center;
+            background-size: 100%;
+        }
+        .list-img .num {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="list-img">
+    <ul id="preview" class="clear">
+        <li class="fl">
+            <img src="/images/icon_upload.png">
+            <input id="fileImage" type="file" name="file[]" multiple />
+            <div class="num">0/4</div>
+        </li>
+    </ul>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    var pageCtrl = {
+        imgId : 0, //图片id标志, 方便删除预览图片
+        maxNum : 4, //最多上传图片张数
+
+        /* 选择图片 */
+        _choosePic : function() {
+            var _self = this;
+            $('#fileImage').change(function() {
+                var files = this.files,
+                    len = $('#preview').find('.pic').length;
+                if (len + files.length > _self.maxNum) {
+                    _self._showTip('最多只能上传' + _self.maxNum + '张图片哦~');
+                    return;
+                }
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    if (file.type.indexOf("image") == 0) {
+                        if (file.size >= 1024 * 1024 * 3) {
+                            _self._showTip('图片大小过大，应小于3M');
+                        } else {
+                            _self._showPic(file); //图片预览
+                        }
+                    } else {
+                        _self._showTip('文件"' + file.name + '"不是图片类型')
+                        break;
+                    }
+                }
+            });
+        },
+
+        /* 渲染图片 */
+        _showPic : function(file) {
+            var _self = this,
+                html = '',
+                $wap = $('#preview'),
+                reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                var image_base64 = this.result,
+                    imgId = _self.imgId;
+
+                html = '<li class="fl pic" id="imgItem_' + imgId + '">' +
+                    '<img src="' + image_base64 + '" alt="">' +
+                    '<i class="del-img"></i>' +
+                    '</li>';
+                imgId++;
+                $wap.append(html);
+                $('#fileImage').next().text($wap.find('.pic').length + '/' + _self.maxNum);
+
+                //图片压缩上传，大于1.2M压缩图片
+                if (file.size / 1024 > 1024 * 1.2) {
+                    _self._dealImage(image_base64, {
+                        quality: 0.5
+                    }, function(base64Codes) {
+                        var bl = _self._processData(base64Codes, file.type);
+                        _self._uploadPic(bl, imgId);
+                    });
+                } else {
+                    _self._uploadPic(file, imgId);
+                }
+            }
+        },
+
+
+        /**
+         * 图片压缩（利用canvas）
+         * @param  path     图片路径
+         * @param  obj      压缩配置width,height,quality，不传则按比例压缩
+         * @param  callback  回调函数
+         */
+        _dealImage : function(path, obj, callback) {
+            var img = new Image();
+            img.src = path;
+            img.onload = function() {
+                var that = this;
+                // 默认按比例压缩
+                var w = that.width,
+                    h = that.height,
+                    scale = w / h;
+                w = obj.width || w;
+                h = obj.height || (w / scale);
+
+                //生成canvas
+                var canvas = document.createElement('canvas'),
+                    ctx = canvas.getContext('2d');
+                canvas.width = w;
+                canvas.height = h;
+                ctx.drawImage(that, 0, 0, w, h);
+
+                // 默认图片质量为0.7
+                var quality = 0.7;
+                if (obj.quality && obj.quality <= 1 && obj.quality > 0) {
+                    quality = obj.quality;
+                }
+
+                // 回调函数返回base64的值
+                var base64 = canvas.toDataURL('image/jpeg', quality);
+                callback(base64);
+            }
+        },
+
+        /* 将以base64的图片url数据转换为Blob */
+        _processData : function(dataUrl, type) {
+            var binaryString = window.atob(dataUrl.split(',')[1]),
+                arrayBuffer = new ArrayBuffer(binaryString.length),
+                intArray = new Uint8Array(arrayBuffer);
+            for (var i = 0, j = binaryString.length; i < j; i++) {
+                intArray[i] = binaryString.charCodeAt(i);
+            }
+
+            var data = [intArray], blob;
+
+            try {
+                blob = new Blob(data);
+            } catch (e) {
+                window.BlobBuilder = window.BlobBuilder ||
+                    window.WebKitBlobBuilder ||
+                    window.MozBlobBuilder ||
+                    window.MSBlobBuilder;
+                if (e.name === 'TypeError' && window.BlobBuilder) {
+                    var builder = new BlobBuilder();
+                    builder.append(arrayBuffer);
+                    blob = builder.getBlob(type);
+                } else {
+                    _showTip('版本过低，不支持图片压缩上传');
+                }
+            }
+            return blob;
+        },
+
+        /* 上传图片 */
+        _uploadPic : function(file, id) {
+            var _self = this,
+                formData = new FormData();
+            formData.append('img', file);
+            $.ajax({
+                url: '/upload',
+                type: 'post',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    if(res.respCode == 1000) {
+                        $('#imgItem_' + id).find('.del-img').attr('data-src', res.data.src);
+                    }else {
+                        _self._showTip('文件上传失败！');
+                    }
+                }
+            });
+        },
+
+        /* 删除图片 */
+        _delPic : function() {
+            var _self = this,
+                $wap = $('#preview');
+            $wap.on('click', '.del-img', function() {
+                //TODO:从数据库删除图片
+                $(this).parent().remove();
+                $('#fileImage').next().text($wap.find('.pic').length + '/' + _self.maxNum);
+            });
+        },
+
+        _showTip : function(str) {
+            //TODO信息提示
+            console.log(str);
+        },
+
+        init: function() {
+            this._choosePic();
+            this._delPic();
+        }
+    };
+
+    $(function() {
+        pageCtrl.init();
+    });
+</script>
+</body>
+</html>
+
