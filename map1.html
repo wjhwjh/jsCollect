@@ -7,17 +7,59 @@
 <body>
 
 <script>
-    let arr = [
-        1,1,1,1,1
+    /*
+      * map
+      * filter
+      * some
+      * include
+      * find
+      * forEach
+      * slice
+      * split
+      *
+      *
+      * */
+
+    /*
+    *  处理的对象的是数组， 数组中可以是基本类型数据，也可以是对象类型数据；
+    *  基本类型数据是复制， 对象类型数据是引用
+    * */
+
+
+    let mapArr = [
+        {
+            key: 1,
+            name: 'jan',
+        },
+        {
+            key: 2,
+            name: 'jan1',
+        },
+        {
+            key: 3,
+            name: 'jan2',
+        },
+        {
+            key: 4,
+            name: 'jan3',
+        },
+
     ];
 
 
+    /*
+     map对每一项执行回调函数
+     1. 返值一定是一个数组， 长度与原数组相同
+     2. 回调函数的返回值要设置，并不是布尔值
+     */
+    let map = mapArr.map((item) => item.name);
+    console.log('map----------', mapArr);
+    console.log('map----------', map);
 
-    let arr1= arr.map((item)=> item +=1);
+    /*filter
+    *
+    * */
 
-
-    console.log(arr);
-    console.log(arr1);
 
 </script>
 </body>

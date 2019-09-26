@@ -45,19 +45,16 @@
         let success = obj.success;
         let fail = obj.fail;
         /*对数据对象进行处理*/
-        let str='';
-        for (let key in data){
+        let str = '';
+        for (let key in data) {
             str += `${key}=${data[key]}&`
         }
-
         //console.log(str);
 
-
         let xmr = new XMLHttpRequest();
-
         // 判断是get请求， 还是post请求
         if (method === 'GET') {
-            xmr.open(method, url+'?'+str, true);
+            xmr.open(method, url + '?' + str, true);
             xmr.send(null);
         } else if (method === 'POST') {
             xmr.open(method, url, true);
@@ -72,28 +69,25 @@
                 // 响应是否成功
                 if (xmr.status >= 200 && xmr < 300 || xmr.status === 304) {
                     success(xml.responseText);
-                }else {
+                } else {
                     fail('获取失败');
                 }
-
             }
-
-
         }
     }
 
-        ajax({
-            url: '',
-            method: '',
-            data: {
-              userName:'huizi',
-              password:'1234555'
-              },
-            success: (res) => {
-            },
-            fail: (res) => {
-            }
-        });
+    ajax({
+        url: '',
+        method: '',
+        data: {
+            userName: 'huizi',
+            password: '1234555'
+        },
+        success: (res) => {
+        },
+        fail: (res) => {
+        }
+    });
 
 
 </script>
