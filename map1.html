@@ -11,7 +11,7 @@
       * map
       * filter
       * some
-      * include
+      * includes
       * find
       * forEach
       * slice
@@ -56,9 +56,38 @@
     console.log('map----------', mapArr);
     console.log('map----------', map);
 
-    /*filter
+    /*filter 用来过滤数组，查找符合条件的数组项
+    *
+    * 1. 有符合条件的，返回的是一个数组，找不到就是一个空数组（判断一个数组是否为空，可以使用长度）
+    * 2. 根据每一项给出的条件返回符合条件的项
     *
     * */
+    let filterArray = [
+        {
+            key: 1,
+            name: 'jan',
+        },
+        {
+            key: 2,
+            name: 'jan1',
+        },
+        {
+            key: 3,
+            name: 'jan2',
+        },
+        {
+            key: 4,
+            name: 'jan3',
+        },
+    ];
+    let filter = mapArr.filter((item) => item.key === 7);
+    console.log('filter----------', filterArray);
+    console.log('filter----------', filter);
+
+
+
+
+
 
 
 </script>
