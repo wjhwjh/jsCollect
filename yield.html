@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /*
+    * 生成器
+    *
+    * 1. 生成器的定义
+    * 2. 生成器的调用和使用
+    * 3. 生成器的工作过程
+    *
+    * */
+    function *foo(x) {
+        let z = x * (yield "hello");
+        return z
+    }
+
+    let it = foo(6);
+    let res = it.next(); // 相当于启动一个生成器，便生成一个对象。这里返回的是yield在函数中设置的默认值
+
+    console.log(res.value);  // 这里也体现了数据可以输出，也就是反回一个值。 下面体现可以传递一个值
+
+
+     res = it.next(8);
+
+     console.log(res.value);
+
+
+
+</script>
+
+</body>
+</html>

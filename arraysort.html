@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+   /*
+   * 1. 指定的HOME_DEP_FLAG，DEP_AGENCY_FLAG 前面顺序，SETTING_FLAG、SETTING_USER_FLAG在数组的末尾，中间顺序不限
+   * 方案一 ：
+   * 整理思路，遍历数组，利用splice找到匹配的添加到数组第一个位置； 每一个写一个if进行匹配，开始想的把HOME_DEP_FLAG的if放在最后，就能把这个相添加到数组的第一个位置，然后依次类推。
+   *
+   * 这种做始终splice截取和添加到没问题， 因为始终保持了数组的长度。 可原数组中每一项出现的位置不固定，只能保证匹配的几项出现在数组开头却不能按照固定的顺序
+   *
+   * 要出现固定的位置，就需要指定数组下标
+   *
+   * 方案二
+   *
+   * 定义一个新数组，循环匹配，把前几项放在指定的新数组中，然后这两个数组进行合并。
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   * */
+   let arr = ["DEP_AGENCY_FLAG", "SETTING_FLAG", "SETTING_ORGANIZE_FLAG", "SETTING_TEMPLATE_FLAG", "SETTING_ROLE_FLAG", "SETTING_DICTINFO_FLAG", "USER_SETTING_FLAG", "SETTING_USER_FLAG", "HOME_FLAG", "HOME_DEP_FLAG", "SETTING_BASE_FLAG"];
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
