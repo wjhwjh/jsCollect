@@ -8,16 +8,24 @@
 
 <script>
     /*
-    * 生成器
+    *  生成器
     *
     * 1. 生成器的定义
     * 2. 生成器的调用和使用
     * 3. 生成器的工作过程
     *
+    *
+    *  生成器和迭代器的关系
+    *
+    *
+    *
     * */
     function *foo(x) {
         let z = x * (yield "hello");
-        return z
+
+       console.log(z)
+
+        //return z
     }
 
     let it = foo(6);

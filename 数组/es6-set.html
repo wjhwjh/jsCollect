@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+ /*
+
+ * set数据结构
+ *
+ * 基本特点
+ * 1. 不重复
+ * 2. 是new Set()构建的一个对象
+ * 3. 两个NAN看作是相同的
+ * 4. 可以使用创建对象 add添加数据
+ * 5. 创建的数组中是否有某一个指定值，可以使用has(), 不用遍历去查找，爽的不要不要了
+ *
+ *
+ *
+ * 疑问：
+ * 1. 深拷贝？ 验证
+ * 2. 如何访问set构造的数据?? 使用扩展运算符展开成一个普通的数组
+ *
+ * 用法
+ *
+ * 1. 给一个数组去重
+ * 2. 两个数组实现交集、并集、差集
+ *
+ *
+ * */
+
+let a = [1,2,3, {'a':2}, NaN, {}];
+let b = [1,2,3,NaN, {}];
+
+
+let arrSet = new Set([...a,...b]);
+
+a[0]=4;
+a[3].a = 4;
+
+console.log(a);
+console.log(b);
+console.log(arrSet);
+console.log([...arrSet]); // 展开成一个普通的数组
+console.log(arrSet.delete(1)); //删除数组的某一指定值
+
+
+
+
+/*利用set给一个数组去重*/
+function dedupe(array) {
+    return Array.from(new Set(array))
+}
+
+console.log('数组去重',dedupe([1,2,3,4,4,1]));
+
+
+let c = [1,2,3,4,{'a':1}];
+let d = [2,3,5,{'a':1}];
+
+
+
+/*两个数组，合并去重。 这只是去重的一种方法*/
+
+function unique(arr1, arr2) {
+    return [...new Set([...arr1, ...arr2])]
+}
+console.log('数组合并去重',unique(c, d));
+
+
+
+/*两个数组，取交集，取相同的部分*/
+function intersect(arr1, arr2) {
+   // arr1 = new Set(arr1);
+    arr2 = new Set(arr2);
+    console.log(arr1);
+    // 利用了set数据结构中has属性， filter方法数Array的，set数据结构并没有这个方法
+    return Array.from(arr1.filter(item=>arr2.has(item)))
+}
+
+ console.log('数组合并取相同',intersect(c, d));
+
+
+
+ /*两个数组，取差集， 第一个数组有的，第二个数组没有的*/
+function difference(arr1, arr2) {
+  arr2 = new Set(arr2);
+
+  return arr1.filter(item => !arr2.has(item))
+
+}
+
+console.log('第一个数组独有的元素', difference(c, d));
+
+
+
+
+</script>
+
+</body>
+</html>
