@@ -17,7 +17,7 @@
  * 3. 两个NAN看作是相同的
  * 4. 可以使用创建对象 add添加数据
  * 5. 创建的数组中是否有某一个指定值，可以使用has(), 不用遍历去查找，爽的不要不要了
- *
+ * 6. 遍历是使用for..of
  *
  *
  * 疑问：
@@ -47,16 +47,12 @@ console.log(arrSet);
 console.log([...arrSet]); // 展开成一个普通的数组
 console.log(arrSet.delete(1)); //删除数组的某一指定值
 
-
-
-
 /*利用set给一个数组去重*/
 function dedupe(array) {
     return Array.from(new Set(array))
 }
 
 console.log('数组去重',dedupe([1,2,3,4,4,1]));
-
 
 let c = [1,2,3,4,{'a':1}];
 let d = [2,3,5,{'a':1}];
