@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let routerData = [
+        {//首页
+            id: 1,
+            component: 'Layout',
+            name: '/',
+            meta: {
+                iconCls: "home",
+                title: "首页",
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/home/hospitalHome',
+                    name: '/home/hospitalHome',
+                    meta: {
+                        title: '领导',
+                        routerGuard: true,
+                    },
+                    component: 'home/HospitalHome',
+                },
+                {
+                    path: '/home/depHome',
+                    name: '/home/depHome',
+                    meta: {
+                        title: '科室',
+                        routerGuard: true,
+                    },
+                    component: 'home/DepHome',
+                    children: [
+                        {
+                            path: '/home/depHome/depHomeBase',
+                            name: '/home/depHome/depHomeBase',
+                            meta: {
+                                title: '工单详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depHomeBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/home/eDepHome',
+                    name: '/home/eDepHome',
+                    meta: {
+                        title: '设备科',
+                        routerGuard: true,
+                    },
+                    component: 'home/EDepHome',
+                },
+            ]
+        },
+        {  //我的待办
+            path: '/agency',
+            component: 'Layout',
+            redirect: '/agency/list',
+            name: '/agency',
+            meta: {
+                title: '我的待办',
+                icon: 'desktop',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/agency/list',
+                    name: '/agency/list',
+                    meta: {
+                        title: '我的待办',
+                        routerGuard: true,
+                    },
+                    component: 'agency/Agency',
+                }
+
+            ]
+        },
+        {//我的待办
+            path: '/agency',
+            component: 'Layout',
+            redirect: '/agency/list',
+            name: '/agency/list',
+            meta: {
+                title: '我的待办',
+                icon: 'desktop',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/agency/list',
+                    name: '/agency/list',
+                    meta: {
+                        title: '我的待办',
+                        routerGuard: true,
+                    },
+                    component: 'agency/Agency',
+                }
+
+            ]
+        },
+        { //科室工作台
+            path: '/depWorkbench',
+            component: 'Layout',
+            redirect: '/depWorkbench/depWorkOrder',
+            name: '/depWorkbench',
+            meta: {
+                title: '科室工作台',
+                icon: 'appstore',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/depWorkbench/depWorkOrder',
+                    name: '/depWorkbench/depWorkOrder',
+                    meta: {
+                        title: '工单管理',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepWorkOrder',
+
+                    children: [
+                        {
+                            path: '/depWorkbench/depWorkOrder/depHomeBase/:id',
+                            name: '/depWorkbench/depWorkOrder/depHomeBase',
+                            meta: {
+                                title: '工单详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depWorkOrderBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/depWorkbench/depCollar',
+                    name: '/depWorkbench/depCollar',
+                    meta: {
+                        title: '领用管理',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepCollar',
+                    children: [
+                        {
+                            path: '/depWorkbench/depCollar/depCollarBase',
+                            name: '/depWorkbench/depCollar/depCollarBase',
+                            meta: {
+                                title: '领用详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depCollarBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/depWorkbench/depScrap',
+                    name: '/depWorkbench/depScrap',
+                    meta: {
+                        title: '报废管理',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepScrap',
+                    children: [
+                        {
+                            path: '/depWorkbench/depScrap/detail',
+                            name: '/depWorkbench/depScrap/detail',
+                            meta: {
+                                title: '报废详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depScrapBase',
+                        }
+                    ]
+
+
+                },
+                {
+                    path: '/depWorkbench/DepBorrow',
+                    name: '/depWorkbench/DepBorrow',
+                    meta: {
+                        title: '借用申请',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepBorrow',
+                    children: [
+                        {
+                            path: '/depWorkbench/DepBorrow/detail',
+                            name: '/depWorkbench/DepBorrow/detail',
+                            meta: {
+                                title: '借用详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depBorrowBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/depWorkbench/depExternaRepairl',
+                    name: '/depWorkbench/depExternaRepairl',
+                    meta: {
+                        title: '设备外修',
+                        routerGuard: true,
+
+                    },
+                    component: 'depWorkbench/DepExternaRepairl',
+                    children: [
+                        {
+                            path: '/depWorkbench/depExternaRepairl/depExternaRepairlBase',
+                            name: '/depWorkbench/depExternaRepairl/depExternaRepairlBase',
+                            meta: {
+                                title: '设备外修',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/DepExternaRepairlBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/depWorkbench/depChangeParts',
+                    name: '/depWorkbench/depChangeParts',
+                    meta: {
+                        title: '更换配件',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepChangeParts',
+                    children: [
+                        {
+                            path: '/depWorkbench/depChangeParts/depChangePartsBase',
+                            name: '/depWorkbench/depChangeParts/depChangePartsBase',
+                            meta: {
+                                title: '领用详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/DepChangePartsBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/depWorkbench/depReturnFactory',
+                    name: '/depWorkbench/depReturnFactory',
+                    meta: {
+                        title: '返厂维修',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepReturnFactory',
+                    children: [
+                        {
+                            path: '/depWorkbench/depReturnFactory/depReturnFactoryBase',
+                            name: '/depWorkbench/depReturnFactory/depReturnFactoryBase',
+                            meta: {
+                                title: '领用详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/DepReturnFactoryBase',
+                        }
+                    ]
+
+                }
+            ]
+        },
+        {//采购工作台
+            path: '/depPurchaseWorkbench',
+            component: 'Layout',
+            redirect: '/depPurchaseWorkbench/depPurchaseCon',
+            name: '/depPurchaseWorkbench',
+            meta: {
+                title: '采购工作台',
+                icon: 'shopping-cart',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/depPurchaseWorkbench/depPurchaseCon',
+                    name: '/depPurchaseWorkbench/depPurchaseCon',
+                    meta: {
+                        title: '耗材采购',
+                        routerGuard: true,
+
+                    },
+                    component: 'depWorkbench/DepPurchaseCon',
+                    children: [
+                        {
+                            path: '/depPurchaseWorkbench/depPurchaseCon/depPurchaseConBase',
+                            name: '/depPurchaseWorkbench/depPurchaseCon/depPurchaseConBase',
+                            meta: {
+                                title: '耗材采购详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depPurchaseConBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/depWorkbench/depPurchase',
+                    name: '/depWorkbench/depPurchase',
+                    meta: {
+                        title: '设备采购管理',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepPurchase',
+                    children: [
+                        {
+                            path: '/depPurchaseWorkbench/depPurchase/depPurchaseBase',
+                            name: '/depPurchaseWorkbench/depPurchase/depPurchaseBase',
+                            meta: {
+                                title: '设备采购详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depPurchaseBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/depWorkbench/depPartsPurchase',
+                    name: '/depWorkbench/depPartsPurchase',
+                    meta: {
+                        title: '配件采购管理',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/DepPartsPurchase',
+                },
+                {
+                    path: '/depWorkbench/yearEquPurchase',
+                    name: '/depWorkbench/yearEquPurchase',
+                    meta: {
+                        title: '设备年采',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/YearEquPurchase',
+                },
+                {
+                    path: '/depWorkbench/yearConsPurchase',
+                    name: '/depWorkbench/yearConsPurchase',
+                    meta: {
+                        title: '耗材年采',
+                        routerGuard: true,
+                    },
+                    component: 'depWorkbench/YearConsPurchase',
+                }
+            ]
+        },
+        { //设备科工作台
+            path: '/edepWorkbench',
+            component: 'Layout',
+            redirect: '/edepWorkbench/workOrder',
+            name: '/edepWorkbench',
+            meta: {
+                title: '设备科工作台',
+                icon: 'appstore',
+                routerGuard: true,
+                role: 'EDEP_WORK_FLAG',
+            },
+            children: [
+                {
+                    path: '/edepWorkbench/workOrder',
+                    name: '/edepWorkbench/workOrder',
+                    meta: {
+                        title: '工单管理',
+                        routerGuard: true,
+                    },
+                    component: 'eDepWorkbench/WorkOrder',
+                    children: [
+                        {
+                            path: '/edepWorkbench/workOrder/workOrderBase',
+                            name: '/edepWorkbench/workOrder/workOrderBase',
+                            meta: {
+                                title: '工单详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depHomeBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/edepWorkbench/workTask',
+                    name: '/edepWorkbench/workTask',
+                    meta: {
+                        title: '任务管理',
+                        routerGuard: true,
+                    },
+                    component: 'eDepWorkbench/WorkTask',
+                }
+            ]
+        },
+        { //采购工作台
+            path: '/purchase',
+            component: 'Layout',
+            redirect: '/purchase/equPurchase',
+            name: '/purchase',
+            meta: {
+                title: '采购工作台',
+                icon: 'shopping-cart',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/purchase/equPurchase',
+                    name: '/purchase/equPurchase',
+                    meta: {
+                        title: '设备采购',
+                        routerGuard: true,
+                    },
+                    component: 'purchase/EquPurchase',
+                },
+                {
+                    path: '/purchase/consPurchase',
+                    name: '/purchase/consPurchase',
+                    meta: {
+                        title: '耗材采购',
+                        routerGuard: true,
+                    },
+                    component: 'purchase/ConsPurchase',
+                },
+                {
+                    path: '/purchase/partsPurchase',
+                    name: '/purchase/partsPurchase',
+                    meta: {
+                        title: '配件采购',
+                        routerGuard: true,
+                    },
+                    component: 'purchase/PartsPurchase',
+                },
+                {
+                    path: '/purchase/yearEquPurchase',
+                    name: '/purchase/yearEquPurchase',
+                    meta: {
+                        title: '设备年采',
+                        routerGuard: true,
+                    },
+                    component: 'purchase/YearEquPurchase',
+                },
+                {
+                    path: '/purchase/yearConsPurchase',
+                    name: '/purchase/yearConsPurchase',
+                    meta: {
+                        title: '耗材年采',
+                        routerGuard: true,
+                        role: 'EQU_PURCHASE_YEAR_CON_FLAG',
+                    },
+                    component: 'purchase/YearConsPurchase',
+                }
+            ]
+        },
+        { //领导工作台
+            path: '/hospitalWorkbench',
+            component: 'Layout',
+            redirect: '/hospitalWorkbench/purchaseTask',
+            name: '/hospitalWorkbench	',
+            meta: {
+                title: '领导工作台',
+                icon: 'appstore',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/hospitalWorkbench/stayTask',
+                    name: '/hospitalWorkbench/stayTask',
+                    meta: {
+                        title: '待办任务',
+                        routerGuard: true,
+                        role: 'LEADER_STAY_TASK_FLAG',
+                    },
+                    component: 'hospitalWorkbench/StayTask',
+                },
+                {
+                    path: '/hospitalWorkbench/doneTask',
+                    name: '/hospitalWorkbench/doneTask',
+                    meta: {
+                        title: '已办任务',
+                        routerGuard: true,
+                    },
+                    component: 'hospitalWorkbench/DoneTask',
+                }
+            ]
+        },
+        { //科室设备
+            path: '/depEquipment',
+            component: 'Layout',
+            redirect: '/depEquipment/equipmentList',
+            name: '/depEquipment',
+            meta: {
+                title: '科室设备信息',
+                icon: 'gold',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/depEquipment/equipmentList',
+                    name: '/depEquipment/equipmentList',
+                    meta: {
+                        title: '科室设备',
+                        routerGuard: true,
+                    },
+                    component: 'depEquipment/EquipmentList',
+                    children: [
+                        {
+                            path: '/depEquipment/equipmentList/detail',
+                            name: '/depEquipment/equipmentList/detail',
+                            meta: {
+                                title: '科室设备详情',
+                                routerGuard: true,
+                            },
+                            component: 'depHomeBase/depEquipmentBase',
+                        }
+                    ]
+
+                }
+            ]
+        },
+        { //合同管理
+            path: '/contract',
+            component: 'Layout',
+            redirect: '/contract/create',
+            name: '/contract',
+            meta: {
+                title: '合同管理',
+                icon: 'profile',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/contract/create',
+                    name: '/contract/create',
+                    meta: {
+                        title: '创建合同',
+                        routerGuard: true,
+                    },
+                    component: 'contract/CreateContract',
+                },
+                {
+                    path: '/contract/equContract',
+                    name: '/contract/equContract',
+                    meta: {
+                        title: '设备器械合同',
+                        routerGuard: true,
+                    },
+                    component: 'contract/EquContract',
+                    children: [
+                        {
+                            path: '/contract/equContract/EquContractBase',
+                            name: '/contract/equContract/EquContractBase',
+                            meta: {
+                                title: '设备合同详细',
+                                routerGuard: true,
+                            },
+                            component: 'contract/EquContractBase',
+                        },
+                        {
+                            path: '/contract/equContract/EquContractForm',
+                            name: '/contract/equContract/EquContractForm',
+                            meta: {
+                                title: '设备合同编辑',
+                                routerGuard: true,
+                            },
+                            component: 'contract/EquContractForm',
+                        }
+                    ]
+                },
+                {
+                    path: '/contract/consContract',
+                    name: '/contract/consContract',
+                    meta: {
+                        title: '耗材合同',
+                        routerGuard: true,
+                    },
+                    component: 'contract/ConsContract',
+                    children: [
+                        {
+                            path: '/contract/consContract/ConsContractBase',
+                            name: '/contract/consContract/ConsContractBase',
+                            meta: {
+                                title: '耗材合同详细',
+                                routerGuard: true,
+                            },
+                            component: 'contract/ConsContractBase',
+                        },
+                        {
+                            path: '/contract/consContract/ConsContractForm',
+                            name: '/contract/consContract/ConsContractForm',
+                            meta: {
+                                title: '耗材合同编辑',
+                                routerGuard: true,
+                            },
+                            component: 'contract/ConsContractForm',
+                        }
+                    ]
+                }
+            ]
+        },
+        { //厂商信息管理
+            path: '/firm',
+            component: 'Layout',
+            redirect: '/firm/eqFirm',
+            name: '/firm',
+            meta: {
+                title: '厂商信息管理',
+                icon: 'shop',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/firm/eqFirm',
+                    name: '/firm/eqFirm',
+                    meta: {
+                        title: '设备器械厂商',
+                        routerGuard: true,
+                    },
+                    component: 'firm/EqFirm',
+                    children: [
+                        {
+                            path: '/firm/eqFirm/FirmBase',
+                            name: '/firm/eqFirm/FirmBase',
+                            meta: {
+                                title: '设备器械详情',
+                                routerGuard: true,
+                            },
+                            component: 'firm/FirmBase',
+                        }
+                    ]
+
+                },
+                {
+                    path: '/firm/firmForm',
+                    name: '/firm/firmForm',
+                    meta: {
+                        title: '厂商编辑页面',
+                        routerGuard: true,
+                    },
+                    component: 'firm/FirmFormBase',
+                },
+                {
+                    path: '/firm/consFirm',
+                    name: '/firm/consFirm',
+                    meta: {
+                        title: '耗材厂商',
+                        routerGuard: true,
+                    },
+                    component: 'firm/ConsFirm',
+                    children: [
+                        {
+                            path: '/firm/consFirm/FirmBase',
+                            name: '/firm/consFirm/FirmBase',
+                            meta: {
+                                title: '耗材厂商详情',
+                                routerGuard: true,
+                                flags: 'base'
+
+                            },
+                            component: 'firm/FirmBase',
+                        }
+                    ]
+                },
+            ]
+        },
+        { //仓储管理
+            path: '/storage',
+            component: 'Layout',
+            redirect: '/storage/baseInfo',
+            name: '/storage',
+            meta: {
+                title: '仓储管理',
+                icon: 'database',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/storage/baseInfo',
+                    name: '/storage/baseInfo',
+                    meta: {
+                        title: '仓储设置',
+                        routerGuard: true,
+                    },
+                    component: 'storage/BaseInfo',
+                    children: [
+                        {
+                            path: '/storage/baseInfo/StorageDetailed',
+                            name: '/storage/baseInfo/StorageDetailed',
+                            meta: {
+                                title: '仓储详情',
+                                routerGuard: true,
+                            },
+                            component: 'storage/StorageDetailed',
+                        }
+                    ]
+                },
+                {
+                    path: '/storage/assets',
+                    name: '/storage/assets',
+                    meta: {
+                        title: '资产管理',
+                        routerGuard: true,
+                    },
+                    component: 'storage/Assets',
+                    children: [
+                        {
+                            path: '/storage/assets/StorageEquDetailed',
+                            name: '/storage/assets/StorageEquDetailed',
+                            meta: {
+                                title: '资产详情',
+                                routerGuard: true,
+                            },
+                            component: 'storage/StorageEquDetailed.',
+                        }, {
+                            path: '/storage/assets/EquApply',
+                            name: '/storage/assets/EquApply',
+                            meta: {
+                                title: '设备投产',
+                                routerGuard: true,
+                            },
+                            component: 'storage/EquApply',
+                        }
+                    ]
+                }
+            ]
+        },
+        {//系统设置
+            path: '/setting',
+            component: 'Layout',
+            redirect: '/setting/baseInfo',
+            name: '/setting',
+            meta: {
+                title: '系统设置',
+                icon: 'setting',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/setting/baseInfo',
+                    name: '/setting/baseInfo',
+                    meta: {
+                        title: '基础设置',
+                        routerGuard: true,
+                    },
+                    component: 'setting/BaseInfo',
+                },
+                {
+                    path: '/setting/checkItem',
+                    name: '/setting/checkItem',
+                    meta: {
+                        title: '自检项维护',
+                        routerGuard: true,
+                    },
+                    component: 'setting/CheckItem.',
+                },
+                {
+                    path: '/setting/userInfo',
+                    name: '/setting/userInfo',
+                    meta: {
+                        title: '人员设置',
+                        routerGuard: true,
+                    },
+                    component: 'setting/UserInfo',
+                    children: [
+                        {
+                            path: '/setting/role/userBase',
+                            name: '/setting/role/userBase',
+                            meta: {
+                                title: '任务信息详细',
+                                routerGuard: true,
+                            },
+                            component: 'setting/UserBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/setting/role',
+                    name: '/setting/role',
+                    meta: {
+                        title: '角色权限',
+                        routerGuard: true,
+                    },
+                    component: 'setting/Role',
+                    children: [
+                        {
+                            path: '/setting/role/roleBase',
+                            name: '/setting/role/roleBase',
+                            meta: {
+                                title: '耗材采购详情',
+                                routerGuard: true,
+                            },
+                            component: 'setting/RoleBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/setting/organize',
+                    name: '/setting/organize',
+                    meta: {
+                        title: '组织结构',
+                        routerGuard: true,
+                    },
+                    component: 'setting/Organize',
+                },
+                {
+                    path: '/setting/dictInfo',
+                    name: '/setting/dictInfo',
+                    meta: {
+                        title: '字典管理',
+                        routerGuard: true,
+                    },
+                    component: 'setting/DictInfo',
+                    children: [
+                        {
+                            path: '/setting/dictInfo/dictInfoBase',
+                            name: '/setting/dictInfo/dictInfoBase',
+                            meta: {
+                                title: '字典详情',
+                                routerGuard: true,
+                                flags: 'base'
+
+                            },
+                            component: 'setting/DictInfoBase',
+                        }
+                    ]
+                },
+                {
+                    path: '/setting/template',
+                    name: '/setting/template',
+                    meta: {
+                        title: '模板管理',
+                        routerGuard: true,
+                    },
+                    component: 'setting/Template',
+                }
+            ]
+        },
+        {//个人设置
+            path: '/userSeting',
+            component: 'Layout',
+            redirect: '/userSeting/userBase',
+            name: '/userSeting',
+            meta: {
+                title: '个人设置',
+                icon: 'user',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/userSeting/userBase',
+                    name: '/userSeting/userBase',
+                    meta: {
+                        title: '个人设置',
+                        routerGuard: true,
+                        nav:true
+                    },
+                    component: 'setting/UserBase',
+                }
+            ]
+        },
+        { //工作计划
+            path: '/workPlan',
+            component: 'Layout',
+            redirect: '/workPlan/dutyTable',
+            name: '/workPlan',
+            meta: {
+                title: '工作计划',
+                icon: 'contacts',
+                routerGuard: true,
+            },
+            children: [
+                {
+                    path: '/workPlan/dutyTable',
+                    name: '/workPlan/dutyTable',
+                    meta: {
+                        title: '值班计划',
+                        routerGuard: true,
+                    },
+                    component: 'workPlan/DutyTable',
+                },
+                {
+                    path: '/storage/studyPlan',
+                    name: '/storage/studyPlan',
+                    meta: {
+                        title: '学习计划',
+                        routerGuard: true,
+                    },
+                    component: 'workPlan/StudyPlan',
+                }
+            ]
+        },
+        {
+            path: '*',
+            hidden: true,
+            component: 'error'
+        }
+    ];
+
+
+console.log(routerData);
+</script>
+</body>
+</html>
