@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/数组/routerData.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/正则/regExp-01.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,7 +15,7 @@
     <session id="-399556003">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="41" />
+          <entry key="project.closed" value="42" />
           <entry key="project.open.time.0" value="30" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="5" />
@@ -62,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/正则/regExp-01.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="43" />
+            <state relative-caret-position="-58">
+              <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -125,9 +121,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="76" />
-    <option name="y" value="47" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="361" />
+    <option name="y" value="77" />
     <option name="width" value="1940" />
     <option name="height" value="1100" />
   </component>
@@ -142,6 +138,11 @@
             <path>
               <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
               <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
+              <item name="数组" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -234,12 +235,12 @@
       <workItem from="1571217442618" duration="4795000" />
       <workItem from="1571224184197" duration="27000" />
       <workItem from="1571278103685" duration="3177000" />
-      <workItem from="1571361776569" duration="2874000" />
+      <workItem from="1571361776569" duration="2918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109934000" />
+    <option name="totallyTimeSpent" value="109978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -251,10 +252,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="76" y="47" width="1940" height="1100" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10706751" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10729387" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -266,7 +267,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32912987" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.116648994" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.38820913" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -514,8 +515,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/正则/regExp-01.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="43" />
+        <state relative-caret-position="-58">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
         </state>
       </provider>
     </entry>
