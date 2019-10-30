@@ -42,6 +42,119 @@ redirect  路由里重定向
 
 ----------------------
 
+decorator   装饰工
+
+wrapper
+n.包装纸;封皮;封套
+
+
+horizontal
+n. 水平位置;水平线;水平面;横线;横切面
+
+
+handle
+n.把手;拉手;柄;把;
+
+prevent
+v. 阻止;阻碍;阻挠
+
+layout
+n.布局;布置;设计;安排
+
+primary
+
+主要的;最重要的;基本的;最初的;
+
+validate
+v.证实;确认;确证;
+
+validateFields  验证字段
+
+validateStatus  验证状态
+
+status
+n.法律地位(或身份);地位;身份;职位;
+
+vertical 垂直
+
+initialValue
+初始值
+
+moment
+n. 片刻;瞬间;准确时刻;
+
+required
+v.需要;依靠;依赖;使做(某事);
+
+
+store
+n. 商店
+
+model
+模型
+
+ViewModel  视图模型
+
+
+render
+v. 使成为;使变得;使处于某状态;
+
+mount
+v.准备;安排;组织开展；登上;爬上;攀登
+
+mounted
+v.准备;安排;组织开展;
+
+update 更新
+
+
+date 日期  data 数据
+
+module 模块
+
+template 模板
+
+destroy 摧毁;毁灭;破坏
+
+level 水平
+
+webpack  网页包
+
+Babel (with ES2015 modules)
+
+
+property
+n. 所有物;财产;财物;不动产;房地产;
+
+对象原型中使用
+
+define
+定义，  undefine是一种数据类型
+
+defineProperty是Object的一个属性
+
+watcher
+n.  …观察家; …观察员
+
+slot
+v. 投放;插入;(被)塞进;(被)装入
+
+在编写组件的时候，使用插槽
+
+keep-alive  保持了组件的状态
+
+alive 活着的
+
+resolve
+v.解决(问题或困难);决心;决定;
+
+
+
+
+
+
+
+
 
 
 
