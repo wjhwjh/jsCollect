@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>展示</title>
+</head>
+<body>
+
+<script>
+/*
+* Interator
+*
+* 迭代器， 也就是遍历器
+*
+* 迭代器，为访问数据结构提供一个统一的访问机制
+*
+* 实质是一个函数，处理数据的工具函数
+*
+* 一个数据结构是否可遍历，看其内部是否部署了 interator接口， 如果有这个接口，则可以用
+* for..of遍历， 也称这种数据结构是可遍历的
+*
+*
+*
+*
+* */
+
+function makeIterator() {
+    let nextIndex=0; // 利用了闭包的的知识
+    console.log('index', nextIndex)
+    return {
+     next : function () {
+         console.log('index', nextIndex)
+         return { value:nextIndex++, done:false}
+     }
+    }
+}
+
+let result = makeIterator(); //
+
+console.log(result.next())
+console.log(result.next())
+console.log(result.next())
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

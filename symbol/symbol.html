@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+/*-symbol--------------------------------*/
+/*
+* 1. symbol是一种由函数构成的数据类型
+* 2. symbol只和自身相等
+*   Symbol('描述')， Symbol.prototype.description 查看描述
+*   let s = Symbol('描述');
+*   s.description; // 描述
+*
+*
+*
+* 3. 使用场景，可用作对象的属性名，防止覆盖对象原有的属性名。
+*    作为对象的属性名，如何读取和设置
+*
+*  设置，3种方法
+   let mySymbol = Symbol();
+    // 第一种写法
+    let a = {};
+    a[mySymbol] = 'Hello!';
+
+    // 第二种写法
+    let a = {
+      [mySymbol]: 'Hello!'
+    };
+    // 第三种写法
+    let a = {};
+    Object.defineProperty(a, mySymbol, { value: 'Hello!' });
+
+    读取：
+    Symbol 作为属性名，该属性不会出现在for...in、for...of循环中，
+    也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回。
+    但是，它也不是私有属性，有一个Object.getOwnPropertySymbols方法，可以获取指定对象的所有 Symbol 属性名，返回的是一个数组。
+
+   另一个新的 API，Reflect.ownKeys方法可以返回所有类型的键名，包括常规键名和 Symbol 键名
+
+
+
+   Symbol类型内置到js原生中
+   [Symbol.iterator]()
+   向该对象的默认遍历器方法
+
+* */
+
+    const COLOR_RED    = Symbol('红色的');
+    const COLOR_RED1    = Symbol('红色的');
+    const COLOR_GREEN  = Symbol('绿色的');
+
+    function getComplement(color) {
+        switch (color) {
+            case COLOR_RED:
+                return COLOR_GREEN;
+            case COLOR_GREEN:
+                return COLOR_RED;
+            default:
+                throw new Error('Undefined color');
+        }
+    }
+
+    console.log(getComplement(COLOR_RED)); // Symbol(绿色的)
+    console.log(COLOR_RED === COLOR_RED); //true
+    console.log(COLOR_RED === COLOR_RED1); //false
+
+
+
+//这里的对象属性的类型设置为Symbol类型，保证没有与之重复的
+const shapeType = {
+    triangle:Symbol()
+};
+
+
+// 功能函数低耦合，模块化
+function getArea(shape, options) {
+    let area = 0;
+    switch (shape) {
+        case shapeType.triangle: //减少低耦合，这里摘出去，设置成对象形式，利于维护
+            area = .5 * options.width * options.height;
+            console.log(area);
+            break;
+    }
+    return area;
+}
+
+getArea(shapeType.triangle, { width: 100, height: 100 });
+
+
+
+/*------------*/
+let size = Symbol('size'); // size 是Symbol类型
+
+// 类
+class Collection {
+    constructor() {
+        this[size] = 0; // 对象的私有属性
+    }
+
+    add(item) {
+        //console.log( this[size] );
+        this[this[size]] = item; //this[0] = item
+
+        //console.log(this[this[size]]);
+        this[size]++; //size私有属性做++运算
+        console.log(this);
+    }
+
+    static sizeOf(instance) {
+        // 获取当前对象的size属性值
+        return instance[size];
+    }
+}
+
+let x = new Collection();
+
+x.add('item');
+console.log(Collection.sizeOf(x)); // 1
+
+/*
+
+  x对象的输出值
+  {0: "item"
+   Symbol(size): 1}
+
+*/
+console.log('x对象的属性', Object.keys(x)); // ["0"]
+console.log('x对象0属性', x[0]); // item
+console.log('x对象size属性', x[size]) // 1
+console.log('x对象size属性', Object.getOwnPropertySymbols(x)) // [Symbol(size)]
+console.log('x对象size属性', Object.getOwnPropertySymbols(x)[0]) // 1
+console.log('x对象size属性', Reflect.ownKeys(x)) // ["0", Symbol(size)] 获取对象的所有属性
+
+
+
+
+
+</script>
+</body>
+</html>

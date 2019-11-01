@@ -1,12 +1,24 @@
+information  信息
+message 信息
+news 消息，新闻
+wrapper
+n.包装纸;封皮;封套
+result 结果
 popup  弹出层
 
 prop
-
 n.支柱;支撑物;支持者;后盾;道具
 v.支撑
 
+instance
+n.例子;事例;实例
 
---------------------
+collection
+n.
+(常指同类的)收集物，收藏品;一批物品;一群人;取走;拿走;聚集;聚积
+
+---vue---------------------------------------------------
+
 params
 
 参数
@@ -44,13 +56,13 @@ redirect  路由里重定向
 
 decorator   装饰工
 
-wrapper
-n.包装纸;封皮;封套
-
 
 horizontal
 n. 水平位置;水平线;水平面;横线;横切面
 
+vertical 垂直
+
+line 线性
 
 handle
 n.把手;拉手;柄;把;
@@ -62,7 +74,6 @@ layout
 n.布局;布置;设计;安排
 
 primary
-
 主要的;最重要的;基本的;最初的;
 
 validate
@@ -72,10 +83,21 @@ validateFields  验证字段
 
 validateStatus  验证状态
 
+module
+n.单元(尤指英国大学课程的一部分);模块;功能块;程序块;组件;配件
+
+modal
+adj. 模式的;情态的;形式的;语气的
+
+model
+模型
+
+ViewModel  视图模型
+
+
+
 status
 n.法律地位(或身份);地位;身份;职位;
-
-vertical 垂直
 
 initialValue
 初始值
@@ -90,10 +112,7 @@ v.需要;依靠;依赖;使做(某事);
 store
 n. 商店
 
-model
-模型
 
-ViewModel  视图模型
 
 
 render
@@ -105,12 +124,10 @@ v.准备;安排;组织开展；登上;爬上;攀登
 mounted
 v.准备;安排;组织开展;
 
+
 update 更新
 
-
 date 日期  data 数据
-
-module 模块
 
 template 模板
 
@@ -123,10 +140,9 @@ webpack  网页包
 Babel (with ES2015 modules)
 
 
-property
-n. 所有物;财产;财物;不动产;房地产;
 
-对象原型中使用
+
+
 
 define
 定义，  undefine是一种数据类型
@@ -148,15 +164,57 @@ alive 活着的
 resolve
 v.解决(问题或困难);决心;决定;
 
+silent  沉默的
+
+-es6--------------------
+
+Iterator
+遍历器;模式;迭代器形式;迭代器;迭代器模式
+-- 数据结构提供统一的访问机制
+
+iterable 可迭代的
+Iteration  迭代;反复;开发周期;重复结构;重复
+
+interface 接口
+
+generator
+n.发电机;发生器;电力公司
+
+yield
+v.出产(作物);产生(收益、效益等);提供;屈服;让步;放弃;缴出
+
+entries
+n. 进入(指行动);进入(指权利等);参与，加入
+-- 数组在使用for...of遍历的时，返回 键名/键值 的时候使用
+
+mixin 混合蛋白
+
+symbol
+n.象征;符号;代号;记号
+-- es6中是一种数据类型，Symbol()， 是一个函数,不用new关键字创建。 从函数的角度看，这种数据类型是一个对象， 即使完全
+   一样，也是不相等的。 又有字符串的的特点，类似字符串的对象数据类型。
 
 
+description
+n.描写(文字);形容;说明;类型
+-- 获取symbol类型数据的描述
+
+reflect
+v. 反映;映出(影像);反射(声、光、热等);显示，表明，
+
+-- 在es6中是一个特殊的对象，Reflect.ownKeys() 可以返回对象的所有的属性
 
 
+constructor
+n. (尤指汽车或飞机的)建造者，制造者，建造商
 
+-- 类中必有的
 
+property
+n. 所有物;财产;财物;不动产;房地产;
+--对象原型中使用, 对象中相关属性使用
 
-
-
+getOwnPropertySymbol()
 
 
 
