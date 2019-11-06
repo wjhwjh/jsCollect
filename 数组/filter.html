@@ -8,20 +8,20 @@
 <script>
     let arr = [
         {
-        address: "赤峰是",
-        bussScope: "11111111111111111111111111111",
-        contacts: "张三",
-        createTime: 1571986676000,
-        frimInfoVos: Array(0),
-        id: 10,
-        infoHositoryLogVos: Array(0),
-        name: "生成厂商",
-        qualificationsVos: Array(8),
-        status: "1",
-        statusName: null,
-        tell: "15510521616",
-        type: "1",
-        typeName: null,
+            address: "赤峰是",
+            bussScope: "11111111111111111111111111111",
+            contacts: "张三",
+            createTime: 1571986676000,
+            frimInfoVos: Array(0),
+            id: 10,
+            infoHositoryLogVos: Array(0),
+            name: "生成厂商",
+            qualificationsVos: Array(8),
+            status: "1",
+            statusName: null,
+            tell: "15510521616",
+            type: "1",
+            typeName: null,
         },
         {
             address: "北京北京",
@@ -72,12 +72,71 @@
             typeName: null,
 
         },
-
-
-
-
-
     ]
+
+    let o = {
+        code: "1",
+        failValue: "异常",
+        id: 1,
+        remark: "开机正常异常",
+        successValue: "正常",
+        title: "开机是正常",
+    }
+
+    // 遍历对象使用for...in
+    for (let key in o) {
+        console.log('获取到对象属性名---',key);
+        console.log('获取到对象属值---',o[key]);
+    }
+
+    console.log('---filter遍历返回数组每一项对象中的属性和属性值----------------')
+
+   // filter遍历数组，并对数组的每一项进行操作
+    let a = arr.filter(item => {
+        for (let key in item) {
+            console.log('key值---', key);
+            console.log('key属性的值---', item[key]);
+        }
+        return true
+    })
+
+   console.log('-----filter是浅拷贝-----------------------------')
+
+   //无论是那种循环，都离不开数据的本身本质属性
+   let arr1 = [1,'a',[3,4],[5,6],{a:'1',b:2}];
+   let arr1_1=arr1.filter(item=>{
+      return true
+   })
+
+
+   let arr1_2 = [...arr1];
+
+
+   arr1[0]=2;
+   arr1[2]=['三','四'];
+   arr1[4].a='aaaa';
+   arr1_1[0]=3;
+   arr1_1[3]=['五','六'];
+
+   console.log('arr1--', arr1)
+   console.log('arr1_1--', arr1_1)
+   console.log('arr1_2--', arr1_2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </body>
