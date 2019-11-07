@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*
+ ----循环
+ for语句，是用来遍历数组的；
+ for...in 是用来遍历对象的属性的，；
+ switch语句是用来匹配指定的值；
+ while语句
+
+
+  -----跳出循环
+
+*  break 是跳出循环，for...in 或是for语句
+*
+*  continue ：只能用在while语句、do/while语句、for语句、或者for/in语句的循环体；
+*
+*  return true: 常用于array.forEach(), jq的 $.each()、$().each(), return 是结束函数往下运行;
+*
+*
+*
+* */
+
+console.log(111)
+
+function f() {
+    var n=0;
+    while (true){
+        n++;
+        console.log(n);
+        if (n==5){
+            break;
+        }
+    }
+}
+f();
+
+console.log('---for break------------------')
+for (let i=0; i<10; i++){
+  if (i==5)break;
+    console.log(i);
+}
+
+
+console.log('---for continue------------------')
+for (let i=0; i<10; i++){
+    if (i==5)continue;
+    console.log(i);
+}
+
+console.log('---for...in------------------')
+let names = [
+    {id: 1, name: 'sdf'},
+    {id: 2, name: 'sdf'},
+    {id: 3, name: 'sdf'},
+    {id: 4, name: 'sdf'}
+]
+let arr=[];
+for(let k in names) {
+    if (names[k].id===2){
+        continue;
+    }
+    arr.push(names[k]);
+}
+console.log('输出跳出for..in------',arr);
+
+let arr1=[];
+for(let item of names) {
+   //console.log(item);
+    arr1.push(item);
+    if (item.id===2){
+        break;
+    }
+}
+console.log('输出跳出for..of------',arr1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
