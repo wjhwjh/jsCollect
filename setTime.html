@@ -8,17 +8,62 @@
 <!--https://segmentfault.com/q/1010000015758919?_ea=5207394-->
 
 <script>
+/*
+*
+* 定时器
+*
+* this指向问题
+*
+* */
+
   let obj = {
     id: 'this is my id',
     a: function () {
         console.log('函数执行this绑定',this);
        /* console.log(this.id);*/
+    },
+    b: function () {
+        console.log('对象里的定时器', this);
+    },
+    c: function () {
+       // let fn = this.b;
+       // setTimeout(this.b, 1000); 指向window
+       // setTimeout(this.b.bind(obj), 1000); // obj
+      /*  setTimeout(function(){
+            console.log('this指向问题',this); //指向window
+        },0)*/
+        console.log('本函数的作用域', this); // 指向obj是没有问题的
+      /* setTimeout(()=> {
+          console.log('this指向问题',this); // 指向obj
+       },0)*/
+
+    /*   ~(function () {
+           console.log('匿名函数的this指向', this); // 指向window
+       })();*/
+
+  /*     let f = function () {
+           console.log('函数表达式中this指向',this);// 指向window
+       }
+       f();*/
+
+        let f = ()=>{
+            console.log('函数表达式中this指向',this);//指向obj
+        }
+        f();
+
     }
   }
 
-  console.log(obj.a())
+/*  console.log(obj.a())
   setTimeout(obj.a.bind(obj), 1000)
-  setTimeout(obj.a, 1000)
+  setTimeout(obj.a, 1000);*/
+ //setInterval();
+  console.log(obj.c());
+  setTimeout(function () {
+      console.log('设置一个定时器');
+  },100)
+
+
 
 </script>
 
