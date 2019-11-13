@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+
+<ul id="box">
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+    <li>列表</li>
+</ul>
+
+
+<script>
+    /*
+     ----执行上下文（作用域）、 变量对象、this指针
+
+    * 闭包是一种概念，是函数存在的一种形式
+    *
+    * 闭包能够保护和保存变量，不会被垃圾回收机制回收
+    *
+    * 使用场景，面试题
+    *
+    * ------------------
+    * 内存回收机制是指不在用到的内存，系统自动进行回收从而清理出空间供其它程序使用；
+    *
+    * 一般程序在执行的时候会占用内存，执行完毕就会释放内存，释放的内存系统会自动进行回收。
+    *
+    * 闭包则不会执行完释放内存，这是好处也是坏处。
+    *
+    * 堆和栈的存储形式
+    * 栈（stack）为自动分配的内存空间，它由系统自动释放；
+    * 而堆（heap）则是动态分配的内存，大小不定也不会自动释放。
+    *
+    *
+    * */
+    var box = document.getElementById('box');
+    var list = box.getElementsByTagName('li');
+    var len = list.length;
+
+/*
+    for (var i=0; i<len; i++){
+       list[i].onclick = function () {
+           alert(i);
+       }
+    }
+*/
+
+   /*
+   * 匿名函数传参
+   * 匿名函数立即执行函数
+   * */
+    for (var i=0; i<len; i++){
+        ~(function (i) {
+            // 这里使用了匿名函数创建了一个作用域，形成闭包，保存了变量i
+            list[i].onclick = function () {
+                alert(i);
+            }
+        })(i);
+    }
+
+
+
+</script>
+
+</body>
+</html>
