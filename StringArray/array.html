@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的方法</title>
+
+    <style>
+        .jz{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jz > img{}
+    </style>
+</head>
+<body>
+
+
+
+
+
+<script>
+/*
+*  字符串
+*  字符串的方法
+*  字符串
+*
+* */
+
+let arr = ['a','b',1,2,4,0];
+
+console.log('-改变原数组,增加--------------------------')
+console.log('push方法---', arr.push('c','d')); //返回的是改变后数组的长度
+console.log('unshift方法---', arr.unshift('c','d')); //返回的是改变后数组的长度
+console.log('splice方法---', arr.splice(1,0,'9')); //返回的是一个空数组
+console.log(arr);
+
+
+console.log('-改变原数组，去掉某一项--------------------------')
+console.log('pop方法---', arr.pop()); //删除最后一个，并返回删除的元素
+console.log('shift方法---', arr.shift(), arr); //删除数组第一个，并返回删除的元素
+console.log('splice方法---', arr.splice(2,1)); //返回删除项的数组，第二个参数为0的时候返回一个空数组
+console.log(arr);
+
+console.log('---筛查数组的某一项--------------------------')
+console.log('filter返回符合条件的所有项---', arr.filter(item=>typeof item ==='string')) //返回一个数组
+console.log('find返回第一个符合条件的项---', arr.find(item=>typeof item ==='string')) //返回第一个符合条件的项
+console.log('findIndex返回符合条件项的索引---', arr.findIndex(item=>typeof item ==='number')) //返回第一个符合条件的索引值
+console.log('indexOf返回符合条件的项的索引---', arr.indexOf(2))//判断数组中是否有指定的项，有返回首次出现的索引值，没有返回-1
+console.log('includes是否有符合条件的项---', arr.includes(2))//判断数组中是否有指定的项，有返回true, 没有返回false
+console.log('some是否有符合条件的项---', arr.some(item=>typeof item ==='number'))//返回布尔值， 只要有就返回true,否则返回false
+console.log(arr);
+
+console.log('---修改数组--------------------------')
+console.log('map对每一项进行操作---', arr.map(item=>item.toString())) //返回第一个符合条件的索引值
+console.log('concat链接2个或多个数组---', arr.concat([4,5,6])) // 返回链接后的数组
+console.log('slice截取数组中指定的长度---', arr.slice(1,4)) // 返回截取的数组，slice参数指的是下标值，闭开区间
+console.log('sort数组排序---', arr.sort((x,y)=>y-x)) // 返回排序后的数组,Unicode位点
+console.log(arr);
+
+
+console.log('---其它方法--------------------------')
+console.log('forEach是遍历数组的---')
+console.log('join---', arr.join('')) // 把数组转化为字符串，返回一个字符串
+console.log('isArray判断一个数据是否是数组--', Array.isArray(arr)) //返回boolean值
+console.log('from创建一个数组--',  ) //返回boolean值
+console.log('reduce--',  ) //返回boolean值
+console.log('reverse翻转一个数组--',  arr.reverse()) //返回boolean值
+
+
+
+
+
+</script>
+
+</body>
+</html>
