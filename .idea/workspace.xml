@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StringArray/string.html" beforeDir="false" afterPath="$PROJECT_DIR$/StringArray/string.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wjh-命名" beforeDir="false" afterPath="$PROJECT_DIR$/wjh-命名" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,7 +30,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="5" />
-          <entry key="html" value="67" />
+          <entry key="html" value="68" />
           <entry key="md" value="2" />
           <entry key="wjh-命名" value="2" />
           <entry key="点" value="1" />
@@ -42,14 +40,14 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="5" />
-          <entry key="HTML" value="67" />
+          <entry key="HTML" value="68" />
           <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="2" />
-          <entry key="html" value="16532" />
+          <entry key="html" value="16618" />
           <entry key="wjh-命名" value="1338" />
           <entry key="知识点" value="94" />
         </counts>
@@ -57,7 +55,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="HTML" value="16532" />
+          <entry key="HTML" value="16618" />
           <entry key="PLAIN_TEXT" value="1432" />
         </counts>
       </usages-collector>
@@ -86,8 +84,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StringArray/string.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+            <state relative-caret-position="601">
+              <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/正则/regExp-01.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1015">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -189,7 +196,12 @@
             <path>
               <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
               <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
-              <item name="StringArray" type="462c0819:PsiDirectoryNode" />
+              <item name="数组" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
+              <item name="正则" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -207,16 +219,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\ALl\jsCollect" />
-      <recent name="F:\ALl\jsCollect\数组" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\ALl\jsCollect\StringArray" />
       <recent name="F:\ALl\jsCollect\String" />
       <recent name="F:\ALl\jsCollect\闭包" />
       <recent name="F:\ALl\jsCollect\退出循环" />
       <recent name="F:\ALl\jsCollect\class" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\ALl\jsCollect" />
+      <recent name="F:\ALl\jsCollect\数组" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -305,12 +317,12 @@
       <workItem from="1573607006172" duration="9575000" />
       <workItem from="1573692299540" duration="13228000" />
       <workItem from="1573721356417" duration="716000" />
-      <workItem from="1573780434067" duration="3592000" />
+      <workItem from="1573780434067" duration="5411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221977000" />
+    <option name="totallyTimeSpent" value="223796000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -325,7 +337,7 @@
     <frame x="477" y="35" width="1344" height="975" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15538462" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15538462" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -337,7 +349,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885087" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.026894866" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -577,13 +589,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/正则/regExp-01.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interator/interator.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -654,10 +659,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/正则/regExp-01.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1015">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/StringArray/string.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+        <state relative-caret-position="601">
+          <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
         </state>
       </provider>
     </entry>
