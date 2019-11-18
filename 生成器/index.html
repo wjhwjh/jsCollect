@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function* foo(x) {
+        console.log(x);
+        if (x < 3) {
+            x = yield* foo(x + 1); //函数回调执行
+        }
+        //console.log(x*2);
+        return x * 2
+    }
+
+    var it = foo(1);
+    var res = it.next();
+    console.log(res); //存放在变量中就有值，
+    console.log(it.next());//直接输出就没有值
+
+
+    // 生成器执行过程
+    // 生成器成为迭代器是如何运行的
+    // yield 可以暂停函数，
+    function* f(x) {
+        x = yield x + 1;
+        x = yield x + 1;
+        x = yield x + 1;
+
+        return x * 2
+    }
+
+    let it1 = f(1);
+    let res1 = it1.next();
+    console.log('res1---', res1);
+    res1 = it1.next(res1.value);
+    console.log('res1---', res1);
+    res1 = it1.next(res1.value);
+    console.log('res1---', res1);
+    res1 = it1.next(res1.value);
+    console.log('res1---', res1);
+    res1 = it1.next(res1.value);
+    console.log('res1---', res1);
+
+
+    function* f1(x) {
+        x = yield x + 1;
+        return x
+    }
+    let it2 = f(1);
+    let res2 = it2.next();
+    console.log('res2---', res2);
+    res2 = it2.next(3);
+    console.log('res2---', res2);
+</script>
+</body>
+</html>

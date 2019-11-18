@@ -6,13 +6,13 @@
 </head>
 <body>
 <script>
-/*这是普通的算法，耗时耗内存最多的，性能最差的*/
-    var twoSum = function(nums, target) {
-        let arr=[];
-        for(let i=0; i<nums.length-1; i++){
-            for(let j=i+1;j<nums.length; j++){
-                if(nums[i]+nums[j]===target){
-                    arr.push(i,j);
+    /*这是普通的算法，耗时耗内存最多的，性能最差的*/
+    var twoSum = function (nums, target) {
+        let arr = [];
+        for (let i = 0; i < nums.length - 1; i++) {
+            for (let j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] === target) {
+                    arr.push(i, j);
                     break;
                 }
             }
@@ -20,29 +20,28 @@
         }
         return arr;
     };
-    let nums=[2,7,11,15];
+    let nums = [2, 7, 11, 15];
     let target = 9;
     //let a = twoSum(nums, target);
-    console.log('第一种算法----',twoSum(nums, target));
+    console.log('第一种算法----', twoSum(nums, target));
 
 
-    var twoSum1 = function(nums, target, i = 0, maps = {}) {
+    var twoSum1 = function (nums, target, i = 0, maps = {}) {
         const map = maps
-        if(map[target - nums[i] ] >= 0 ) {
-            return [ map[target - nums[i] ], i]
+        if (map[target - nums[i]] >= 0) {
+            return [map[target - nums[i]], i]
         } else {
-            map[ nums[i] ] = i;
+            map[nums[i]] = i;
             i++;
-            if(i < nums.length - 1){
+            if (i < nums.length - 1) {
                 return twoSum(nums, target, i, map)
-            }else {
+            } else {
                 throw 'error: twoSum is not find'
             }
         }
     }
     //let b = twoSum1(nums, target);
-    console.log('第二种算法----',twoSum1(nums, target));
-
+    console.log('第二种算法----', twoSum1(nums, target));
 
 
     /*
@@ -51,19 +50,17 @@
     *
     * */
 
-    var twoSum3 = function(nums, target) {
+    var twoSum3 = function (nums, target) {
         const map = {}; // 定义一个对象
         for (let i = 0; i < nums.length; i++) {
-            if (map[target - nums[i]] >= 0) {
+            if (map[target - nums[i]] >= 0) {  //只要对象的属性值存在，就存在这样的值
                 return [map[target - nums[i]], i]
             }
             // 把数组的每一项存放到对象中，数组的每一项是对象属性名，索引是属性值
             map[nums[i]] = i;
         }
     }
- console.log('第三种方法---', twoSum3(nums, target));
-
-
+    console.log('第三种方法---', twoSum3(nums, target));
 
 
 </script>

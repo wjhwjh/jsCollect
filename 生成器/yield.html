@@ -17,6 +17,8 @@
     *
     *  生成器和迭代器的关系
     *
+    *  执行生成器的过程，就叫做迭代器
+    *
     *
     *
     * */
@@ -25,18 +27,24 @@
 
        console.log(z)
 
-        //return z
+       return z
     }
 
     let it = foo(6);
     let res = it.next(); // 相当于启动一个生成器，便生成一个对象。这里返回的是yield在函数中设置的默认值
-
+    console.log('第一个next---',res);
     console.log(res.value);  // 这里也体现了数据可以输出，也就是反回一个值。 下面体现可以传递一个值
 
 
      res = it.next(8);
-
+     console.log('第2个next---',res);
      console.log(res.value);
+
+     /*
+     *
+     * 默认运行结束，返回一个对象，属性done为true{value: undefined, done: true}
+     *
+     * */
 
 
 
