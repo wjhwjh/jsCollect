@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件传值</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+    <script>
+        // vue 是一个实例
+
+        /*
+        *  父组件向子组件传值， props
+        *
+        *  子组件向父组件传值，利用的是事件监听，$emit
+        *
+        *  很棒，完美
+        * */
+        // 定义一个全局子组件
+        Vue.component('Child',{
+         data(){
+          return {
+            iptVal:''
+          }
+         },
+         props:['parentData'], //父组件向子组件传值的纽带，
+         template:`<div>全局组件，当子组件用。  {{parentData}} <p><input v-model="iptVal" @input="onInput" type="text"></p></div>`,
+         methods:{
+             onInput(){
+               //console.log(this.iptVal);
+               this.$emit('getChild',this.iptVal); // 子组件向父组件传值的纽带，第一个参数是自定义事件，这种传值可以出现在任何地方
+             }
+         }
+        });
+
+        // 定义一个全局父组件
+        Vue.component('Parent',{
+          data(){
+           return {
+             msg:'我是父组件的值',
+             childMsg:''
+           }
+          },
+          template:`<div>全局组件，当父组件用。<Child :parentData="msg" @getChild="getHandel"></Child> <div><strong>这是子组件传递过来的值：</strong>{{childMsg}}</div></div>`,
+          methods:{
+              getHandel(val){
+                 //console.log('子组件传过来的值', val);
+                 this.childMsg = val;
+              }
+          },
+        })
+
+        let App = {
+            data() {
+                return {}
+            },
+            template: `<div><h3>全局组件</h3> <Parent></Parent> </div>`,
+        }
+
+        let vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    msg: '这是数据'
+                }
+            },
+            components: {
+                App
+            },
+            template: `<App></App>`, //这里要开闭标签，单标签不好使
+            methods: {},
+            created(){
+              console.log(this);
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

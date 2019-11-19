@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>tab切换-计算属性</title>
+    <script src="vue.min.js"></script>
+    <style>
+      .selected{
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+      .list li{
+        padding: 10px;
+        cursor: pointer;
+      }
+      .list li.active{
+        background: antiquewhite;
+      }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <div class="selected"><strong>选中的栏目: </strong><span style="color:#333">{{selectItem}}</span></div>
+      <ul class="list">
+          <li v-for="(item, index) in sourceData" @click="selectHandel(index)" :class="{active:currentIndex===index}">
+              <h3>{{item.title}}</h3>
+              <p>{{item.content}}</p>
+          </li>
+      </ul>
+    </div>
+
+    <script>
+        let data = [
+            {
+              title:'写给新手前端的-彻底理解ES6 Iterator',
+              content:'本文主要来说下ES6的Iterator，目的在于理解它的概念、作用、以及现有的应用，最后学以致用。'
+            },
+            {
+                title:'战五渣程序员的五项必备技能',
+                content:'你无法改变自己的未来，但你可以改变自己的习惯，而你的习惯肯定也会改变你的未来。'
+            },
+            {
+                title:'Python 命令行之旅：深入 click 之选项篇',
+                content:'本文主要来说下ES6的Iterator，目的在于理解它的概念、作用、以及现有的应用，最后学以致用。'
+            },
+            {
+                title:'如何对 React 函数式组件进行优化',
+                content:'本文主要来说下ES6的Iterator，目的在于理解它的概念、作用、以及现有的应用，最后学以致用。'
+            },
+        ]
+
+        let vm = new Vue({
+            el:'#app',
+            data(){
+              return {
+                 sourceData:data,
+                 currentIndex:0,
+              }
+            },
+            methods:{
+                selectHandel(index){
+                     this.currentIndex = index; //根据当前索引值，改变
+                }
+            },
+            //根据当前索引值数据发生的改变，获取对应栏目的title
+            computed:{
+                selectItem(){
+                   return this.sourceData[this.currentIndex].title
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

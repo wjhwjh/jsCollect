@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>插槽实现组件</title>
+    <script src="vue.min.js"></script>
+    <style>
+       .primary{
+         background:#f00;
+       }
+       .default{
+        background: aquamarine;
+       }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+
+
+      // 全局组件，利用插槽定义一个组件
+      Vue.component('MyBtn',{
+        props:['type'], // 普通的字符串，由父组件传递到子组件
+        template:`<button :class="type"><slot>按钮</slot></button>`, //插槽的用法
+      })
+
+
+       // 全局组件，这是内容区
+       Vue.component('vmContent',{
+           template:`<div>内容区域 <MyBtn type="primary">登录</MyBtn><MyBtn type="default">注册</MyBtn><MyBtn></MyBtn></div>`
+       })
+       // 定义组件
+       let App={
+         template:`<div>
+            <h3>整个挂载</h3>
+            <vmContent></vmContent>
+            </div>`
+       }
+
+       let vm = new Vue({
+         el:'#app',
+         data(){
+           return{}
+         },
+         // 挂载app组件
+         components:{
+          App
+         },
+         //使用组件
+         template: `<App></App>`
+       })
+
+    </script>
+
+</body>
+</html>
