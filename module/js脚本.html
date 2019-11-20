@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function bar(x, y) {
+        // 这里是代码
+        return x * y
+    }
+
+    console.log(bar(3, 5));
+</script>
+
+<!--这种引入js和写在当前页面没有区别-->
+<!--如果设置了defer属性，最后执行引入的代码-->
+<!--如果设置了async属性，最后执行引入的代码-->
+<script src="defer.js"></script>
+<!--<script src="defer.js" defer></script>-->
+
+<script>
+    /*
+     每一项事与物都有其局限点，只要在在适当的场合，恰如其份的使用出来，达到目的，就是赢家。
+
+     js脚本加载是同步的，正常情况下， 解析到脚本就会停下其它进程，执行脚本。有时候因为脚本体积大，
+     耗时比较长，浏览器就会出现卡顿现象。
+     ------基于上述问题，就有了defer与async
+
+    defer要等到整个页面在内存中正常渲染结束（DOM 结构完全生成，以及其他脚本执行完成），才会执行；
+    渲染完再执行。多个defer脚本，会按照它们在页面出现的顺序加载。
+    ----这个是否可用于页面图片加载完,可用。
+
+    async一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。
+    下载完就执行。多个async脚本是不能保证加载顺序的。
+
+    ------ 如何举例说明
+
+    */
+
+    function boo(x, y) {
+        // 这里是代码
+        let z = 20;
+        setTimeout(() => {
+            z = 30
+            console.log('定时器', z)
+        }, 100)
+        return z;
+    }
+
+    console.log(boo(3, 4));
+
+</script>
+
+</body>
+</html>

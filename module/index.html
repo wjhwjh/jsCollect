@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="module">
+/*
+* es6中的模块概念
+* 如何思考这个问题？？？最终达到的效果是什么？？？？
+*
+* 1. 基本的概念和原理
+*   es6中的模块是基于js这门语言的语法规范的；
+*   es6中的模块是静态加载的，即是在编译阶段加载完毕。 于是在加载的时候易于优化。
+*   模块并不是一个对象，而是一个指针
+*
+* 2. export如何使用
+*    导出的是一个接口， 供其它模块使用。实质导出的是一个js代码块。
+*    输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值。
+*    在导出接口的时候可以重命名，使用as,
+*
+*    export default  默认导出， 一个模块只能有一个默认输出，也就是使用一次
+*    可以用于输出类
+*
+     MyClass.js
+     export default class {   }
+     main.js
+     import MyClass from 'MyClass';
+     let obj = new MyClass();
+
+ 3. import如何使用
+
+     import该命令接受一对大括号，指定导入的变量名，必须与被导入模块对外接口名称相同。
+     可以重命名导入的接口变量名，as关键字；
+     import导入的变量名是只读的。
+     模块是在编译时静态加载的，先于模块内的其他语句执行，不能用于表达式中。或者其他局部作用域中。
+
+     如果是export default 导出的， import后边可以只是一个变量,不使用大括号；
+     可以用*代表所有导出的变量。 import * as all from ''
+
+  4. 实战中使用以及如何扩展
+
+* */
+ import {f} from './export.js'
+
+console.log(f)
+
+console.log(22222222222222)
+
+</script>
+
+</body>
+</html>
