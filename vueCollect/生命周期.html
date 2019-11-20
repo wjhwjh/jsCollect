@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>组件的生命周期</title>
+    <script src="vue.min.js"></script>
+    <style>
+        .primary {
+            background: #f00;
+        }
+
+        .default {
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <App></App>
+</div>
+
+<script>
+    /*
+     生命周期函数--围绕组件来说明的
+
+    beforeCreate
+    created
+    beforeMount
+    mounted
+    beforeUpdate
+    updated
+    activated
+    deactivated
+    beforeDestroy
+    destroyed
+    errorCaptured
+
+    ---- 每个钩子函数在何时执行，对应的工作步骤是啥？？？  实际问题中如何合理的使用？？ 如何想这个问题
+
+
+
+     */
+
+
+    let App = {
+        data(){
+          return {
+            msg: ['a','b',{c:1}]
+          }
+        },
+        template: `<div class="app">这是组件 <h3>这是标题</h3></div>`,
+        // 只是实例化了vue实例。数据没有创建
+        beforeCreate(){
+          console.log('data里的数据', this.msg); //undefined
+          console.log('子组件中beforeCreated钩子函数的this--',this)
+        },
+        //DOM挂载之前，数据已经注入，后台请求数据，一般在这一步完成
+        created(){
+            console.log('data里的数据', this.msg); // ['a','b',{c:1}]
+            console.log('子组件中beforeCreated钩子函数的this--',this)
+        },
+        // 组件模板挂载之前
+        beforeMount(){
+           console.log(document.getElementById('app')); //
+        },
+        //
+        mounted(){
+            console.log(document.getElementById('app')); //
+        },
+        //数据更新之前
+        beforeUpdata(){
+
+        },
+        // 数据更新之后
+        updated(){
+
+        },
+        //销毁之前
+        beforeDestroy(){
+
+        },
+        // 销毁组件
+        destroyed(){
+
+        },
+        //组件激活的时候
+        activated(){
+
+        },
+        //
+        deactivated(){},
+
+    }
+
+
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {}
+        },
+        // 挂载app组件
+        components: {
+            App
+        },
+        //使用组件
+       // template: `<App/>`
+    })
+
+</script>
+
+</body>
+</html>
