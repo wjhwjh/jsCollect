@@ -42,54 +42,88 @@
      */
 
 
-    let App = {
-        data(){
-          return {
-            msg: ['a','b',{c:1}]
-          }
+    Vue.component('Test', {
+        data() {
+            return {
+                msg: '我是用来存放数据的',
+            }
         },
-        template: `<div class="app">这是组件 <h3>这是标题</h3></div>`,
-        // 只是实例化了vue实例。数据没有创建
-        beforeCreate(){
-          console.log('data里的数据', this.msg); //undefined
-          console.log('子组件中beforeCreated钩子函数的this--',this)
+        template: `<div>{{msg}}<button @click="changeHandel">改变数据</button></div>`,
+        methods:{
+            changeHandel(){
+                this.msg = '我存放的数据发生了改变';
+            }
+        },
+        // 只是实例化了vue实例。vue中各种属性都没有加载和初始化
+        beforeCreate() {
+            console.log('执行beforeCreate钩子data里的数据', this.msg); //undefined
+            //console.log('子组件中beforeCreated钩子函数的this--',this)
         },
         //DOM挂载之前，数据已经注入，后台请求数据，一般在这一步完成
-        created(){
-            console.log('data里的数据', this.msg); // ['a','b',{c:1}]
-            console.log('子组件中beforeCreated钩子函数的this--',this)
+        created() {
+            console.log('执行created钩子data里的数据', this.msg); // ['a','b',{c:1}]
+            //console.log('子组件中beforeCreated钩子函数的this--',this)
         },
-        // 组件模板挂载之前
-        beforeMount(){
-           console.log(document.getElementById('app')); //
+        // 数据挂载到DOM之前，组件模板没有挂载到页面节点之前
+        beforeMount() {
+            console.log('执行beforeMount钩子函数', document.getElementById('app')); //
         },
-        //
-        mounted(){
-            console.log(document.getElementById('app')); //
+        // 数据挂载到DOM之后，vue作用已经作用后DOM，此时可以操作DOM
+        mounted() {
+            console.log('执行mounted钩子函数', document.getElementById('app')); //
         },
-        //数据更新之前
-        beforeUpdata(){
-
+        //数据更新之前的原始DOM
+        beforeUpdate() {
+            console.log('执行beforeUpdata钩子函数---', document.getElementById('app').innerHTML); //
         },
-        // 数据更新之后
-        updated(){
-
+        // 数据更新之后的DOM
+        updated() {
+            console.log('执行updated钩子函数--', document.getElementById('app').innerHTML); //
         },
-        //销毁之前
-        beforeDestroy(){
-
+        //组件销毁之前，主要是针对v-if来说的
+        beforeDestroy() {
+            console.log('组件销毁之前');
         },
-        // 销毁组件
-        destroyed(){
-
+        // 组件销毁之后
+        destroyed() {
+            console.log('组件销毁之后');
         },
         //组件激活的时候
-        activated(){
-
+        activated() {
+          console.log('组件是激活状态');
         },
-        //
-        deactivated(){},
+        // 组件未激活的状态
+        deactivated() {
+            console.log('组件是未激活状态');
+        },
 
+    })
+
+
+    // app 组件
+    let App = {
+        data() {
+            return {
+                msg: '我是用来存放数据的',
+                isShow:true,
+            }
+        },
+        // 一定要搞清楚Test是子组件，在父组件中控制其是否使用，此时Test子组件的生命周期是从生到死
+        // 使用v-if，组件不断的在创建和销毁，性能低损耗大，也不能保存状态，于是就有keep-alive保存状态
+        template: `
+                     <div class="app">
+                        <h3>这是标题,父级组件</h3>
+                        <keep-alive>
+                            <Test v-if="isShow"></Test>
+                        </keep-alive>
+                        <button @click="isShow =!isShow">组件的显示和隐藏</button>
+                     </div>
+                 `,
+         methods:{
+             changeHandel(){
+                this.msg = '我存放的数据发生了改变';
+             }
+         },
     }
 
 
@@ -103,7 +137,7 @@
             App
         },
         //使用组件
-       // template: `<App/>`
+        // template: `<App/>`
     })
 
 </script>
