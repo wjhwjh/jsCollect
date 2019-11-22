@@ -113,6 +113,10 @@
             }
         },
         mounted(){
+          /*
+           回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，在回调中获取到更新之后的DOM。
+          */
+
           // 借助nextTick这个方法
           this.$nextTick(()=>{
               console.log(this.messageChild);
