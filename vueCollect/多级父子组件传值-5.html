@@ -34,8 +34,8 @@
            inject() 子组件接收
            provide:{} 父组件提供
 
-           方法五：$parent, $children
-
+           方法五：$parent, $children,
+           主要是依据vue实例继承性实现，相当于操作祖先实例和子实例
 
            方法六：store 整个vue项目中，都可以使用期数据
 
@@ -51,17 +51,13 @@
            data(){
                return {
                 msg:'',
-
                }
            },
-           inject:['foo'],
+
            template:`
            <div>
             ----------------------------- <br>
              这是C组件<br>
-
-
-             <strong>{{foo}}</strong><br>
 
              <button  @click="rewriteListener">C组件</button><br>
              ----------------------------- <br>
@@ -70,9 +66,7 @@
         methods:{
             rewriteListener(){
                console.log('C组件');
-
             }
-
         },
         mounted(){
 
@@ -98,20 +92,31 @@
       Vue.component('D',{
         data(){
           return {
+            msg:'D'
           }
         },
         template:`
           <div>
              这是D组件，是一个子组件<br>
-             <button @click="clickHandel">点击</button>
+             <button @click="clickHandel">点击</button> <br>
+
+             <div> </div>
 
           </div>
         `,
         methods:{
             // 触发的时候传递值
             clickHandel(){
-
+                console.log(this.messageChild);
+                console.log(this.$parent);
+                this.$parent.msg='被修改了哦~~';
             }
+        },
+        mounted(){
+          // 借助nextTick这个方法
+          this.$nextTick(()=>{
+              console.log(this.messageChild);
+          })
         }
 
       });
@@ -123,12 +128,11 @@
             msg:'父组件A中的数据'
           }
         },
-        provide:{
-          foo: '我也不知道是什么阿阿阿阿阿'
-        },
+
         template:`
            <div>
              这是A组件<br>
+             <div>{{msg}}</div>
              -----------------------------
              <B></B>
              ----------
@@ -136,7 +140,8 @@
            </div>
         `,
         mounted(){
-
+          console.log(this)
+          this.$children[1].messageChild = '我是父组件传递的值阿阿阿阿阿阿';
         }
 
 
