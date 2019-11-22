@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多级父子组件传值</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+    <script>
+        /*
+          多级组件参数传递， APP组件 -> A -> B -> C,  App组件里的值传递给C组件，C组件也能传递值到App组件
+          根据组件嵌套的层数
+
+          方法一：
+          props, $emit
+
+          方法二：
+          $attrs, $listeners
+          实现多级之间组件之间数据传递，如果组件级数多，项目比较大，中间的每个组件都需要写中间值传递，不易维护。
+
+
+          方法三：中央事件-- 兄弟之间的传值
+          定义一个全局的vue实例作为中间介质
+          var bus = new Vue();
+          bus.on() 接收
+          bus.emit() 注入
+
+
+          方法四：使用inject , provide
+
+           inject() 子组件接收
+           provide:{} 父组件提供
+
+           方法五：$parent, $children
+
+
+           方法六：store 整个vue项目中，都可以使用期数据
+
+
+        * */
+
+
+
+
+      // provide inject 来实现父子组件的通信
+
+       Vue.component('C', {
+           data(){
+               return {
+                msg:'',
+
+               }
+           },
+           inject:['foo'],
+           template:`
+           <div>
+            ----------------------------- <br>
+             这是C组件<br>
+
+
+             <strong>{{foo}}</strong><br>
+
+             <button  @click="rewriteListener">C组件</button><br>
+             ----------------------------- <br>
+           </div>
+        `,
+        methods:{
+            rewriteListener(){
+               console.log('C组件');
+
+            }
+
+        },
+        mounted(){
+
+        }
+
+       });
+       Vue.component('B', {
+           data(){
+               return {}
+           },
+           template:`
+           <div>
+             这是B组件<br>
+             -----------------------------
+             <C></C>
+           </div>
+        `
+
+       });
+
+
+      // D组件是A组件子组件，与B或者C是同级关系
+      Vue.component('D',{
+        data(){
+          return {
+          }
+        },
+        template:`
+          <div>
+             这是D组件，是一个子组件<br>
+             <button @click="clickHandel">点击</button>
+
+          </div>
+        `,
+        methods:{
+            // 触发的时候传递值
+            clickHandel(){
+
+            }
+        }
+
+      });
+
+
+      Vue.component('A', {
+        data(){
+          return {
+            msg:'父组件A中的数据'
+          }
+        },
+        provide:{
+          foo: '我也不知道是什么阿阿阿阿阿'
+        },
+        template:`
+           <div>
+             这是A组件<br>
+             -----------------------------
+             <B></B>
+             ----------
+             <D></D>
+           </div>
+        `,
+        mounted(){
+
+        }
+
+
+      });
+
+       let App = {
+          data(){
+            return {
+                msg:'这是一个数据',
+            }
+          },
+         template:`
+            <div>
+               这是框架组件 <br>
+               -----------------------------
+               <A :msg="msg" @getClick="getClick"></A>
+            </div>
+         `,
+         methods:{
+             getClick(val){
+               console.log('顶层父组件--');
+               console.log('传递的值:', val)
+             }
+         }
+
+       }
+
+
+
+       let vm= new Vue({
+         el:'#app',
+         date(){
+
+         },
+         components:{
+             App
+         },
+         template: `<App/>`
+
+
+       });
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>多级父子组件传值</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+    <script>
+        /*
+           多级组件参数传递， APP组件 -> A -> B -> C,  App组件里的值传递给C组件，C组件也能传递值到App组件
+           根据组件嵌套的层数
+
+           方法一：
+           props, $emit
+
+           方法二：
+           $attrs(相当于绑定一个存储所有父组件传递的值的变量),
+           $listeners(相当于传递了一个自定义事件，在子组件中使用emit进行触发)
+           实现多级之间组件之间数据传递，如果组件级数多，项目比较大，中间的每个组件都需要写中间值传递，不易维护。
+
+
+           方法三：中央事件-- 兄弟之间的传值
+           定义一个全局的vue实例作为中间介质
+           var bus = new Vue();
+           bus.on() 接收
+           bus.emit() 注入
+
+
+           方法四：使用inject , provide
+
+            inject() 子组件接收
+            provide:{} 父组件提供
+
+            方法五：parent, children
+
+
+            方法六：store 整个vue项目中，都可以使用期数据
+            */
+         Vue.component('C', {
+             data(){
+                 return {}
+             },
+             props:['msg'],
+             template:`
+             <div>
+             -----------------------------<br>
+               这是C组件<br>
+
+
+               <div>这是父组件传递的数据： {{msg}}</div><br>
+
+               <button v-on:click="clickHandel">把值传给父组件</button>
+             </div>
+          `,
+          methods:{
+              clickHandel(){
+                 console.log('C组件');
+                 this.$emit('getChild', '这是传递给父组件的数据')
+              }
+
+          }
+
+         });
+         Vue.component('B', {
+             data(){
+                 return {
+                   msg: '这是要传递给子组件的数据'
+                 }
+             },
+             template:`
+             <div>
+             -----------------------------<br>
+               这是B组件<br>
+
+               <C :msg="msg" @getChild="getChild"></C>
+             </div>
+          `,
+          methods:{
+              getChild(val){
+                console.log('这是子组C件传递过来的值')
+              }
+          }
+
+         });
+
+        Vue.component('A', {
+          data(){
+            return {}
+          },
+          template:`
+             <div>
+             -----------------------------<br>
+               这是A组件<br>
+               <B></B>
+             </div>
+          `
+
+        });
+
+         let App = {
+            data(){
+              return {
+                  msg:'这是一个数据',
+              }
+            },
+           template:`
+              <div>
+                 这是框架组件 <br>
+                 -----------------------------
+                 <A></A>
+              </div>
+           `,
+           methods:{
+               getClick(val){
+
+               }
+           }
+
+         }
+
+
+
+         let vm= new Vue({
+           el:'#app',
+           date(){
+
+           },
+           components:{
+               App
+           },
+           template: `<App/>`
+
+
+         });
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
