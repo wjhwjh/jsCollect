@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>获取DOM元素</title>
+    <title>route的基础知识</title>
     <script src="vue.min.js"></script>
     <style>
        .primary{
@@ -34,25 +34,23 @@
 
         优点： 页面不立刻跳转，用户体验好
 
-
-
         原始js的hash值
-
-
 
       * */
       // 原来的实现方式
+      //window对象，的onhashchange属性用于监听浏览器哈希值发生变化触发
+      // 浏览器中哈希值指的是#XX形式的值
         window.onhashchange = function () {
             console.log(location)
+            console.log('变化时触发----');
             switch (location.hash) {
                 case "#/login":
-                 document.getElementById('app').innerHTML=`<h1>登录页面</h1>`
-                break;
+                     document.getElementById('app').innerHTML=`<h1>登录页面</h1>`
+                     break;
                 case "#/register":
                     document.getElementById('app').innerHTML=`<h1>注册页面</h1>`
                     break;
             }
-
         }
 
 

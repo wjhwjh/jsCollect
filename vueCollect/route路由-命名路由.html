@@ -24,8 +24,17 @@
 
 <script>
     /*
+       命名路由
+       路由参数
+       嵌套参数
+
       路由：
        路由是一个对象, 封装了一些属性，
+       地址栏上，路由范式
+       xxx.html#/user/1  params
+       ooo.html#/user?userId=1 query
+
+
     * */
 
      let Login = {
@@ -35,7 +44,11 @@
         template:`<div>这是注册页面,bbbbb</div>`,
     };
 
-    // 创建router对象， 默认的是hash 模式 #XX
+
+    // 命名路由的名字尽量和组件的名字相同，好辨认
+    //
+    //
+
     let router = new VueRouter({
        // 配置路由对象
        routes:[
@@ -43,10 +56,12 @@
            {
                path:'/',
                component:Login, //注意字母的写法
+               name:'login',
            },
            {
                path:'/register',
                component:Regiter,
+               name:'register'
            },
        ]
     });
