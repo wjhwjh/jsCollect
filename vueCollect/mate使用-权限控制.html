@@ -24,12 +24,103 @@
 
 <script>
     /*
-      meta可以表示
+          meta可以作为标识符，标出特定的路由
+
+          路由守卫工作原理, 路由守卫是路由对象上的属性方法
+
+          路由对象的属性
+          路由挂载到vue实例上，返回两个相关的公共组件，同时有2个对象作为属性挂在vue实例上
+
+     */
+    let Home = {
+        template: `
+            <div>这是首页</div>
+        `
+    };
+    let Blog = {
+        template: `
+            <div>这是文章页，登录之后才能看</div>
+        `
+    };
+    let Login = {
+        date() {
+            return {
+                name: '',
+                psw: '',
+            }
+        },
+        template: `
+        <div>
+            <input type="text" v-model="name">
+            <input type="password" v-model="psw">
+            <button @clicl="submiteHandle">登录</button>
+        </div>
+      `,
+        methods: {
+            submiteHandle() {
+
+            }
+        }
+
+    };
 
 
-    * */
+    let router = new VueRouter({
+        routes: [
+            {
+                path: '/',
+                redirect: '/home',
+            },
+            {
+                path: '/home',
+                component: Home,
+                name: 'home'
+            },
+            {
+                path: '/blog',
+                component: Blog,
+                name: 'blog'
+            },
+            {
+              path:'/login',
+              component: Login
+            }
+        ]
+    });
+
+    // 路由守卫
+    router.beforeEach((to, from, next)=>{
+        console.log('to前往的页面---', to);
+        console.log('from来自哪一个---', from);
 
 
+
+        next();
+    });
+
+
+
+
+
+
+    let App = {
+        template: `
+        <div>
+           <router-link to="/">首页</router-link>
+           <router-link to="/blog">博客</router-link>
+           <br>
+           <br>
+           <router-view></router-view>
+        </div>
+       `
+    };
+
+    let vm = new Vue({
+        el: '#app',
+        components: {App},
+        template: `<App/>`,
+        router,
+    });
 
 </script>
 
