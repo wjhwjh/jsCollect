@@ -23,7 +23,92 @@
 <script src="./node_modules/vue-router/dist/vue-router.min.js"></script>
 
 <script>
+    /*
 
+      keep-alive能缓存组件，包括router-view加载的组件
+
+      利用keep-alive使得路由切换组件的时候,组件不会再销毁，然后重新创建
+
+      能够保持组件中的状态，根据实际需求确定是否使用
+
+
+     */
+
+
+    let Home = {
+        template: `
+        <div>首页内容</div>
+       `
+    };
+    let Frontend = {
+        template: `
+        <div>前端内容</div>
+      `,
+        created() {
+            console.log('这是前端组件');
+        },
+    };
+    let Backend = {
+        template: `
+        <div>后端内容
+           <h3 @click="clickHandel">这是标题</h3>
+        </div>
+      `,
+        methods: {
+            clickHandel(e) {
+                //console.log(e);
+                e.target.style['color'] = '#f00';
+            }
+        },
+        created() {
+            console.log('这是后端组件');
+        },
+
+    };
+
+    let router = new VueRouter({
+        routes: [
+            {
+                path: '/',
+                name: 'home',
+                redirect: '/home'
+            },
+            {
+                path: '/home',
+                component: Home
+            },
+            {
+                path: '/frontend',
+                component: Frontend
+            },
+            {
+                path: '/backend',
+                component: Backend
+            },
+        ]
+    });
+
+    // 定义一个App组件
+    let App = {
+        template: `
+         <div>
+              <router-link to="/home">首页</router-link>
+              <router-link to="/frontend">前端</router-link>
+              <router-link to="/backend">后端</router-link>
+              <keep-alive>
+                 <router-view></router-view>
+              </keep-alive>
+         </div>
+       `
+    };
+
+
+    let vm = new Vue({
+        el: '#app',
+        components: {App},
+        template: `<App/>`,
+        router,
+    });
 
 
 </script>
