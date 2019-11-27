@@ -10,5 +10,13 @@ new Vue({
 })
 
 
+/*
+ 利用webpack打包，
+ 1. 全局安装webpack
+ 2.
 
+
+
+
+*/
 
