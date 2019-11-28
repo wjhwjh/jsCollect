@@ -43,25 +43,25 @@
         `
     };
     let Login = {
-        date() {
+        data() {
             return {
                 name: '',
-                psw: '',
+                psd:'',
             }
         },
         template: `
         <div>
             <input type="text" v-model="name">
-            <input type="password" v-model="psw">
-            <button @clicl="submiteHandle">登录</button>
+            <input type="password" v-model="psd" >
+            <button @click="submiteHandle">登录</button>
         </div>
       `,
         methods: {
             submiteHandle() {
-
+                localStorage.setItem('user',`{name:${this.name}, psw:${this.psd}}`);
+                this.$router.push('/blog');
             }
         }
-
     };
 
 
@@ -79,7 +79,10 @@
             {
                 path: '/blog',
                 component: Blog,
-                name: 'blog'
+                name: 'blog',
+                meta:{
+                    routerGuard: true,
+                }
             },
             {
               path:'/login',
@@ -92,15 +95,16 @@
     router.beforeEach((to, from, next)=>{
         console.log('to前往的页面---', to);
         console.log('from来自哪一个---', from);
-
-
-
+        // next是回调函数，必须执行这个
+        if(to.meta.routerGuard){
+            if(!localStorage.getItem('user')){
+                next({
+                    path:'/login'
+                })
+            }
+        }
         next();
     });
-
-
-
-
 
 
     let App = {

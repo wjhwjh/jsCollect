@@ -26,6 +26,8 @@
     /*
       路由：
        路由是一个对象, 封装了一些属性，
+       区分 router路由器 route路线 routers routes
+
     * */
 
      let Login = {
@@ -73,6 +75,11 @@
      },
      template: `<App/>`,
      router, // 路由对象，必须要挂载到vue实例化，进行管理
+     mounted(){
+       console.log(this.$router); // 返回当前vue实例的路由对象
+       console.log(this.$route);  // 返回当前访问的路由对象
+
+     }
 
    });
 
