@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>HTML5全屏星空背景动画特效 - 站长素材</title>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+				max-width: 100%;
+				margin: 0;
+				overflow: hidden;
+				font-family: sans-serif
+			}
+			.global-bg{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				
+			}
+			#space {
+				width: 100%
+			}
+			
+			/*#warp {
+				position: absolute;
+				z-index: 9;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: 20px auto;
+				color: rgba(209, 255, 255, 1);
+				border: 2px solid;
+				padding: 1em;
+				width: 10em;
+				text-align: center;
+				font-weight: 700;
+				font-size: 1.2em;
+				display: inline-block;
+				text-decoration: none;
+				background: rgba(0, 0, 0, 0.8)
+			}*/
+			
+			.cont{
+				position: absolute;
+				top: 10%;
+				left: 50%;
+				width: 400px;
+				height: 400px;
+				z-index: 100;
+				background: #fff;
+				
+			}
+		</style>
+
+	</head>
+
+	<body>
+        <div class="global-bg">
+        	<canvas id="space"></canvas>
+        </div> 
+        
+        <div class="cont">
+        	<input type="text" name="" id="" value="cxlvlxkcv" />
+        	
+        </div>
+        
+		
+		<script type="module">
+		
+			import {Stars} from "./stars.js"
+		 	let starsObj = new Stars('space');
+			starsObj.executeFrame(); 
+			
+		</script>
+
+	</body>
+
+</html>

@@ -24,8 +24,12 @@ silent  沉默的
 register
 注册
 
+variable
+`veəriəbl`
+n.可变情况;变量;可变因素
 
-
+frame
+n 框架
 
 ---vue---------------------------------------------------
 params
@@ -63,8 +67,23 @@ inject
 provide
 v.提供;供应;给予;规定
 
+cli
+公共语言基础;命令行解释程序;通用语言基础设施;主叫用户识别;命令行接口
 
+plugins
+插件;外挂
+--- cli中管理vue项目，插件相关的
 
+preset
+v.预调;预置;给…预定时间;预先决定;事先安排
+---- cli中插件相关的
+
+inspect
+v.检查;查看;审视;视察
+---是一种指令，vue-cli-service inspect 来审查一个 Vue CLI 项目的 webpack config
+
+browser
+n.浏览程序，浏览器(用于在互联网上查阅信息);浏览图书报刊者;逛商店的人
 
 
 
