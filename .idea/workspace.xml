@@ -326,18 +326,18 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\ALl\jsCollect" />
+      <recent name="F:\ALl\jsCollect\vueCollect\webpack" />
+      <recent name="F:\ALl\jsCollect\vueCollect\axios" />
+      <recent name="F:\ALl\jsCollect\vueCollect" />
+      <recent name="F:\ALl\jsCollect\module" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\ALl\jsCollect\vueCollect\axios" />
       <recent name="F:\ALl\jsCollect\生成器" />
       <recent name="F:\ALl\jsCollect" />
       <recent name="F:\ALl\jsCollect\数组" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\ALl\jsCollect\vueCollect\webpack" />
-      <recent name="F:\ALl\jsCollect\vueCollect\axios" />
-      <recent name="F:\ALl\jsCollect\vueCollect" />
-      <recent name="F:\ALl\jsCollect\module" />
-      <recent name="F:\ALl\jsCollect\生成器" />
     </key>
   </component>
   <component name="RunDashboard">
