@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>indexOf和~运算符的使用</title>
+</head>
+<body>
+
+<script>
+    /*
+    var type = ['a', 'b', 'c'];
+    var list = [
+        {name: 'd', age: 22},
+        {name: 'c', age: 33},
+        {name: 'a', age: 11}
+    ]
+
+    结果
+    [
+        {name: 'a', age: 11},
+        {name: 'c', age: 33},
+    ]
+
+    */
+    /*
+        知识点一， indexOf()方法
+        indexOf(),返回值是指定元素在数组中的索引位置; 若没有找到则都返回-1
+
+        知识点二，按位取反运算符~
+        ~x === -(x+1)
+        ~-1 => 0
+        所以if(array.indexOf!=-1)可以写成 if(~array.indexOf())
+
+        // 这里要注意在条件判断中，数字隐式类型转化为boolean， 只有0转化为boolean的false，
+        正整数和负整数在if条件判断中是通过的
+
+     */
+
+
+    let arr = ['zhanzhan', 'huizi', 'zhang'];
+    let list = [
+        {name: 'huizi', age: 33},
+        {name: 'zhanzhan', age: 11},
+        {name: 'd', age: 22},
+        {name: 'a', age: 22},
+        {name: 'zhang', age: 11}
+    ];
+
+    let resultArr = list.filter(item => {
+        return ~arr.indexOf(item.name)
+        //或者 return arr.indexOf(item.name) != -1
+    }).sort(function (a, b) {
+        return arr.indexOf(a.name) - arr.indexOf(b.name)
+    });
+
+    console.log(resultArr);
+
+
+    console.log('if条件判断的条件-------------------------')
+    let f = -2;
+    let f1 = 2;
+    let f3 = 0;
+    if (f) {
+        console.log(1111)
+    }
+    if (f1) {
+        console.log(222)
+    }
+    if (f3) {
+        console.log(3333)
+    }
+
+    console.log('sort排序-------------------------')
+
+
+
+
+</script>
+
+
+</body>
+</html>
