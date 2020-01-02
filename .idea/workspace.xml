@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/构造函数/constructor1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/算法/sort.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/算法/数组筛选.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/构造函数/constructor1.html" beforeDir="false" afterPath="$PROJECT_DIR$/构造函数/constructor1.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,7 +31,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="5" />
-          <entry key="html" value="160" />
+          <entry key="html" value="162" />
           <entry key="js" value="27" />
           <entry key="json" value="11" />
           <entry key="md" value="2" />
@@ -48,7 +45,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="5" />
-          <entry key="HTML" value="160" />
+          <entry key="HTML" value="162" />
           <entry key="JSON" value="11" />
           <entry key="JavaScript" value="27" />
           <entry key="PLAIN_TEXT" value="15" />
@@ -57,7 +54,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="2" />
-          <entry key="html" value="28703" />
+          <entry key="html" value="28972" />
           <entry key="js" value="1100" />
           <entry key="json" value="5" />
           <entry key="txt" value="2" />
@@ -68,7 +65,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="HTML" value="28704" />
+          <entry key="HTML" value="28973" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="1099" />
           <entry key="PLAIN_TEXT" value="1811" />
@@ -78,11 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/构造函数/constructor1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            <state relative-caret-position="445">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -94,11 +91,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/算法/判断一个数组是否包含另一个数组.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/算法/数组筛选.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/算法/sort.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+            <state relative-caret-position="406">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -175,9 +186,9 @@
         <option value="$PROJECT_DIR$/vueCollect/keep-alive.html" />
         <option value="$PROJECT_DIR$/vueCollect/v-key.html" />
         <option value="$PROJECT_DIR$/wjh-命名" />
-        <option value="$PROJECT_DIR$/构造函数/constructor1.html" />
         <option value="$PROJECT_DIR$/算法/数组筛选.html" />
         <option value="$PROJECT_DIR$/算法/sort.html" />
+        <option value="$PROJECT_DIR$/构造函数/constructor1.html" />
       </list>
     </option>
   </component>
@@ -209,7 +220,7 @@
             <path>
               <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
               <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
-              <item name="算法" type="462c0819:PsiDirectoryNode" />
+              <item name="构造函数" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -382,7 +393,7 @@
       <workItem from="1576657295508" duration="1133000" />
       <workItem from="1576823450435" duration="2520000" />
       <workItem from="1577064414041" duration="101000" />
-      <workItem from="1577945345050" duration="9819000" />
+      <workItem from="1577945345050" duration="11233000" />
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1574908007361</created>
@@ -402,7 +413,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="362352000" />
+    <option name="totallyTimeSpent" value="363766000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -414,7 +425,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="366" y="324" width="1462" height="963" extended-state="0" />
+    <frame x="303" y="58" width="1462" height="963" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27150917" />
@@ -429,7 +440,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32616082" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.053349875" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.20099255" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -466,13 +477,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="提交" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vueCollect/vue-router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="2706" column="16" selection-start-line="2706" selection-start-column="16" selection-end-line="2706" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vueCollect/node_modules/vue-router/dist/vue-router.js" />
     <entry file="file://$PROJECT_DIR$/vueCollect/axios/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -689,17 +693,10 @@
     <entry file="file://$PROJECT_DIR$/构造函数/obj.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/构造函数/constructor1.html">
+    <entry file="file://$PROJECT_DIR$/算法/sort.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/算法/数组筛选.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="72" column="50" lean-forward="true" selection-start-line="72" selection-start-column="50" selection-end-line="72" selection-end-column="50" />
+        <state relative-caret-position="406">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -708,10 +705,20 @@
         <state relative-caret-position="-783" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/算法/sort.html">
+    <entry file="file://$PROJECT_DIR$/算法/判断一个数组是否包含另一个数组.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/算法/数组筛选.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+        <state relative-caret-position="474">
+          <caret line="46" column="6" lean-forward="true" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/构造函数/constructor1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
         </state>
       </provider>
     </entry>
