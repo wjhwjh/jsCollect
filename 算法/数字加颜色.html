@@ -13,13 +13,13 @@
    console.log(text);
    let reg = /(\d{1})/g;
 
-   let r = text.match(reg);
+   //let r = text.match(reg);
 
-   console.log(r);
+   //console.log(r);
 
-   let rr = text.replace(/(\d{1})/g,'a');
+   //let rr = text.replace(/(\d{1})/g,'a');
 
-   console.log(rr);
+   console.log(text.split(/\d{1,8}\D/g));
 
 
 

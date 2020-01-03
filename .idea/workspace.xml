@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/算法/数字加颜色.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/sort.html" beforeDir="false" afterPath="$PROJECT_DIR$/算法/sort.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/数字加颜色.html" beforeDir="false" afterPath="$PROJECT_DIR$/算法/数字加颜色.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,7 +17,7 @@
     <session id="-399556003">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="84" />
+          <entry key="project.closed" value="85" />
           <entry key="project.open.time.0" value="55" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.2" value="1" />
@@ -56,7 +54,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="2" />
-          <entry key="html" value="29760" />
+          <entry key="html" value="29775" />
           <entry key="js" value="1100" />
           <entry key="json" value="5" />
           <entry key="txt" value="2" />
@@ -67,7 +65,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="HTML" value="29761" />
+          <entry key="HTML" value="29776" />
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="1099" />
           <entry key="PLAIN_TEXT" value="1811" />
@@ -80,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/算法/数字加颜色.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+            <state relative-caret-position="522">
+              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -366,7 +364,7 @@
       <workItem from="1576823450435" duration="2520000" />
       <workItem from="1577064414041" duration="101000" />
       <workItem from="1577945345050" duration="12806000" />
-      <workItem from="1578012442798" duration="8238000" />
+      <workItem from="1578012442798" duration="9713000" />
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1574908007361</created>
@@ -386,7 +384,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373577000" />
+    <option name="totallyTimeSpent" value="375052000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -401,7 +399,7 @@
     <frame x="475" y="58" width="1514" height="963" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0952381" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16122448" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -413,7 +411,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32616082" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.10918114" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.04342432" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -696,8 +694,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/算法/数字加颜色.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        <state relative-caret-position="522">
+          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="36" />
         </state>
       </provider>
     </entry>
