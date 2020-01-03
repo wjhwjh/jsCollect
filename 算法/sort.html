@@ -45,7 +45,7 @@
         return +(a.value > b.value) || +(a.value === b.value) - 1;
     });
 
-    // 根据索引得到排序的结果
+    // 根据索引得到排序的结果, map是用的不错
     var result = mapped.map(function(el){
         return list[el.index];
     });

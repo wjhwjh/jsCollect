@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="box">我的123联发科456浮夸789</div>
+
+<script>
+   let text = document.getElementById('box').innerHTML;
+   console.log(text);
+   let reg = /(\d{1})/g;
+
+   let r = text.match(reg);
+
+   console.log(r);
+
+   let rr = text.replace(/(\d{1})/g,'a');
+
+   console.log(rr);
+
+
+
+</script>
+</body>
+</html>
