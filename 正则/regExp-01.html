@@ -39,7 +39,7 @@
 
     ?
 
-    ^
+    ^  匹配输入字符串的开始位置，除非在方括号表达式中使用，此时它表示不接受该字符集合。要匹配 ^ 字符本身，请使用 \^。
 
     $
 
@@ -48,63 +48,35 @@
     \s  匹配一个空白字符，包括空格、制表符、换页符和换行符
 
 
-
-
-
     常用的正则表达式
 
     /^[1-9]\d*$/  匹配正整数的正则
 
+   */
+
+ /*
+   关于换行符
 
 
 
-
-
-      */
-
-     /*
-       关于换行符
-
-
-
-     */
+ */
 
 
     // 匹配规则是1个或多个任意字符，空格， 一个或多个任意字符
     var re = /(\w+)\s(\w+)/;
     var str = "John Smith John Smitrh22";
-    var strr = "John Smitrh John Smitrh";
-    var newstr = str.replace(re, "$2 $1,");
+    var newstr = str.replace(re, "$2 $1,"); // 交换匹配的两组字符的位置
+
     // Smith, John
     console.log('newstr----',newstr);
-    console.log(str.match(re));
-    console.log(strr.match(re));
+
+    console.log(str.split(/\s/g)); // 空格匹配分割字符串为数组
+
 
     // $1是前一个(\w+)被捕获后的一个值，
     // $2 是后一个(\w+)被捕获的值， 这里$分组是和正则表达式是否用()括号有关
-    // match匹配结果和正则是否使用标识符g有关, 使用返回的是一个结果数组，不使用是匹配的结果第一个完整匹配及其相关的捕获组
+    // match匹配结果和正则是否使用标识符g有关, 使用返回的是一个匹配结果的数组，不使用是返回首次匹配成功的字符
     // 在replace中， $1,$2...是正则中()使用匹配有关，如果有标识符g，也是指首次匹配结果
-
-
-    var r = str.match(re) // 返回一个数组， 第一个是匹配结果，
-
-    var str1 = 'aaaaabbbbcccc';
-
-    console.log(str1.match(re)) // 返回的是null
-    var str3 = "123,456,8888"
-    console.log(str3.match(/\d+,(\d+)/));
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
