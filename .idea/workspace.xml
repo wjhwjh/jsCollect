@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/javaScript/作用域和闭包.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,7 +15,7 @@
     <session id="-399556003">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="93" />
+          <entry key="project.closed" value="94" />
           <entry key="project.open.time.0" value="57" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.2" value="2" />
@@ -82,8 +79,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/javaScript/作用域和闭包.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            <state relative-caret-position="348">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -173,8 +170,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-235" />
-    <option name="y" value="415" />
+    <option name="x" value="-384" />
+    <option name="y" value="375" />
     <option name="width" value="1729" />
     <option name="height" value="1007" />
   </component>
@@ -382,7 +379,7 @@
       <workItem from="1578617642621" duration="649000" />
       <workItem from="1578876652897" duration="1257000" />
       <workItem from="1578903291758" duration="2522000" />
-      <workItem from="1579069125246" duration="2931000" />
+      <workItem from="1579069125246" duration="3176000" />
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1574908007361</created>
@@ -402,7 +399,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="408069000" />
+    <option name="totallyTimeSpent" value="408314000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -414,7 +411,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-235" y="415" width="1729" height="1007" extended-state="1" />
+    <frame x="-384" y="375" width="1729" height="1007" extended-state="1" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16261128" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -753,8 +750,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/javaScript/作用域和闭包.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        <state relative-caret-position="348">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>

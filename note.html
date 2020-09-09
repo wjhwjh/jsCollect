@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+            box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            outline: none;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei';
+            background: #fff;
+        }
+
+        .clear_fix:after, .clear_fix:before {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        h2 {
+            text-align: center;
+            font-size: 26px;
+            color: #222;
+            margin: 40px auto 30px;
+        }
+        #box {
+            width: 600px;
+            margin: auto;
+        }
+        #box #ipt {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+        #box .list {
+            margin-top: 10px;
+        }
+        #box .list li {
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px;
+        }
+
+        #box .list li.do{
+            color: #999;
+        }
+        #box .list li em{
+            font-size: 12px;
+            color: #999;
+            font-style: normal;
+            padding-left: 10px;
+        }
+        #box .list li span {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+            color: #444 !important;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<h2>待办事项</h2>
+<div id="box">
+    <input type="text" id="ipt" placeholder="请输入代办事项">
+    <ul class="list"></ul>
+</div>
+
+
+<script>
+
+    let ipt = document.getElementById('ipt');
+    /*
+    * {
+    *  content:'',
+    *  done:false,
+    *  time: 添加时间
+    *
+    * }
+    *
+    * */
+    // 封装一个构造函数
+    class NotePad {
+        constructor(el) {
+            this.el = document.getElementById(el);
+            this.ipt = this.el.getElementsByTagName('input')[0];
+            this.list = this.el.getElementsByTagName('ul')[0];
+            //首次渲染页面
+            this.rend();
+        }
+
+        //获取数据
+        static getStorage() {
+            let data = localStorage.getItem('notData');
+            return data ? JSON.parse(data) : []
+        }
+
+        //数据设置
+        static setStorage(setData) {
+            let data = NotePad.getStorage();
+            //把新添加的数据存入到数组列表中
+            data.push(setData);
+            localStorage.setItem('notData', JSON.stringify(data));
+        }
+        // 更新数据
+        static upData(d){
+            let data = NotePad.getStorage();
+            //修改后的对象和原来的对象进行合并
+            Object.assign(data,d);
+
+            //存储修改后的数组
+            localStorage.setItem('notData', JSON.stringify(data));
+        }
+        // 删除数据的其中一项
+        static delData(d){
+            localStorage.setItem('notData', JSON.stringify(d));
+        }
+        //时间补0处理
+        static addZreo(n) {
+            return n > 9 ? n : '0' + n
+        }
+
+        // 时间处理
+        static time() {
+            let date = new Date();
+            let y = date.getFullYear(),
+                m = date.getMonth() + 1,
+                d = date.getDate(),
+                h = date.getHours(),
+                min = date.getMinutes();
+            return `${y}-${NotePad.addZreo(m)}-${NotePad.addZreo(d)} ${NotePad.addZreo(h)}:${NotePad.addZreo(min)}`
+        }
+
+        //首次渲染页面
+        rend() {
+             let data = NotePad.getStorage();
+             data.forEach(item => {
+                 this.list.innerHTML += `<li class="${item.done? 'done' : ''}">${item.content}<em>${item.time}</em><span>X</span></li>`;
+             })
+        }
+
+        //为列表添加事件
+        delList(){
+            this.list.onclick = function (ev) {
+                ev.stopPropagation();
+                let data = NotePad.getStorage();
+                const  tag = ev.target;
+                const  elName = tag.tagName.toLowerCase();
+                switch (elName) {
+                    case 'li':
+                        data.forEach((item, idx)=>{
+                            if(this.children[idx] === tag){
+                                this.children[idx].classList.toggle('do');
+                                item.do = !item.do;
+                            }
+                        });
+                        NotePad.upData(data)  //更新
+                        break;
+                    case 'span':
+                        data.forEach((item, idx)=>{
+                            if(this.children[idx].children[1] === tag){
+                                //通过父级元素删除子元素
+                                this.removeChild(this.children[idx]);
+                                data.splice(idx,1);
+                            }
+                        });
+                        NotePad.delData(data);  //删除数据中的某一项
+                        break;
+                }
+            }
+        }
+        //输入记事内容
+        iptEvent() {
+            const that = this;
+            this.ipt.onkeydown = function (ev) {
+                //输入内容，按回车键添加，否则不执行
+                if (ev.keyCode !== 13) return;
+
+                //获取input输入的内容，去掉前后的空格
+                let val = this.value.trim();
+
+                //内容为空时返回
+                if (!val) return;
+
+                let time = NotePad.time();
+
+                that.list.innerHTML += `<li>${val}<em>${time}</em><span>X</span></li>`;
+
+
+                //内容不为空，添加到缓存中
+                let data = {
+                    content: val,
+                    do: false,
+                    time: time
+                }
+                //存入到缓存中
+                NotePad.setStorage(data);
+
+                //清空输入框的内容
+                this.value = '';
+            }
+        }
+    }
+
+    let dom = new NotePad('box');
+    dom.iptEvent();
+    dom.delList();
+
+
+</script>
+
+</body>
+</html>
