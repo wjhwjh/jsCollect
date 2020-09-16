@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+
+
+    <style>
+        .primary {
+            background: #f00;
+        }
+
+        .default {
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="../vue.min.js"></script>
+<!-- <script src="../node_modules/vue-router/dist/vue-router.min.js"></script> -->
+<script src="./jquery.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script>
+    console.log($.ajax)
+    console.log($.ajax, axios)
+    Vue.prototype.$Axios = axios;
+
+   axios.get('http://v.juhe.cn/joke/content/text.php?sort=&page=&pagesize=&time=&key=f04c2c771c088b4ffd34514459291105')
+   .then((res)=>{
+       console.log(res)
+   })   
+
+
+
+    // let App = {
+    //     template: `
+    //    <div>
+    //       这里是远方，虽然艰难，也要砥砺前行。
+    //       <br>
+    //       <button @click="submiteHandle">点击</button>
+    //    </div>
+    //  `,
+    //     methods: {
+    //         submiteHandle() {
+    //             this.$Axios.get('http://127.0.0.1:8080')
+    //                 .then(res => {
+    //                     console.log(res);
+    //                 }).catch(erro => {
+    //                 console.log('请求失败')
+    //             });
+    //         }
+    //     }
+    // }
+
+    // let vm = new Vue({
+    //     el: '#app',
+    //     components: {
+    //         App
+    //     },
+    //     template: `<App/>`,
+
+
+    // });
+
+
+</script>
+
+</body>
+</html>

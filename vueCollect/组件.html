@@ -31,7 +31,8 @@
        }
 
      };
-
+     
+    // template属性值是一个字符串 
     let vm = new Vue({
       el: '#app',
       data(){
@@ -50,7 +51,7 @@
       mounted(){
         console.log('vue里边this的指向',this)
       },
-      updata(){}
+      updated(){}
     })
  
     console.log(vm);
