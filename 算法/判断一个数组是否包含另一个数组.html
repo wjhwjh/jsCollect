@@ -8,14 +8,23 @@
 <script>
     // 数组和字符串，可以把数组看做是字符串的拆分
     // 把字符串看作是数组的合并，根据实际情况使用哪一种方式实现更快更好，就用哪一种
+    // indexOf()的使用
+    // join() 把数组合并为字符串
+    // splice()是
     function isInclude(arr1, arr2) {
+        console.log(arr1, arr2)
+        console.log('把数组合并为字符串---', arr1.join('-'))
        if(arr1.join(',').indexOf(arr2.join(','))>-1){
           return true
+       }else{
+           return false
        }
     }
-    console.log(isInclude([2,3,4,5,1],[2,3]))
-
-
+    console.log(isInclude([2,3,4,5,1],[2,1]))
+    let s = 'kxjckjxklv';
+    let b = s.substr(2,3); // substr() 第一个参数是起始下标，第二个参数是长度
+    console.log(b)
+    
 </script>
 </body>
 </html>
