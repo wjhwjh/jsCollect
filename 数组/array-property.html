@@ -110,13 +110,14 @@
 
 
     console.log('find------------------------------------');
-    // find是es6中的方法   
+    // find是es6中的方法，参数是一个回调函数，类似的方法有findIndex
+    // 返回的是与指定的相匹配的第一个元素，如果没有找到则返回undefined
   
     let arrFind = [1,3,5,10, {a:'1'}];
     let fVal = arrFind.find(item=>{  // 查找值，可以看作是把数组对应元素的值，赋给定义的变量
-        return item>9
+        return item>4
     })
-    console.log('fval---', fVal);  // 10
+    console.log('fval---', fVal);  // 5
 
 
     fVal = arrFind.find(item=>{
@@ -127,7 +128,11 @@
     // 使用indexOf返回的是下标， find()方法返回的是数组项
     console.log('indexOf在数组中的使用---',arrFind.indexOf(100)) //-1
 
+
+
     console.log('findIndex----------------------------------')
+    // es6新增的方法，参数是一个回调函数，因此函数中使用return来返回判断后的值
+    // 返回的是与指定元素相匹配的第一个数组元素的下标
     let arrFindIndex = [1,3,5,10, {a:'1'}];
 
     let fValIdx = arrFindIndex.findIndex(item=>{  // 查找值，可以看作是把数组对应元素的值，赋给定义的变量
@@ -135,16 +140,25 @@
     })
     console.log('fValIdx---', fValIdx); // 3 返回的是数组下标
 
+    console.log('indexOf----------------------------------')
+    // 指定的元素是否在数组中，如果在返回其下标，如果不在返回-1
+    let indexArr = [1,12,5,6,3,20];
+    console.log(indexArr.indexOf(1)) // 0
+    console.log(indexArr.indexOf(100)) // -1
+
     console.log('some----------------------------------')
-    // 检索数组中是否有指定值, 返回的是一个布尔值，当第一次检索到就会返回
+    // es6中新增的，是数组的一个方法，参数是一个回调函数，返回的是boolean值
+    // 检索数组中是否有指定值, 返回的是一个布尔值，找到返回true, 找不到就返回false.
     let arrsome = [1,12,5,6,3,20];
     // 判断数组中是否存在一个大于5的数
     console.log(arrsome.some(item=>item>5)) // true
 
+
     console.log('includes----------------------------------')
-    // inludes判断数组中是否有指定值
+    // inludes判断数组中是否有指定值, 
     // 给数组去重
     let arrIncludes = [1,12,5,6,3,20,5,7,8,1];
+
 
     console.log(arrIncludes.includes(12))
     function quchong(arr){
@@ -160,17 +174,37 @@
         return newArr
     }
    console.log(quchong(arrIncludes)) //[1,12,5,6,3,20,5,7,8,1]
+
+
    console.log('filter----------------------------------')
     // filter返回一数组，所有符合条件的数组
+
 
     console.log('map----------------------------------')
     // map返回一数组，所有符合条件的数组
 
+
     console.log('slice----------------------------------')
-    // slice返回一数组，所有符合条件的数组
+    // slice返回一数组,截取的项组成的数组，不改变原数组
+    let sliceArr = [4,1,9,3,7,0,5];
+    console.log(sliceArr.slice(1,3)) // [1,9]
+    console.log(sliceArr) //[4,1,9,3,7,0,5]
+
 
     console.log('sort----------------------------------')
-    // sort返回一数组，所有符合条件的数组
+    // sort 直接在原数组上进行排序
+    let sortArr = [4,1,9,3,7,0,5];
+    console.log(sortArr.sort()) //[0,1,3,4,5,7,9]
+    console.log(sortArr) // [0,1,3,4,5,7,9]
+
+
+    console.log('splice----------------------------------')
+    // splice整体是返回一个数组,被改变的项组成的数字。 在原数组上进行改变
+    let spliceArr = [1,4,7,0,5,9,3,2];
+    console.log(spliceArr.splice(1,2,'name')) // 返回要替换 [4,7]
+    console.log(spliceArr) // [1,'name',0,5,9,3,2]
+    console.log(spliceArr.splice(3,0,'age')) //  []
+    console.log(spliceArr) // [1,'name',0,'age',5,9,3,2]
 </script>
 
 </body>
