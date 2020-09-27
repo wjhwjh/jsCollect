@@ -6,6 +6,12 @@
 </head>
 <body>
 <script>
+    // Set的参数是一个数组
+    let setArr = new Set([3,4,1,4,2]);
+    setArr.add(10)
+    console.log('set构造函数初始化一个变量', setArr)
+    console.log('set构造函数初始化一个变量', setArr.has(4))
+
     /*重新格式化一个数组*/
     let kvArray = [{key: 1, value: 10},
         {key: 1, value: 20},
@@ -20,7 +26,6 @@
         return obj
     })
 
-
     console.log(newArry); //返回一个新数组  [{1: 10}, {2: 20}, {3: 30}]， 原数组没有改变
 
     /*原生js实现map*/
@@ -31,8 +36,7 @@
             //数组的每一项作为参数回调函数的第一个参数，索引值作为回调函数的第二个参数，返回值存放在新数组中
             newArry.push(fn(arr[i], i)) // arr[i]和i都是函数的形参
         }
-
-        console.log('-----------------',newArry)
+        //console.log('-----------------',newArry)
         // 返回改变后的数组
         return newArry
     }

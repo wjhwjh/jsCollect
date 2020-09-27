@@ -16,7 +16,7 @@
     * map
     * filter
     * some
-    * include
+    * includes
     * find
     * forEach
     * slice
@@ -37,7 +37,8 @@
     let data = {
         rows: [
             ["Lisa", 16, "Female", "2000-12-01"],
-            ["Bob", 22, "Male", "1996-01-21"]],
+            ["Bob", 22, "Male", "1996-01-21"]
+        ],
         metaData: [{name: "name", note: ''}, {name: "age", note: ''}, {name: "gender", note: ''}, {
             name: "birthday",
             note: ''
@@ -45,9 +46,12 @@
         ]
     };
     // 对象属性的键名是另一个数组项对象中的键值时
+    // 使用map遍历数据数组
     let arrReault = data.rows.map(item => {
+        // 继续使用map遍历每一项
         let r = item.map((item1, index) => {
             return {
+                // 把对应的键名获取到，并赋予键值，每一项处理成对象并返回
                 [data.metaData[index].name]: item1
             }
         })
