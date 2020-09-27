@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="130734f0-1911-4c24-9625-e3cf19865bad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javaScript/作用域和闭包.html" beforeDir="false" />
+    </list>
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -11,6 +18,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="-399556003">
       <usages-collector id="statistics.lifecycle.project">
@@ -86,6 +94,10 @@
         </entry>
       </file>
     </leaf>
+=======
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -163,6 +175,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
@@ -174,12 +187,18 @@
     <option name="y" value="375" />
     <option name="width" value="1729" />
     <option name="height" value="1007" />
+=======
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,25 +209,19 @@
             <path>
               <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
               <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
-              <item name="javaScript" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jsCollect" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jsCollect" type="462c0819:PsiDirectoryNode" />
               <item name="闭包" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/ALl/jsCollect/算法/数字加颜色.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/1AA修改/rjz/qa-m" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -243,7 +256,7 @@
     </option>
   </component>
   <component name="RunManager" selected="npm.build">
-    <configuration name="build" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/vueCollect/WObj/package.json" />
       <command value="run" />
       <scripts>
@@ -253,7 +266,7 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="dev" type="js.build_tools.npm" factoryName="npm" temporary="true" nameIsGenerated="true">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/vueCollect/WObj/package.json" />
       <command value="run" />
       <scripts>
@@ -379,7 +392,12 @@
       <workItem from="1578617642621" duration="649000" />
       <workItem from="1578876652897" duration="1257000" />
       <workItem from="1578903291758" duration="2522000" />
+<<<<<<< HEAD
       <workItem from="1579069125246" duration="3176000" />
+=======
+      <workItem from="1579069125246" duration="2931000" />
+      <workItem from="1579100091422" duration="126000" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
     </task>
     <task id="LOCAL-00001" summary="提交">
       <created>1574908007361</created>
@@ -399,7 +417,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="408314000" />
+=======
+    <option name="totallyTimeSpent" value="408195000" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -411,9 +433,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-384" y="375" width="1729" height="1007" extended-state="1" />
+=======
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16261128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16254418" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -425,7 +451,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32616082" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.37529412" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32019705" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -453,9 +479,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="提交" />
@@ -745,13 +768,16 @@
     <entry file="file://$PROJECT_DIR$/数组/es6-set.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/javaScript/作用域和闭包.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/javaScript/作用域和闭包.js" />
     <entry file="file://$PROJECT_DIR$/javaScript/作用域和闭包.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="348">
           <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+=======
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+>>>>>>> 952ecb9d6d62932f31e84284c4c2d648dd7209fc
         </state>
       </provider>
     </entry>
