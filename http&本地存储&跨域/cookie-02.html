@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ 
+<script>
+    /*
+    * cookie的封装
+    *
+    *
+    * */
+
+    // 设置cookie
+    /*{
+        name:'hzizi',
+        age:18
+    }*/
+
+    // 设置cookie
+    const setCookie = (data, time=0) => {
+        // time是单位是天
+        const timer = new Date(Date.now()+time*1000*60*60*24).toUTCString();
+        for(let key in data){
+            document.cookie = `${key}=${data[key]};expires=${timer}`;
+        }
+    }
+
+    // 获取cookie
+    const getCookie = (attr)=>{
+        const arr = document.cookie.match(new RegExp('\\b'+attr+'=([^;]+)(;|$)'));
+        //console.log(arr);
+        return arr ? arr[1]:''
+    }
+
+    // 删除cookie
+    const delCookie = attr => {
+        let obj= {};
+        obj[attr] = '';
+        setCookie(obj,-1);
+    }
+
+    setCookie({
+        name:'hzizi',
+        age:18
+    },1);
+     
+    console.log('获取cookie--',document.cookie) 
+    console.log(getCookie('name'));
+
+    // delCookie('age');
+
+</script>
+</body>
+</html>

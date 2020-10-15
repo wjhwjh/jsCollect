@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<script>
+    /*https://www.juhe.cn/account/certify
+    * 跨域
+    *
+    * http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&oe=utf-8&word=狗&pn=60&rn=30
+    *
+    * */
+
+    /*
+    * 1. 跨域问题
+    * 2. ajax的封装
+    *
+    * */
+    // js原生实现get请求，存在跨域问题
+
+    let url = "http://v.juhe.cn/joke/content/list.php?key=f04c2c771c088b4ffd34514459291105&sort=1418814837&time=1418745237";
+    let xml = new XMLHttpRequest();
+    xml.open('GET', url ,true);
+    xml.send();
+    xml.onreadystatechange= function(){
+        // 发送请求是否成功
+       if(xml.state===4){
+          console.log('发送成功');
+          // 相应是否成功
+          if(xml.status>=200&&xml<300 || xml.status===304){
+             xml.responseText;
+             console.log(222);
+          }
+
+       }
+    };
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

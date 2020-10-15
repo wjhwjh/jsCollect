@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储</title>
+
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            border: none;
+            list-style: none;
+            box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            outline: none;
+        }
+        body{
+            font-family: 'Microsoft YaHei';
+            background: #fff;
+        }
+        .clear_fix:after, .clear_fix:before{
+            display: block;
+            content: '';
+            clear: both;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 26px;
+            color: #222;
+            margin: 40px auto 30px;
+        }
+        #box{
+            width: 600px;
+            margin: auto;
+        }
+        #ipt{
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+        .list{
+            margin-top:10px;
+        }
+
+        .list li{
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+            height: 50px;
+            line-height: 50px;
+        }
+        .list li.done{
+            color: #999;
+
+        }
+        .list li span{
+            float: right;
+            font-size:20px;
+            cursor: pointer;
+            color: #000 !important;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+    <h2>待办事项</h2>
+    <div id="box">
+        <input type="text" id="ipt" placeholder="请输入代办事项">
+
+        <ul class="list">
+
+        </ul>
+    </div>
+
+
+
+<script>
+    /*
+        * 本地存储，方式
+        *
+        * localStorage
+        * 永久性存储， 键值对以字符串的形式存储
+        *
+        *  localStorage.setItem()
+        *
+        * sessionStorage
+        *
+        *
+        *
+        *
+        * 对象和字符串的相互转化
+        *
+        *JSON.parse 把字符串转化为对象
+        *
+        *
+        *
+        * */
+
+
+    let ipt = document.getElementById('ipt');
+    let list = document.getElementsByClassName('list')[0];
+
+
+    // 获取数据,首次渲染
+    let getData = localStorage.getItem('data'); //data 相当于数据库的名称
+
+    console.log(getData);
+
+    if(getData !== null){
+
+        let data = JSON.parse(getData);
+        console.log(data);
+        for (let i=0, len = data.length; i < len; i++){
+            list.innerHTML += `<li class=${data[i].done? 'done' : ''}>${data[i].content}<span>X</span></li>`;  //这种方式只能用事件委托
+        }
+
+     }
+
+
+    // input输入框
+    ipt.onkeypress = function (e) {
+        if(e.keyCode  !== 13)return;
+        let val = this.value.trim();
+        if(!val)return;
+
+        list.innerHTML += `<li>${val}<span>X</span></li>`;
+        /*
+        * 1. 获取本地缓存中的数据， 存在转化为对象，不存在定一个数组变量 data
+        *
+        * 2. 把当前输入的值添加到数组data中，
+        *
+        * 3. 把数组对象转化为字符串写入到本地内存中
+        * JSON.stringify
+       * */
+
+        let data = localStorage.getItem('data'); // 获取数据
+        let d = JSON.parse(getData) || [];  // 转化为对象
+
+
+
+
+        d.push({
+            content:val,
+            done:false  // 默认的是false, 没有样式的
+        });
+
+        console.log(d);
+
+        localStorage.setItem('data', JSON.stringify(d)); // 写入内存
+
+        this.value='';
+
+    };
+
+
+    list.onclick = function (e) {
+        e.stopPropagation();
+        let tag = e.target;
+        let elName = tag.tagName.toLocaleLowerCase();
+
+        let data =JSON.parse(localStorage.getItem('data')); // 获取数据
+        //let d = JSON.parse(getData);  // 转化为对象
+
+
+        switch (elName){
+            case 'li':
+                data.forEach((item, idx)=>{
+
+                    if(tag === list.children[idx]){
+
+                        item.done = !item.done;
+
+                        list.children[idx].classList.toggle('done');
+                    }
+                });
+
+                break;
+
+            case  'span':
+
+                data.forEach(function(item, idx){ // 整体是实现移除对应的li, 通过传参改变指向就轻松搞定
+
+                    if(this === list.children[idx]){
+                        list.removeChild(this);
+                        data.splice(idx,1);
+                    }
+                }, tag.parentNode); // forEach 第二个参数指循环时this指向
+
+                break;
+        }
+
+        localStorage.setItem('data', JSON.stringify(data)); // 写入内存
+
+    }
+
+
+</script>
+
+</body>
+</html>

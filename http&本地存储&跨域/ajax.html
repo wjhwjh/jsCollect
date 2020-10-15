@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+ /*
+ * localStorage
+    优点：兼容性 中等，操作 简单，就是key-value形式， 几乎现代的浏览器都支持
+    缺点：存在 大小限制， IE9、IE10不支持
+ 
+ * sessionStorage
+    优点：临时 存储神奇，关闭页面标签自动回收，不可以跨页面交互
+    缺点：临时 因为是临时，所以不能存储持久化的东西
+
+ * Cookie兼容性最好的本地存储
+    优点： 兼容性最好，几乎所有的浏览器都支持
+    缺点： 大小有限制，而且每次发送请求，请求头里会带着cookie一起发过去，
+    现在基本大多数登陆的合法性验证都是用cookie验证的
+ * */
+
+    let arr=['wjh','wj'];
+    let arr1=['wjh','wj11'];
+    sessionStorage.setItem('name', JSON.stringify(arr));
+    localStorage.setItem('name', JSON.stringify(arr1));
+    
+    localStorage.user = JSON.stringify(arr);
+    console.log('本地存储--',localStorage.name);
+    console.log('本地存储--', JSON.parse(localStorage.name));
+
+    // cookie存在于客户端,用于存储数据 
+    // 获取到的cookie是一个键值对的字符串
+    // 
+    document.cookie = "test1=111";
+    document.cookie = "name=oeschger";
+    console.log('cookie值--',  document.cookie)
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
