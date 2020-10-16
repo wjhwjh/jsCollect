@@ -21,7 +21,7 @@
 
     // 设置cookie
     const setCookie = (data, time=0) => {
-        // time是单位是天
+        // time是单位是天，时间单位，时分秒毫秒，1小时=60分，1分钟=60秒， 1秒=1000毫秒，在使用日期的时候一般都转化为毫秒
         const timer = new Date(Date.now()+time*1000*60*60*24).toUTCString();
         for(let key in data){
             document.cookie = `${key}=${data[key]};expires=${timer}`;
@@ -31,7 +31,7 @@
     // 获取cookie
     const getCookie = (attr)=>{
         const arr = document.cookie.match(new RegExp('\\b'+attr+'=([^;]+)(;|$)'));
-        //console.log(arr);
+       console.log('正则匹配到的值---',  arr);
         return arr ? arr[1]:''
     }
 
@@ -39,7 +39,7 @@
     const delCookie = attr => {
         let obj= {};
         obj[attr] = '';
-        setCookie(obj,-1);
+        setCookie(obj,-1); // 设置
     }
 
     setCookie({

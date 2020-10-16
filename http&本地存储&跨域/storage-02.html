@@ -38,7 +38,7 @@
       var d = new Date();
       console.log(d);
      // console.log(d.toGMTString());
-      console.log(d.toTimeString());
+      //console.log(d.toTimeString());
       //从当前时间算起，一天以后失效
       // setTime是时间对象的一个方法，参数是整数，也就是毫秒数，如果不设置代码获取当前时间的毫秒数
       // 一般可设置从当前时间起指定的一段时间后的时间
@@ -50,59 +50,41 @@
       //格林威治时间比北京时间早8小时，格林威治时间没有汉字，可以直接使用
       // 这里转换为格林威治时间，其实是不合理的，应该与上边获取到的当前时间统一
       var expires = "expires="+d.toGMTString();
-      console.log(expires);
+      //console.log(expires);
       document.cookie = cname + "=" + cvalue + "; " + expires;
   }
   setCookie('name','xiaohong',1);
   setCookie('name1','xiaohong1',1);
   setCookie('name2','xiaohong2',1);
 
-  //删除cookie
+  // 删除cookie
+  // 把cookie里对应的属性值设置为过期即可
   function deletCookie(cookieKey){
       //获取本地的cookie
       let cookieData = document.cookie;
-
       console.log(cookieData);
-
       //获取到的cookie里的数据，根据数据格式和目标进行数据整理
-      let dataArray = cookieData.split(';'); //逗号进行切割，把字符串转化为数组
+      //let dataArray = cookieData.split(';'); //逗号进行切割，把字符串转化为数组
 
       // 字符串中截取其中符合条件的字符串（正则匹配时如何工作的）
-
-
       console.log(dataArray);
-
-
-
-
       //把指定的cookie里的属性值对设置的时间设置为过期
-
   }
 
   deletCookie('name');
 
-  //查找某个cookie值
+  //修改cookie值，也就是重新设置
   function checkCookie(cookieKey){
       //获取本地的cookie
       let cookieData = document.cookie;
-
        //如何处理缓存中cookie中的数据
 
       //拿到的cookie值与传入的值进行正则对比，获取到对应的cookie
 
       // 返回获取到的cookie值
-
   }
-
-  //修改cookie值
-  function checkCookie(cookieKey){
-
-
-  }
-
-
+ 
   console.log(document.cookie);
-
     /*
     * localStorage
     *

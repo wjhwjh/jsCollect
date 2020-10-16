@@ -2,95 +2,94 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>标题</title>
-    <style>
-        *{
-            margin:0;
-            padding: 0;
-            border: none;
-            list-style: none;
-            box-sizing: border-box;
-            -ms-box-sizing: border-box;
-            outline: none;
-        }
-        body{
-            font-family: 'Microsoft YaHei';
-            background: #eee;
-        }
-        .clear_fix:after, .clear_fix:before{
-            display: block;
-            content: '';
-            clear: both;
-        }
-        .content{
-            width: 1000px;
-            margin: auto;
-        }
-
-
-        #box{
-         /*   width: 100px;
-            height:100px;
-            background: #8100dc;*/
-        }
-
-    </style>
+    <title>Title</title>
 </head>
 <body>
-    <div class="content">
-          <div id="box">
-              <form action="https://www.baidu.com" method="get">
-                  <input type="text" name="name" >
-                  <button type="submit">提交</button>
-              </form>
-          </div>
-    </div>
+<script>
 
-    <script>
+    /*https://www.juhe.cn/account/certify
+    * 跨域
+    *
+    * http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&oe=utf-8&word=狗&pn=60&rn=30
+    *
+    * */
 
-     var obj = document.getElementById('box');
-
-
-     document.onclick = function () {
-         //创建ajax请求对象
-         var xhl = new XMLHttpRequest();
-
-         //创建请求
-         xhl.open('get','test.txt',true); //true指的是异步
-
-         /*
-         * open的参数
-         *
-         * 第一个参数
-         *
-         * 第二个参数
-         *
-         * 第三个参数
-         *
-         * */
+    /*
+    * 1. 跨域问题
+    * 2. ajax的封装
+    * 3. 原生里post请求和get请求的区别， 主要的区别在追加变量的位置， post在send里，get直接在网址的的后边
+    * */
 
 
+    let url = "http://v.juhe.cn/joke/content/list.php?key=f04c2c771c088b4ffd34514459291105&sort=1418814837&time=1418745237";
+    let xml = new XMLHttpRequest();
+    xml.open('GET', url, true);
+    xml.send();
+    xml.onreadystatechange = function () {
+        // 发送请求是否成功
+        if (xml.state === 4) {
+            console.log('发送成功');
+            // 相应是否成功
+            if (xml.status >= 200 && xml < 300 || xml.status === 304) {
+                xml.responseText;
+                console.log(222);
+            }
 
-        //正式发送
-         xhl.send();
+        }
+    };
 
-         //状态监听，监听请求过程
-         xhl.onreadystatechange = function ( ev ) {
-             if(this.readyState === 4){
-                 console.log( this.responseText );
-             }
-         }
+    let ajax = function (obj) {
+        let url = obj.url;
+        let data = obj.data;
+        const method = obj.method;
+        let success = obj.success;
+        let fail = obj.fail;
+        /*对数据对象进行处理*/
+        let str = '';
+        for (let key in data) {
+            str += `${key}=${data[key]}&`
+        }
+        //console.log(str);
+
+        let xmr = new XMLHttpRequest();
+        // 判断是get请求， 还是post请求
+        if (method === 'GET') {
+            xmr.open(method, url + '?' + str, true);
+            xmr.send(null);
+        } else if (method === 'POST') {
+            xmr.open(method, url, true);
+            xmr.send(str);
+        }
+
+        // 请求结果处理，发送请求，响应请求
+        xmr.onreadystatechange = function () {
+            // 发送请求是否成功
+            if (xmr.state === 4) {
+                console.log('发送成功');
+                // 响应是否成功
+                if (xmr.status >= 200 && xmr < 300 || xmr.status === 304) {
+                    success(xml.responseText);
+                } else {
+                    fail('获取失败');
+                }
+            }
+        }
+    }
+
+    ajax({
+        url: '',
+        method: '',
+        data: {
+            userName: 'huizi',
+            password: '1234555'
+        },
+        success: (res) => {
+        },
+        fail: (res) => {
+        }
+    });
 
 
-     };
-
-
-
-
-
-
-
-
-    </script>
+</script>
 </body>
 </html>
