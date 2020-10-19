@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>返回顶部</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border:none;
+            list-style: none;
+        }
+        body{
+         /*   font-family:'Microsoft YaHei';*/
+            height: 2000px;
+        }
+
+        /*返回顶部*/
+        .back_box{
+            position: fixed;
+            right: 10%;
+            bottom:4%;
+            text-align: center;
+        }
+        .back_btn{
+            display:inline-block;
+            width: 40px;
+            height: 40px;
+            -webkit-border-radius:10px;
+            -moz-border-radius:10px;
+            border-radius:10px;
+            background-color: #000;
+            cursor: pointer;
+            position: relative;;
+        }
+        .back_p{
+            font-size:14px;
+            padding-top:8px;
+        }
+        .back_icon{
+            width:0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -8px;
+            margin-left: -7px;
+
+        }
+    </style>
+</head>
+<body>
+    <!--返回顶部-->
+    <div class="back_box">
+        <span class="back_btn"><i class="back_icon"></i></span>
+        <p class="back_p">回到顶部</p>
+    </div><!--返回顶部 end-->
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(window).scroll(function () {
+            var scroll_top = $(window).scrollTop();
+            var window_h = $(window).height();
+            console.log(window_h);
+            if(scroll_top > window_h){
+                $('.back_box').fadeIn();
+            }else {
+                $('.back_box').fadeOut();
+            }
+        });
+
+        $('.back_box').on('click',function () {
+            $('body,html').animate({scrollTop:0},500)
+        })
+    </script>
+</body>
+</html>

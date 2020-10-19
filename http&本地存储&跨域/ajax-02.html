@@ -21,16 +21,19 @@
     * */
 
 
-    let url = "http://v.juhe.cn/joke/content/list.php?key=f04c2c771c088b4ffd34514459291105&sort=1418814837&time=1418745237";
+    let url = "http://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&oe=utf-8&word=狗&pn=60&rn=30";
     let xml = new XMLHttpRequest();
     xml.open('GET', url, true);
     xml.send();
     xml.onreadystatechange = function () {
-        // 发送请求是否成功
-        if (xml.state === 4) {
+        console.log(xml, '-----------'+this);
+
+        // 发送请求是否成功, 当属性state的值为4时，表示发送请求成功
+        if (xml.readyState === 4) {
             console.log('发送成功');
-            // 相应是否成功
-            if (xml.status >= 200 && xml < 300 || xml.status === 304) {
+            // 如果获取后端返回的值？？ 通过响应状态码来判断，如果
+            // 当 304表示资源未变更
+            if (xml.status >= 200 && xml.status < 300 || xml.status === 304) {
                 xml.responseText;
                 console.log(222);
             }
@@ -64,7 +67,7 @@
         // 请求结果处理，发送请求，响应请求
         xmr.onreadystatechange = function () {
             // 发送请求是否成功
-            if (xmr.state === 4) {
+            if (xmr.readyState === 4) {
                 console.log('发送成功');
                 // 响应是否成功
                 if (xmr.status >= 200 && xmr < 300 || xmr.status === 304) {

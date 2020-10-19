@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>图片无序预加载</title>
+    <link type="text/css" rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+    <div class="box">
+        <img src="http://pic.58pic.com/58pic/13/87/72/73t58PICjpT_1024.jpg" alt="pic" id="img" />
+        <p>
+            <a href="javascript:;" class="btn" data-control="prev">上一页</a>
+            <a href="javascript:;" class="btn" data-control="next">下一页</a>
+        </p>
+    </div>
+
+    <div class="loading">
+        <p class="progress">0%</p>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/preload.js"></script>
+    <script>
+        var imgs = [
+            'http://pic.58pic.com/58pic/13/87/72/73t58PICjpT_1024.jpg',
+            'http://img1.3lian.com/2015/a1/113/d/10.jpg',
+            'http://img05.tooopen.com/images/20150412/tooopen_sy_118141423291.jpg',
+            'http://scimg.jb51.net/allimg/150415/14-15041511223U18.jpg',
+            'http://pic.58pic.com/58pic/13/71/22/35T58PICrEk_1024.jpg',
+            'http://img1.3lian.com/2015/a1/109/d/88.jpg',
+            'http://img1.3lian.com/2015/a1/113/d/10.jpg'
+        ];
+
+        var index = 0;
+        var len = imgs.length;
+        //var count = 0;
+        $progress = $('.progress');
+
+        $.preload(imgs,{
+            each:function (count) {
+                $progress.html(Math.round(( count + 1)/len *100) + '%');
+            },
+            all:function () {
+                $('.loading').hide();
+                document.title = '1/'+len;
+            }
+        })
+
+
+        $('.btn').on('click',function(){
+            if('prev' === $(this).data('control')){ //上一张
+                index = Math.max(0,--index);
+                //console.log(index);
+            }else{ //下一张
+                index = Math.min(len-1,++index);
+                //console.log(index);
+            }
+
+            document.title = (index + 1)+'/'+len;
+            $('#img').attr('src',imgs[index])
+        });
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>

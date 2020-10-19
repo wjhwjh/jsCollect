@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>图预加载之无序加载--QQ表情</title>
+<style type="text/css">
+    *{
+        padding: 0;
+        margin: 0;
+        border: none;
+        list-style: none;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #e0e0e0;
+    }
+    a{
+        text-decoration: none;
+    }
+
+    .box{
+        margin:100px auto;
+        width: 500px;
+        height: auto;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    #face-btn{
+        display: block;
+        color: #333;
+        font-size:14px;
+        line-height:28px;
+        background-color: #eee;
+        padding:0 10px;
+    }
+    .panel{
+        width: 100%;
+    }
+    .loading{
+        width:100%;
+        padding: 10px;
+        font-size: 14px;
+        -webkit-box-shadow:0 0 4px rgba(0,0,0,0.4);
+        -moz-box-shadow:0 0 4px rgba(0,0,0,0.4);
+        box-shadow:0 0 4px rgba(0,0,0,0.4);
+    }
+    .list{
+        padding: 10px;
+    }
+    .list li{
+        display: inline-block;
+        padding: 2px;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+    .list li:hover{
+        border: 1px solid #bf097d;
+    }
+</style>
+</head>
+<body>
+<div class="box">
+    <a href="javascript:;" id="face-btn">表情大全</a>
+
+    <div class="panel" style="display: none;">
+        <p class="loading">表情加载中，请稍后...</p>
+       <!-- <ul class="list">
+            <li><img src="../img/qq/1.gif" alt=""></li>
+            <li><img src="../img/qq/2.gif" alt=""></li>
+            <li><img src="../img/qq/3.gif" alt=""></li>
+            <li><img src="../img/qq/4.gif" alt=""></li>
+            <li><img src="../img/qq/5.gif" alt=""></li>
+            <li><img src="../img/qq/6.gif" alt=""></li>
+            <li><img src="../img/qq/7.gif" alt=""></li>
+            <li><img src="../img/qq/8.gif" alt=""></li>
+            <li><img src="../img/qq/9.gif" alt=""></li>
+            <li><img src="../img/qq/10.gif" alt=""></li>
+            <li><img src="../img/qq/11.gif" alt=""></li>
+            <li><img src="../img/qq/12.gif" alt=""></li>
+            <li><img src="../img/qq/13.gif" alt=""></li>
+            <li><img src="../img/qq/14.gif" alt=""></li>
+            <li><img src="../img/qq/15.gif" alt=""></li>
+            <li><img src="../img/qq/16.gif" alt=""></li>
+            <li><img src="../img/qq/17.gif" alt=""></li>
+            <li><img src="../img/qq/18.gif" alt=""></li>
+            <li><img src="../img/qq/19.gif" alt=""></li>
+        </ul>-->
+    </div>
+
+</div>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/preload.js"></script>
+<script>
+    var $face_btn = $('#face-btn'),
+            $panel = $('.panel');
+
+    var imgs = []; //定义一个图片数组,也是传递给插件的参数
+
+    //把每一个图片的路径都存放在这个数组中
+    for (var i =0; i<19; i++){
+        imgs[i]= '../img/qq/'+(i+1)+'.gif';
+    }
+    //console.log(imgs);
+    var len = imgs.length;
+
+    $face_btn.click(function (e) {
+        e.stopPropagation(); //阻止事件冒泡
+        $panel.show();
+        $.preload(imgs,{
+            all:function () {
+                var html = '';
+                html += '<ul class="list">';
+                for (var i = 0;i<len;i++){
+                    html += '<li><img src="'+imgs[i]+'"/></li>';
+                }
+                html +='</ul>'
+                //console.log(html);
+                $panel.html(html);
+            }
+        })
+    });
+
+    //点击页面其它部分则隐藏
+    $(document).click(function () {
+        //alert(111);
+        $panel.hide();
+    });
+</script>
+</body>
+</html>

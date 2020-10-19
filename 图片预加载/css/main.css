@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    border:none;
+    list-style: none;
+}
+body{
+    background: #000;
+}
+body{
+  /*  height: 100%;*/
+    overflow:hidden;
+}
+.box{
+    text-align: center;
+    margin: 40px;
+}
+.box > img{
+    margin-bottom:20px;
+    height:600px;
+}
+.btn{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #ccc;
+    background-color: #fff;
+    padding: 0 20px;
+    margin-right: 50px;
+    text-decoration: none;
+    color: #000;
+}
+.btn:hover{
+    background-color: #eee;
+}
+
+.loading{
+     position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background-color:#eee;
+    z-index: 100;
+}
+.progress{
+    font-size: 50px;
+    text-align: center;
+    padding-top:30%;
+}
