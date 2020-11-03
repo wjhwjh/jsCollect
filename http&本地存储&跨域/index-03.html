@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP跨域问题－自己的搜索</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+            box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            outline: none;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei';
+            background: #eee;
+        }
+        
+        .clear_fix:after,
+        .clear_fix:before {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        
+        .content {
+            width: 1000px;
+            margin: 10% auto;
+        }
+        
+        #box {
+            width: 300px;
+            margin: auto;
+        }
+        
+        #ipt {
+            border: 1px solid #aaa;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-indent: 10px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .listUl {
+            background: #fff;
+            border: 1px solid #aaa;
+            border-top: none;
+        }
+        
+        .listUl li {
+            line-height: 30px;
+        }
+        
+        .listUl li a {
+            display: block;
+            color: #333;
+            text-indent: 10px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        
+        .listUl li a:hover,
+        .listUl li a.active {
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div id="box">
+            <input type="text" value="" id="ipt">
+            <ul class="listUl">
+                <!-- <li><a href="#">jkdfjxkcjf</a></li>
+                  <li><a href="#">232424324</a></li>-->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var oIpt = document.getElementById('ipt'), // 输入框
+            oListUl = document.querySelector('.listUl'); // 列表
+
+        //输入框的内容改变时
+        oIpt.oninput = function() {
+            this.sVal = this.value; //记录输入的初始值
+            this.index = 0; //当输入框的内容改变的时候，索引值置为0
+            fnEven.call(this); //this指向当前的输入空这个对象
+        };
+
+        //失去焦点时
+        oIpt.onblur = function() {
+            setTimeout(function() {
+                oListUl.innerHTML = '';
+            }, 200);
+        };
+        //获得焦点
+        oIpt.onfocus = fnEven;
+
+        //回车搜索
+        oIpt.onkeydown = function(ev) {
+            ev = ev || window.event;
+            var keycode = ev.keyCode;
+            var val = this.value;
+
+            if (val) {
+                if (keycode === 13 && val) {
+                    window.open('https://www.baidu.com/s?&wd=' + val);
+                    //window.location.href = 'https://www.baidu.com/s?&wd='+val;
+                    this.blur(); //失去焦点
+                } else if (keycode === 40 || keycode === 38) {
+                    keyUpDown.call(this, keycode);
+                    ev.preventDefault && ev.preventDefault(); //阻止事件冒泡兼容
+                    return false; //阻止事件冒泡兼容
+                }
+            }
+        };
+
+        //上下按键事件处理
+        function keyUpDown(keyCode) {
+            //console.log( this.index );
+            var aLi = oListUl.children; //获取所有的li
+            var len = aLi.length;
+
+
+            for (var i = 0; i < len; i++) {
+                aLi[i].children[0].className = '';
+            }
+
+            if (keyCode === 40) {
+                this.index++; //获取下一条li
+                this.index %= len + 1; //取模是限时范围的一种手段
+            } else {
+                this.index--;
+                if (this.index < 0) this.index = len; //如果小于0时则显示最后一个
+            }
+
+            if (this.index) { //只有当index存在的时候执行赋值操作
+
+                /* for(var i=0; i<len; i++){ //把它放到上边
+                     aLi[i].children[0].className = '';
+                 }*/
+
+                aLi[this.index - 1].children[0].className = 'active';
+                var liVal = aLi[this.index - 1].children[0].innerHTML;
+                this.value = liVal;
+
+            } else {
+                this.value = this.sVal;
+            }
+        }
+
+        //输入内容改变时处理函数
+        function fnEven(ev) { //这个函数的this指向是指向window的
+            this.index = 0;
+
+            var val = this.value; //获取输入值
+
+            if (val) { //如果输入框不为空时
+                //清除前一个
+                var domS = document.getElementById('FN_JSONP');
+                if (domS) document.body.removeChild(domS);
+
+                //获取百度数据
+                var oScript = document.createElement('script');
+                oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + val + '&cb=fn';
+                oScript.id = 'FN_JSONP';
+                document.body.appendChild(oScript);
+
+            } else {
+                oListUl.innerHTML = '';
+            }
+        };
+
+        //数据处理方法
+        function fn(msg) { //形参存放输入时的数据，包括联想关键词
+            oListUl.innerHTML = ''; //清空上次的数据
+            var data = msg.s; //通过形参，获取函数实参中的数据
+
+            //把数据添加到页面中
+            for (var i = 0, len = data.length; i < len; i++) {
+                var oLi = document.createElement('li');
+                oLi.innerHTML = '<a href="https://www.baidu.com/s?&wd=' + data[i] + '" target="_blank">' + data[i] + '</a>';
+
+                //点击联想词之后输入框内容改变
+                oLi.onclick = function(ev) {
+                    var val = this.children[0].innerHTML;
+                    oIpt.value = val;
+                    oListUl.innerHTML = '';
+                };
+
+                oListUl.appendChild(oLi);
+            }
+        }
+
+        /*
+         * 主要以输入的内容为主，进行显示和跳转搜索
+         *
+         * 代码做的事情是把个动作进行分解和实现
+         *
+         * 这里的上下键操作li，其实就是按键盘上下遍历li,把相应的内容同步到输入框中
+         *
+         * 如果是回车键则搜索对应的内容
+         *
+         *
+         *
+         *
+         *
+         *
+         * */
+    </script>
+</body>
+
+</html>
