@@ -1,0 +1,18 @@
+跨域
+1. script 动态请求，属性属性请求进行跨域， JSONP跨域
+
+2. 跨域资源共享（CORS）
+
+设置 Access-Control-Allow-Origin: *
+
+Access-Control-Allow-Origin
+
+3. 中间代理
+
+4. chrome浏览器可以设置跨域请求
+
+5. vue设置
+
+https://juejin.im/post/6844904033874886663
+
+说明 vue配置中间代理

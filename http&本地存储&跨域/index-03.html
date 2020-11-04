@@ -158,9 +158,7 @@
         //输入内容改变时处理函数
         function fnEven(ev) { //这个函数的this指向是指向window的
             this.index = 0;
-
             var val = this.value; //获取输入值
-
             if (val) { //如果输入框不为空时
                 //清除前一个
                 var domS = document.getElementById('FN_JSONP');
@@ -179,8 +177,11 @@
 
         //数据处理方法
         function fn(msg) { //形参存放输入时的数据，包括联想关键词
+             console.log('这是参数--', msg);
+
+            // msg是通过回调函数返回的参数  
             oListUl.innerHTML = ''; //清空上次的数据
-            var data = msg.s; //通过形参，获取函数实参中的数据
+            var data = msg.s; //通过形参，获取函数实参中的数组数据
 
             //把数据添加到页面中
             for (var i = 0, len = data.length; i < len; i++) {

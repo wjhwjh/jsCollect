@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        .debounce,
+        .throttle,
+        .waitTime {
+            width: 100px;
+            height: 60px;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 60px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <pre>
+       何为防抖？
+       在指定的时间n秒内再次触发事件处理函数，会重计时，重新开始计算时间
+
+
+       何为截流？
+       
+       在指定的时间内，事件只触发一次。
+
+       这两种技术都用到了定时器。都用到时间和闭包
+   </pre>
+
+    <div class="debounce">0</div>
+    <div class="throttle">1</div>
+    <div class="waitTime">1</div>
+    <script>
+        let debounceDiv = document.querySelector('.debounce');
+        let throttleDiv = document.querySelector('.throttle');
+        let waitTimeDiv = document.querySelector('.waitTime');
+
+        // 基本函数
+        function myEvent() {
+            console.log('基本执行函数的this指向', this)
+            let count = this.innerText; // 获取到的内容是字符串，在做算数运算时需要隐式或者显示转化为数字
+            this.innerText = ++count; // 使用++运算符，可以把数字字符串隐式转化为整数类型数字
+        }
+
+        // 防抖实现封装, 重新开始计算时间，也就是先清除定时器，然后继续执行
+        // 对于闭包的使用
+        // debounceFn 防抖
+        function debounceFn(fn, delay) {
+            delay = delay || 0;
+            let timer = null; // 因为闭包所以这个值是会被保留的
+
+            return function () {
+                if (timer) { clearTimeout(timer) }
+                timer = setTimeout(() => {
+                    //console.log('this指向问题',this)
+                    fn.call(this); // 改变this的指向
+                }, delay)
+                console.log('这是一个定时器', timer);
+            }
+        }
+        /*
+         这里重启定时器的时间是上次执行完，等待下次执行剩余的时间+delay
+        */
+
+        // 使用addEventListener监听事件时，事件类型的前面是不需要加on
+        debounceDiv.addEventListener("mouseenter", debounceFn(myEvent, 1000))
+
+
+        // 节流
+        function throttleFn(fn, delay) {
+            delay = delay || 0;
+            let flag = false
+
+            return function () {
+                if (flag) {
+                    return
+                };
+                flag = true;
+                setTimeout(() => {
+                    flag = false;
+                    fn.call(this);
+                }, delay)
+            }
+        }
+        throttleDiv.addEventListener('mouseenter', throttleFn(myEvent, 1000))
+
+        //    setInterval(() => {
+        //        console.log(1111)
+        //    }, 2000);
+
+        // 时间戳的实现,每隔n秒执行一次函数
+        function waitTimeFn(fn, wait) {
+            //let pre = new Date().getTime();
+            let pre = 0;
+            return function () {
+                //console.log(111)
+                let nowTime = new Date().getTime();
+                if (nowTime - pre > wait) {
+                    //console.log(222);
+                    pre = nowTime;
+                    fn.apply(this)
+                }
+            }
+        }
+        waitTimeDiv.addEventListener('mouseenter', waitTimeFn(myEvent, 2000))
+
+    // 节流函数throttle
+    function throttle(fn, gapTime) {
+        if (gapTime == null || gapTime == undefined) {
+        gapTime = 1500
+        }
+        let _lastTime = null
+    
+        // 返回新的函数
+        return function() {
+            let _nowTime = +new Date()
+            if (_nowTime - _lastTime > gapTime || !_lastTime) {
+                fn.apply(this, arguments) //将this和参数传给原函数
+                _lastTime = _nowTime
+            } else {
+                console.log('请勿重复提交')
+            }
+        }
+    }
+
+
+
+    </script>
+</body>
+
+</html>
