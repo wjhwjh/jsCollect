@@ -16,3 +16,7 @@ Access-Control-Allow-Origin
 https://juejin.im/post/6844904033874886663
 
 说明 vue配置中间代理
+
+
+
+vue项目优化
