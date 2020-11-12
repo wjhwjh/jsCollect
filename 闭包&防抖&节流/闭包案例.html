@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>打车计费</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <script>
+        /*
+        有些人是不能不成为朋友的，把最好的一面留给对方，在关键时刻指明道路即可；
+        当然在不讨厌的情况下。
+   
+        只有同等水平的人才能成为朋友。
+   
+        婚姻大抵也是如此。   
+        
+        */
+        /*利用闭包来实现
+        */
+        /*
+        打车费用计算
+        1. 不堵车情况下，3公里内的费用是13，当每增加1公里，就多加5元；
+        2. 堵车的情况下，在原有的价格上增加10元
+        */
+        // 使用立即执行函数，在加载后就执行
+        let car = (function () {
+            console.log('这些年你都干了些啥~~')
+            // 匿名函数形成自己的作用域，在这个作用域里，定义的变量只用在使用这些变量的函数执行后才会被释放
+            // 闭包的作用延伸变量的使用范围，其实也可以让代码更优雅，整洁
+            let total = 0;
+            let start = 13;
+
+            return {
+                normalPrice: function (n) {
+                    if (n <= 3) {
+                        total = start
+                    } else {
+                        total = start + (n - 3) * 5
+                    }
+                    return total
+                },
+                unnormalPrice: function (flag) {
+                    // flag标识，判断是否堵车
+                    // 这里使用了闭包函数里的参数，利用闭包保存变量值的作用
+                    return flag ? (total + 10) : total
+                }
+            }
+        })();
+
+        console.log(car.normalPrice(5));
+        console.log(car.unnormalPrice(true));
+    </script>
+</body>
+
+</html>

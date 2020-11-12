@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        
+        pre {
+            /* margin-bottom: 20px; */
+            padding-bottom: 30px;
+            line-height: 1.8;
+            font-size: 16px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        hr{
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<pre>
+构造函数
+
+构造是什么？
+1）构造函数是一种特殊的函数
+2）构造函数是用来创建对象的，new在执行时会做4件事：
+   1. 在内存中创建一个新的空对象
+   2. this指向这个新的空对象
+   3. 执行构造函数里的代码，给这个新对象添加属性和方法
+   4. 返回这个新对象（构造函数里不需要return）
+3)如何设计一个构造函数？ 如何使用构造函数？ 哪里用到构造函数？？
+</pre>
+<pre>
+    构造函数里的属性和方法分为2中，第一种是静态的也就是静态成员，另一种是实例成员。
+    因为被谁调用而不同,静态成员方法只能被构造函数调用; 静态成员是挂在构造函数上的。
+    实例成员，只能被所有构造函数的实例化对象调用。
+</pre>
+<hr/>
+<pre>
+原型、原型对象和对象原型
+
+原型对象指的是构造函数的一个属性prototype，这个属性也是对象；
+对象原型是指实例化对象的一个属性__proto__,这个属性也是一个对象，指向的是构造函数的原型对象。
+
+原型链
+
+每个对象都有原型对象，也就是其构造函数的prototype属性。
+每个对象构造函数的原型对象，还有自己的对象原型，于是就构成原型链。实例对像的查找的方式是根据原型链的进行查找的。
+
+做这一切的目的就是对js这门语言这一块的知识的使用，实现一定的功能。
+
+原型对象的组成
+</pre>
+<hr/>
+<pre>
+扩展内置对象
+
+扩展内置对象有两种方式，第一直接修行原有的构造函数原型
+Array.prototype = {}
+第二种原有的原型对象上扩张
+Array.prototype.fn
+</pre>
+<hr/>
+<pre>
+原型继承
+构造函数的继承，和构造函数的原型继承
+
+构造函数也是函数，有函数的特性和方法，例如call\apply\bind方法，有this属性
+</pre>
+
+<hr/>
+<pre>
+    思考方式
+    
+    学习 - 回顾（大脑的思考） - 实践
+
+    站在自己的角度看问题、思考问题，看别人、思考别人；
+    站在别人的角度看问题、思考问题。
+
+    把知识吸收，愉快的方式、能调节自己的疲劳的方式，还能在使用的时候调用
+    1. 分类
+      那些是自己已经知道的，明白的，之前自己思考过，使用过，学习过？
+      那些是自己刚知道的，如何吸附到自己的身体里，怎样思考、记录，方便以后的回顾和学习？
+
+      学知识就像认识一个人一样。
+
+    2. 想着用，使用场景
+
+    3. 想着讲给别人听
+</pre>
+<script>
+function Father(name){
+    this.name = name;
+    //console.log(this)
+}
+
+function Father1(){}
+Father.prototype.work = function() {
+    console.log('父类')
+}
+
+function Child(obj) {
+    this.age = obj.age;
+    // 构造函数的继承，实质就是函数的继承，所以可以使用函数的call方法
+    Father.call(this, obj.name);
+    Father.call(this);
+}
+
+// 原型继承
+// 方法一
+//Child.prototype = new Father();
+// Child.prototype.constructor = Child;
+
+// 方法二, 使用craete
+//Child.prototype = Object.create(Father.prototype);
+//Child.prototype.constructor = Child;
+
+// 方法三
+
+Child.prototype = Object.assign({},Father.prototype)
+Child.prototype.constructor=Child;
+
+// 继承多个
+Object.assign(Child.prototype, Father1.prototype); // 把要继承的另一个父类的构造函数的prototype追加到child.protottype上就可以了
+
+let childObj = new Child({
+    name:'huizi',
+    age: 18
+})
+
+Child.prototype.hobby = function(){
+    console.log('这是我的爱好~~')
+}
+
+let fatherObj = new Father('我的名字被占用了')
+console.log('子类实例化对象',childObj);
+console.log('父类实例化对象',fatherObj);
+
+
+let o = Object.create(null);
+
+console.log('随便创建的对象哈哈哈', o);
+console.log('随便创建的对象哈哈哈', Object.create(null) == Object.create(null));
+let obj1 = {
+    a: 1,
+    b: 2,
+    c: 3
+}
+let obj2 = {
+    d: 4,
+    e: 5,
+    f: 6,
+    a:5,
+    m: {
+        'name':'huizi',
+        'age': 18
+    }
+}
+
+let obj3 = Object.assign(obj1, obj2);
+obj3.d = 10;
+obj2.e = 15;
+obj2.m['age'] = 15;
+console.log('obj3',obj3, obj1 === obj3)
+console.log('obj1',obj1)
+console.log('obj2',obj2)
+
+// 对象就是对象，让人又恨又爱
+// Object.assign(obj1, obj2)就是单纯的把后一个对象合并到前一个对象上，返回的是合并后的obj1,改变了obj1,很有意思
+
+</script>
+</body>
+</html>

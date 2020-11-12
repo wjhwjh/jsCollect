@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+ <pre>
+     深浅拷贝
+ </pre>
+
+    <script>
+        let obj = {
+            a:1,
+            b:2,
+            c:{
+                name:'huizi',
+                age: 18
+            },
+            d:['a','b',3,4]
+        }
+        let arr = [3,4,5,6];
+        let n = null;
+        let fn = function(){};
+
+        function deepObj(obj, deep){
+           let target = {};
+           // 如果是对象
+           if(Array.isArray(obj))target=[];
+           for(let key in obj){
+            if(!!deep&&obj[key] instanceof Object){
+                target[key] = deepObj(obj[key],deep)
+            }else{
+                target[key] = obj[key]
+            }
+           } 
+           return target
+        } 
+      let newobj = deepObj(obj,false);
+      newobj.c.name = 'huizia';
+      console.log('返回的值--',newobj)
+      console.log('原来的值--',obj)
+
+    </script>
+</body>
+
+</html>

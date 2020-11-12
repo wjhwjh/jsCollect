@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>使用函数回调遍历数据</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <pre>
+        根据给定的id值，查找对应的数据
+    </pre>
+
+    <script>
+        let data = [{
+            id: 1,
+            name: '电器',
+            goods: [{
+                id: 10,
+                name: '洗衣机',
+                gongneng: '洗衣服'
+            }, {
+                id: 11,
+                name: '电冰箱',
+                gongneng: '冷藏'
+            }],
+        }, {
+            id: 2,
+            name: '日用',
+            goods: [{
+                id: 144,
+                name: '手纸',
+                gongneng: '洗衣服'
+            }, {
+                id: 1111,
+                name: '洗衣液',
+                gongneng: '冷藏'
+            }],
+        }, {
+            id: 3,
+            name: '爱书'
+        }, {
+            id: 4,
+            name: '化妆品'
+        }]
+
+        function getData(json, id) {
+            let o = null;
+            json.forEach(item => {
+                if (item.id === id) {
+                    // console.log(item)
+                    o = item;
+                    // return item
+                } else if (item.goods && item.goods.length) {
+                    // console.log('存在这样的子属性')
+                    o = getData(item.goods, id)
+                }
+            });
+            return o
+        }
+
+        // console.log(getData(data, 1));
+        console.log('这是返回的值', getData(data, 144));
+
+
+        let d = [1, 2, 3, 4, 5];
+
+        function dfn() {
+            // d.forEach(item => {
+            //     console.log('eachfor')
+            //     if (item == 2) {
+            //         console.log('---', item)
+            //         return item
+            //     }
+            // });
+
+
+            for (let i = 0; i < d.length; i++) {
+                console.log('for循环')
+                if (d[i] == 2) {
+                    console.log('for ---', d[i])
+                    return d[i]
+                }
+            }
+            // for循环一旦被开启就没有办法使其停下来
+            // d.forEach(item => {
+            //     console.log('for循环')
+            //     if (item == 2) {
+            //         console.log('for ---', item)
+            //         return item
+            //     }
+            // })
+
+            console.log('最后的代码')
+        }
+        console.log(dfn());
+
+
+        console.log('------')
+
+        function fn(i) {
+            console.log('我是一个递归调用')
+                //let i = 0;
+            i++;
+            if (i > 5) {
+                return i
+            } else {
+                console.log(i);
+                fn(i);
+            }
+            return i
+        }
+
+        console.log(fn(0));
+    </script>
+</body>
+
+</html>
