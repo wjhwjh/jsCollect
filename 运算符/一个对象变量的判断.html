@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DOM操作以及数组和对象的判断</title>
+  <style>
+    body {
+      padding: 30px;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      border: none;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    pre {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <pre>
+  1. jquery获取元素时，返回的是一个对象， var box = $('.box')
+
+  2. 返回的对象中有一个length属性，如果找到该元素，length是1，如果没有找到则是0
+
+  3. 把返回的对象转化为DOM元素，box.get(0)或者box[0]
+
+  4. 获取当前元素节点和当前元素标签名, 转化为DOM元素为前提
+
+    标签名：box[0].nodeName，返回的是DOM元素名称的大写
+
+    判断当前元素的节点：1.代表元素节点  2.代表属性节点  3.代表文本节点
+
+  5. 获取当前元素子元素box.children()，返回一个对象，有length属性，代表DOM子元素节点的个数，不包括文本节点
+
+
+  获取到的DOM对象事实上是一个类数组
+
+  问题：
+  1. 如何判断一个变量是对象还是数组？？
+
+  2. 如何判断DOM元素是文本节点还是元素节点？？
+
+</pre>
+
+  <div>----------------------------------------------------------------------------------------------------------</div>
+  <br>
+  <div class="box">
+    如果当前的对象调用了 toString() 方法，它将会返回从 Object继承而来的 toString() 方法的返回默认值
+    <i></i>
+    <span></span>
+  </div>
+
+  <!--<div class="foot">
+   <p>
+        2002-2020 达内时代科技集团有限公司 版权所有 京ICP备8000853号-56
+   </p>
+
+</div>-->
+
+
+  <script src="jquery.js"></script>
+  <script>
+    let box = $('.box');
+
+    console.log('当前对象是否存在--', box.length);
+
+    console.log('返回的对象－－', box); // 返回一个对象
+    //console.log(box instanceof Array);
+
+    console.log('返回的对象转化为DOM元素－－', box[0]); // 把返回的对象转化为DOM元素
+
+    //使用转化后的DOM元素添加点击事件
+    box[0].onclick = function () {
+      //console.log(this.innerHTML)
+    }
+
+    console.log('返回DOM节点－－', box[0].nodeType);
+    console.log('返回DOM节点名－－', box[0].nodeName);
+
+    let child = box.children(); // 返回的是一个对象
+
+    console.log('返回子元素对象--', child);
+    // 在获取子元素元素节点个数时，dom布局要符合W3C标准，
+    console.log('子元素中元素节点的个数--', child.length);
+
+
+    /*
+    判断一个变量是否是对象
+    Array.isArray()判断一个变量是否是数组
+  
+    * */
+
+    // 字面量对象
+    let obj = {
+      a: 1,
+      b: 2
+    }
+
+    // 构造函数实例化对象
+    function GouZao(x = 0, y = 0) {
+      this.x = x;
+      this.y = 0;
+    }
+
+    let instance = new GouZao();
+
+    // 数组
+    let arr = [1, 2, 3, 4, 5];
+
+    console.log('array数组--', arr);
+
+
+    console.log('Array.isArray()判断一个对象是否是数组', Array.isArray(obj)); // false
+    console.log('Array.isArray()判断一个对象是否是数组', Array.isArray(arr)); // true
+    console.log('instanceof判断是否是对象', arr instanceof Array);  // true
+    console.log('instanceof判断是否是对象', arr instanceof Object); // true
+    console.log('instanceof判断是否是对象', obj instanceof Object); // true
+    console.log('instanceof判断是否是对象', obj instanceof Array); // true
+    console.log('constructor判断其构造函数从而确定其类型', obj.constructor === Object); // true
+    console.log('constructor判断其构造函数从而确定其类型', arr.constructor === Array);  // true
+
+    console.log('Object.prototype.toString判断是否是对象', Object.prototype.toString.call(obj)); // [object Object]
+    console.log('Object.prototype.toString判断是否是数组', Object.prototype.toString.call(arr)); // [object Array]
+
+
+    console.log(Object.prototype.toString.call(arr) === "[object Array]"); // true
+    console.log(Object.prototype.toString.call(obj) === "[object Object]"); // true
+    console.log(Object.prototype.toString.call(instance) === "[object Object]"); // true
+
+
+  // 备注添加链接
+    /*  (function () {
+        var foot = $('.foot');
+        var footer = $('.footer');
+        console.log(foot);
+        //console.log(footChildLength,footerChildLength)
+  
+  
+    /!*    console.log('当前元素对象', foot);
+        console.log('当前元素dom名称', foot[0].nodeName);
+        console.log('当前元素对象转化为DOM', foot.get(0));
+        console.log('当前元素对象转化为DOM', foot[0]);
+        console.log('当前元素是否是节点', foot.get(0).nodeType);
+        console.log('当前元素第一个子元素', foot.children().length);
+        console.log('当前元素第一个子元素', foot.children());*!/
+       // console.log('当前元素第一个子元素', foot.children(':first')[0].nodeName);
+  
+  
+        var footLength = $('.foot').length;
+        var footerLength = $('.footer').length;
+  
+        var footElement;
+        if (footLength === 1) {
+          footElement = $('.foot');
+        } else if (footerLength === 1) {
+          footElement = $('.footer');
+        } else if ($('footer').length === 1) {
+          footElement = $('footer');
+        }else {
+          console.log('没有找到，跳出函数，不在执行');
+  
+          return false;
+        }
+        console.log('下边的代码');
+       var footChildLength = footElement.children().length;
+  
+        console.log(footChildLength);
+  
+        if(footChildLength===0||footChildLength===1 ){
+            console.log('输出');
+          if (footElement.length) {
+            var str = footElement.html();
+            var reStr = '';
+  
+            //console.log('改前---',str)
+  
+            if (str.indexOf("京ICP证8000853号-56") > 0) {
+              //console.log(111)
+              reStr = str.replace("京ICP证8000853号-56", `<a href="http://www.beian.miit.gov.cn" target="_blank" style="color:inherit">京ICP备08000853号-56</a>`);
+            } else if (str.indexOf("京ICP证08000853号-56") > 0) {
+              //console.log(222)
+              reStr = str.replace("京ICP证08000853号-56", `<a href="http://www.beian.miit.gov.cn" target="_blank" style="color:inherit">京ICP备08000853号-56</a>`);
+            } else if (str.indexOf("京ICP备08000853号-56") > 0) {
+              //console.log(333, typeof str)
+              reStr = str.replace("京ICP备08000853号-56", `<a href="http://www.beian.miit.gov.cn" target="_blank" style="color:inherit">京ICP备08000853号-56</a>`);
+              //console.log('改后---',str)
+            } else if (str.indexOf("京ICP备8000853号-56") > 0) {
+              //console.log(333, typeof str)
+              reStr = str.replace("京ICP备8000853号-56", `<a href="http://www.beian.miit.gov.cn" target="_blank" style="color:inherit">京ICP备08000853号-56</a>`);
+              //console.log('改后---',str)
+            }
+            //console.log('改后---',str)
+            footElement.html(reStr);
+          } else {
+            console.log('备案号没有替换成功')
+          }
+        }
+      })();*/
+  </script>
+
+  <!--<script src="https://www.tedu.cn/zhuzhan/js/tongji.js"></script>-->
+</body>
+
+</html>

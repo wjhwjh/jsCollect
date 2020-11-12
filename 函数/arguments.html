@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  console.log('f-------- 点击改变this指向，使用的是函数bind方法')
+
+  function f(...arg) {
+    console.log('参数 ', arg)
+    console.log(this)
+    console.log(this.a)
+  }
+
+  let obj = {
+    a: 1
+  }
+  document.onclick = f.bind(obj, [1, 2, 3, 4]);
+
+
+  console.log('----使用call改变函数中this的指向-----');
+
+  function fnCall(){
+     console.log('call改变this指向－',this)
+  }
+
+  fnCall.call(obj);
+
+
+  console.log('f1------------------')
+  // 函数页可以被看作是对象
+  // 如何查看函数的原型属性和方法
+  function f1(...arg) {
+    console.log('f1的参数 ', arg);
+    console.log('全局定义函数this的指向', this)
+  }
+
+  f1([1, 2, 3, 4])
+
+
+  function f11(...arg1) {
+    console.log(arg1)
+    return function (...arg2) {
+      console.log(arg2)
+
+      let arr = arg1.concat(arg2);
+
+      console.log('返回函数时参数－－', arr);
+    }
+  }
+
+  f11([1, 2])([3, 4]);
+
+
+  console.log('f2------------------')
+
+  function f2(str, str1) {
+    console.log('f2  ', 111);
+    console.log('f2 this  ', this);
+
+    console.log('str--', str)
+    console.log('str1--', str1)
+  }
+
+  f2();
+  f2.bind(obj, ['bbb'])(['cccc']);
+
+
+  console.log('f3------------------')
+
+  function f3() {
+    return function () {
+      console.log('f3', '')
+    }
+  }
+
+  console.log(f3());
+  f3()();
+  //console.log(f3()());
+
+
+</script>
+</body>
+</html>

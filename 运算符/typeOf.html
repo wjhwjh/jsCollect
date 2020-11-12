@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<pre>
+
+    typeOf 的用法
+
+
+    1）typeof 来判断 number, string,  boolean, undefined, object, function, symbol 这七种类型;
+
+    2）typeof 判断 number, string, boolean, undefined能准确判断出其类型
+
+       console.log(type 1);  // number
+       console.log(type 'name'); // string
+       console.log(type false);  // boolean
+       console.log(type undefined); //undefined
+
+
+    3）typeof在判断object的数据的时候只能告诉我们这个数据是object, 而不能细致的具体到是哪一种 object;
+
+        typeOf null // "object"
+
+        例如 typeOf [1,2,3]  // "object"
+
+
+    Object.prototype.toString准确判断一个变量的数据类型，  这个方法的原理
+
+    Object.prototype.toString.call(1) // "[object Number]"
+
+    Object.prototype.toString.call('hi') // "[object String]"
+
+    Object.prototype.toString.call({a:'hi'}) // "[object Object]"
+
+    Object.prototype.toString.call([1,'a']) // "[object Array]"
+
+    Object.prototype.toString.call(true) // "[object Boolean]"
+
+    Object.prototype.toString.call(() => {}) // "[object Function]"
+
+    Object.prototype.toString.call(null) // "[object Null]"
+
+    Object.prototype.toString.call(undefined) // "[object Undefined]"
+
+    Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
+
+
+    instanceof 的用法
+
+    要想判断一个数据具体是哪一种 object 的时候，我们需要利用 instanceof 这个操作符来判断,
+
+    1）instanceof 主要的作用就是判断一个实例是否属于某种类型。
+
+    2）instanceof 也可以判断一个实例是否是其父类型或者祖先类型的实例
+
+
+
+    其实 instanceof 主要的实现原理就是只要右边变量的 prototype 在左边变量的原型链上即可。
+
+    因此，instanceof 在查找的过程中会遍历左边变量的原型链，直到找到右边变量的 prototype，
+
+    如果查找失败，则会返回 false，告诉我们左边变量并非是右边变量的实例
+
+
+    实例原型
+
+    1) 一个对象的__proto__在其原型链上找不到，返回null
+
+    2) 原型链顶端是Object对象
+
+
+
+</pre>
+
+<script>
+  let Person = function () {
+
+  }
+
+  Person.prototype.say = function () {
+    console.log('Person 的原型');
+  }
+
+  let instance = new Person();
+  instance.say();
+  console.log('自定义构造函数－－',instance instanceof Person);  // true
+
+  console.log('实例--', instance);
+
+
+  let Child = function () {
+
+  }
+
+  Child.prototype = new Person();
+
+  Child.prototype.hello = function () {
+    console.log('child原型')
+  }
+
+  let c = new Child();
+
+  c.hello();
+  c.say();
+  console.log('c实例', c);
+  console.log(c instanceof Person);  // true
+
+  console.log('实例原型的原型在原型链上找不到返回null----------------------------')
+
+  console.log(instance.__proto__ === Person.prototype);
+  console.log(instance.__proto__.__proto__ === Object.prototype);
+  console.log(instance.__proto__.__proto__.__proto__);
+
+
+</script>
+</body>
+</html>

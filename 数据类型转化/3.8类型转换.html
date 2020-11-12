@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <pre>
+        ----对象转化为原始值
+
+            #toString()#
+            所有的的对象都继承了这个方法，
+            不同的数据类型返回的不同值，但都是字符串，
+            判断一个变量是否是对象  
+
+
+            #valueOf()# 
+            将对象转换成为表示它的原始值，
+            如果对象没有原始值，简单的返回对象本身
+            当时间对象调用这个方法时返回的是时间毫秒数，这个在存储数据的时候比较有用
+
+
+            你想象不到的隐式对象到原始值转化场景
+
+            
+
+
+
+    </pre>
+
+
+    <script>
+        // 对象转化为原始值
+        let obj = {
+            a: 1,
+            b: 2
+        }
+        let num = 5;
+        let str = 'string';
+        let arr = [1, 2, 3];
+        let date = new Date();
+        let reg = /\d/;
+        let f = function fn() {};
+
+        console.log('toString -------------------------------')
+        console.log(obj.toString(), typeof obj.toString()); // [object Object] string
+        console.log(num.toString(), typeof num.toString()); // 5 string
+        console.log(str.toString(), typeof str.toString()); // string string
+        console.log(arr.toString(), typeof arr.toString()); // 1,2,3 string
+        console.log(date.toString(), typeof date.toString()); // Thu Jun 04 2020 16:58:13 GMT+0800 (中国标准时间) string
+        console.log(reg.toString(), typeof reg.toString()); ///\d/ string
+        console.log(f.toString(), typeof f.toString()); //function fn() {} string
+
+        console.log('valueOf-------------------------------')
+        console.log(obj.valueOf());
+        console.log(date.valueOf());
+        console.log(reg.valueOf());
+
+        console.log('特殊情况数据进行转化-------------------------------')
+        console.log('空数组--', [].valueOf()); //  数组本身
+        console.log('单个元素数组--', ['a'].valueOf()); //  数组本身
+        console.log('单个数字元素数组--', [1].valueOf()); //  数组本身
+        console.log('空数组--', [].toString()); // 空字符串
+        console.log('单个元素数组--', ['a'].toString()); // a
+        console.log('单个数字元素数组--', [1].toString()); // 1
+    </script>
+</body>
+
+</html>

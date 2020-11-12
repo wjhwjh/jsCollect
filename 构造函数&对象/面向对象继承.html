@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象继承</title>
+
+    <style>
+        body {
+            padding: 30px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+        
+        pre {
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            font-family: 'Microsoft YaHei', Verdana, Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>
+        面向对象继承
+    </h2>
+    <pre>
+        1. 继承
+        2. 原型和原型链
+        3. Object.property()自定义对象属性, 实现双向数据绑定
+
+
+
+        说一下面向对象如何继承的
+         
+        整体的思路，然后去填充细节， 有几种方法去实现
+
+        使用场景
+
+        +++++++++++++++++++++++++++
+         Object.setPrototypeOf()是es6草拟的方案
+         被认为是实现继承最好的方案。这个object对象的属性，只是用来实现继承的
+        +++++++++++++++++++++++++++
+
+    </pre>
+
+    <script>
+        function Parent(obj, s) {
+            this.name = obj.name;
+            this.age = obj.age;
+            console.log('输出年龄--', this.age);
+        }
+        Parent.prototype.hello = function() {
+            console.log('输出姓名---', this.name)
+        }
+        let obj1 = {
+            a: 1
+        }
+        console.log(obj1);
+        console.log(Object.prototype);
+
+        console.log(Parent.prototype);
+
+        /*
+         构造函数中的属性继承，使用的是函数的call方法，改变this指针
+        */
+        function Child(obj) {
+            console.log(obj)
+            this.sex = obj.sex;
+            Parent.call(this, obj);
+        }
+
+        // 原型继承，实质是改变继承构造函数原型的指向
+        // 方法一
+        // 原型继承应该注意的问题
+        // Child.prototype = Object.create(Parent.prototype);
+        // Child.prototype.constructor = Child;
+
+        // 方法二， 使用Object.setPrototypeof()合并两个对象
+        //Object.setPrototypeOf(Child.prototype, Parent.prototype)
+
+        /*
+          新建对象的__proto__可以看作是一个属性，这个属性和对应的构造函数的prototype是等价的
+        */
+        let cObj = new Child({
+            name: 'huizi',
+            age: '18',
+            sex: '女'
+        });
+        console.log('Child的原型--', Child.prototype)
+        console.log("这是一个对象--", cObj)
+            //console.log(cObj.hello());
+            // 继续写博客，注重知识的细节
+
+        console.log(Object.prototype);
+        let obj2 = {
+            name: ''
+        };
+
+        Object.defineProperty(obj2, 'user', {
+            configurable: true,
+            //writable: true,
+            enumerable: true,
+            //value: 3,
+            get: function() {
+                //console.log(this.value)
+                return this.name
+            },
+            set: function(value) {
+                console.log('设置的属性值－', value);
+                this.name = value
+            }
+        });
+
+        console.log(obj2)
+    </script>
+</body>
+
+</html>

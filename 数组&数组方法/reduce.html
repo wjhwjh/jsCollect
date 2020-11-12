@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            padding: 30px;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<pre>
+    一.reduce 使用
+
+        1. 这个函数的含义
+
+          数组方法。 对数组中每个元素执行一次回调函数，将其结果汇总为单个返回值
+
+       2. 语法
+
+          arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+
+          参数
+
+          callback
+
+              accumulator 累计器累计回调的返回值
+
+              currentValue 当前操作的元素值
+
+          initialValue 初始化值， 可选
+
+          initialValue是否设置
+
+
+
+
+       3. 使用场景
+
+          1）对一个数组中的数字元素做累加操作
+          2）将二维数组转化为一位数组
+          3）计算数组中每个元素出现的次数，普通方法出现
+          4) 按属性对object分类
+
+
+
+    二：相关的数组中去重，数组中排序
+</pre>
+
+
+
+<script>
+// 验证reduce中回调函数传参
+let maxCallback = (acc,cur)=>Math.max(acc.x, cur.x);
+
+let res = [{x:50},{x:30}].reduce(maxCallback);
+
+console.log(res);
+
+// Math.max()取两个数中的最大值
+//console.log(Math.max(3,8));
+
+// reduce 实现累加, initialValue初始值设置为0
+let initialValue = 0;
+let res1 = [1,2,3,4,5].reduce(function (acc, cur) {
+   console.log('累加值',acc)
+  return acc+cur
+},initialValue)
+
+console.log('累加值————',res1);
+
+// 将二维数组转化为一位数组
+// 原始的方法 concat和(...)扩展运算符
+// reduce累计器默认设置值是一个数组
+
+let arr1 = [[1,1],[2,2],[3,3],[4,4]];
+
+let arr2 = arr1.reduce(function (acc,cur) {
+   console.log('acc--',acc)
+   return acc.concat(cur)
+},[]);
+
+
+// 计算数组中每个元素出现的次数
+// reduce返回函数累计器默认返回值是一个对象
+// 返回的结果是数组形式{Alice: 2, Bob: 1, Tiff: 1, Bruce: 1}，计算数组中相同每个元素出现的次数
+// 用普通的形式实现
+
+// 相关的数组中去重，数组中排序
+
+let names = ['Alice','Bob','Tiff','Bruce','Alice','Alice','Tiff'];
+
+let countedNames = names.reduce(function (allName,name) {
+   if(name in allName){
+     allName[name]++;
+   }else {
+     allName[name]=1;
+   }
+
+   return allName
+},{});
+
+console.log('返回元素计数对象——',countedNames);
+
+// 普通的数组元素计数实现
+let allNames = {};
+function countedNamesFn(names) {
+  names.map((item)=>{
+     if(item in allNames){
+       allNames[item]++;
+     }else {
+       allNames[item]=1;
+     }
+  })
+
+  return allNames;
+}
+
+console.log('返回元素计数对象——',countedNamesFn(names));
+
+
+//按属性值对object分类
+/*
+  {
+    20: [
+     { name: 'Max', age: 20 },
+      { name: 'Jane', age: 20 }
+    ],
+    21: [{ name: 'Alice', age: 21 }]
+  }
+
+ */
+
+var people = [
+  { name: 'Alice', age: 21 },
+  { name: 'Max', age: 20 },
+  { name: 'Jane', age: 20 },
+  { name: 'huizi', age: 18 },
+  { name: 'haha', age: 18 }
+];
+
+function groupBy(objectArray,property) {
+  return objectArray.reduce(function (acc,obj) {
+     // 获取当前元素对象的属性值
+     let key = obj[property];
+
+     // 累计器里是否有当前获取的key属性，如果没有就创建
+     // 如果有直接push
+     if(!acc[key]){ // 判断acc对象中是否有key
+       acc[key]=[];
+     }
+
+     // 如果已存在，直接push
+     acc[key].push(obj);
+     return acc
+  },{1:[{name:'yingzi',age:1}]});
+}
+
+let peopleObj = groupBy(people,'age');
+
+console.log('按属性值对object分类——',peopleObj);
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

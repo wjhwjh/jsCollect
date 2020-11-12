@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            padding: 30px;
+        }
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div id="box">
+   这里是内容
+</div>
+
+
+<script>
+    // createTextNode的用法
+    /*
+       1. createTextNode用于创建文本节点，就是字面意思
+
+       2. appendChild在指定元素末尾追加内容
+        
+       3. 创建的元素只能用在一个地方 
+    */
+
+    let box = document.getElementById('box');
+    let textNode = document.createTextNode('----创建文本节点-----');
+    let newDiv = document.getElementById('newId');
+    console.log(textNode);
+    console.log(newDiv); // 当获取的DOM元素不存在的时，返回值是null
+    box.appendChild(textNode);
+    
+    // 如果获取的newId元素不存在则创建该元素
+    if(newDiv==null){
+        newDiv = document.createElement('div');
+        newDiv.id='newId';
+        //newDiv.setAttribute('id','newId'); // 创建的元素有两种设置属性的方法
+        //console.log(newDiv);
+        newDiv.innerHTML='我是新创建的div元素的内容，么么哒';
+       // newDiv.appendChild(textNode);
+        box.appendChild(newDiv);
+    }
+
+
+</script>
+</body>
+</html>

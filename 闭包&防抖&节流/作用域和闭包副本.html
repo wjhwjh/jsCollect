@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+    <style>
+        *{
+          font-size: 16px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<pre>
+    闭包
+
+    1. 什么样的形式定义为闭包？ 闭包概念的理解
+
+    2. 闭包里变量使用之后不会释放，
+
+       在什么情况下，闭包不会释放变量？在那种情况下，闭包可以释放变量
+
+    3. 正常函数
+
+    目的：
+
+    如果是对象，搞清楚对象的最后的返回值是什么？ 其中属性和方法是什么？能干什么？
+
+    如果是函数，则要明白函数的执行结果是什么？ 函数中的变量以及执行上下文是什么？
+
+    如何使用？ 返回的结果是什么？
+
+
+    －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+    参考文章
+
+    https://segmentfault.com/a/1190000006875662
+
+
+   闭包（后来）
+   
+   闭包是函数存在的一种形式，延伸了变量作用域的范围。例如外部作用域是无法访问函数内部作用域的变量的，但是通过闭包能实现。
+   主要利用每声明一个函数就会有一个作用域
+   
+   高阶函数
+   
+   高阶一个函数的参数是函数，或者函数的返回值也是函数，这个函数就称为高阶函数。
+   闭包是高阶函数的一种形式。
+
+   实现一个功能，可以使用的方式不止一种，但要明白使用哪一种更简洁、易懂。
+   再不同的场景，使用那种更好一些。
+</pre>
+
+
+<ul id="foodlist">
+  <li>安慕希</li>
+  <li>油焖大虾</li>
+  <li>炭火烤鱼</li>
+</ul>
+
+<script>
+/*
+
+这里如何思考这个问题， 以后遇到的问题如何思考？
+
+* */
+
+console.log('闭包的形式－－－－－－－－－－－－－－')
+
+
+
+console.log('常见到闭包案例－－－－－－－－－－－－－－')
+
+// 作用域的问题， 从作用域的角度理解
+// es6中大括号中({})也形成作用域
+// es5
+// for循环中使用var声明形成独立的作用域
+function test(){
+  let arr = [];
+  for(var i=0; i<10; i++){
+    arr[i] = function () {
+      return i
+    }
+  }
+  for(var j=0; j<10; j++){
+    console.log('test---',arr[j]());
+  }
+}
+test();
+
+
+// for循环中使用let声明形成独立的作用域
+function test1(){
+  let arr = [];
+  for(let i=0; i<10; i++){
+    arr[i] = function () {
+      return i
+    }
+  }
+  for(let j=0; j<10; j++){
+    console.log('test1---',arr[j]());
+  }
+}
+test1();
+
+ // 其实使用let的实质是再es6中{}也被当作一个作用域模块
+let foodlist = document.querySelectorAll('#foodlist li');
+for(let i=0; i<foodlist.length; i++){ // 这里使用let定义变量
+  foodlist[i].onclick = function(){
+    console.log(i);
+  }
+}
+
+console.log('闭包面试题－－－－－－－－－－－－－－－－')
+
+function fun(n,o) {
+   console.log('输出o的值－－－',o);
+   // 返回一个对象
+   return {
+      fun: function (m) {
+        return fun(m,n)
+      }
+   }
+}
+
+let a = fun(0); // undefined
+console.log('a的返回值－－－',a);
+a.fun(1); // 0   本质：相当于访问a对象中的属性方法fun
+a.fun(2); // 0
+a.fun(3); // 0
+
+let b = fun(0);  // 本质：相当于嵌套回调
+console.log('b1的值是------',b);
+b = b.fun(1);
+console.log('b2的值是------',b);
+// b = b.fun(2);
+// b = b.fun(3);
+// b = b.fun(4);
+// b = b.fun(5);
+// b = b.fun(6);
+//console.log('b的输出值－－－',b); // undefined 0 1 2
+
+
+console.log('------------------------------')
+let c = fun(0).fun(1);
+c.fun(2)
+c.fun(3)
+// console.log('c的输出值－－－',c);
+
+console.log('访问对象的方法－－－－－－－－－－－－－－－－')
+
+// 把函数方法放在对象里，利用对象调用某一个方法
+let obj = {
+  getName: function (name) {
+    console.log('输出name－－－',name);
+  }
+}
+
+// console.log(obj.getName('huizi'))
+// console.log(obj.getName('huizi1'))
+// console.log(obj.getName('huizi2'))
+
+
+
+
+</script>
+</body>
+</html>

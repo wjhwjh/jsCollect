@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<pre>
+    call 的实现
+
+    1. 改变this的指向
+
+    2. 传参
+
+    3.
+
+</pre>
+
+<script>
+  // 函数的使用，参数， 函数内部要实现的功能，也就是这个函数作用
+
+  // call是立即执行函数，相当于把当前函数在call函数里执行，并传入指定的参数
+
+  /*
+   改变函数中this的指向，  在call函数内部，调用函数的是指定的上下文context, 这样才是改变
+  this的真正原因。 改变函数中的this，改变了调用函数的对象。
+   */
+  Function.prototype.call = function (context = window, ...arg) {
+    console.log('传入的执行上下文', context)
+    console.log('调用此函数的原函数', this);
+
+    // 把执行的函数，挂在当前执行的上下文 context
+    context.func = this;
+
+    //判断是否是函数，不是抛出异常
+    if (typeof context.func !== 'function') {
+      throw new TypeError('调用call函数的必须是函数')
+    }
+
+    // 执行函数
+    let res = context.func(...arg);
+
+    // 删除当前执行上下上的函数
+    delete context.func;
+
+    console.log('执行上下文－－', context);
+    //console.log(res);
+    return res;
+
+  }
+
+  let obj = {
+    a: 1,
+    b: 2
+  }
+
+  function f(a, b, c) {
+    console.log('这是一个函数');
+    console.log('函数内部this的指向--', this);
+    //console.log('函数内部this的指向--', this.func);
+
+    console.log(a, b, c)
+  }
+
+  f.call(obj, 1, 2, 3);
+
+
+
+
+
+
+</script>
+</body>
+</html>

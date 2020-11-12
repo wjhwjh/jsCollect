@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<script>
+    function fn(a,b) {
+      // 如果是传入的a是 空格、0、NaN、 null、undefined、false这几种类型时，使用默认值
+      // 如果只是当没有参入实参才设置默认值，这里需要做是否是undefined的判断
+
+      // 使用typeof判断数据类型时返回的是 字符串
+      var d = a || '默认值';
+      b = ((typeof b)== 'undefined')? 2:b; //只有当参数的实参是undefined 或者 为空的时候，为默认值
+
+      console.log(d);
+      console.log(b);
+    }
+
+
+    fn('', 1);       //空格隐式转化为false；a="默认值"， b=1
+    fn(NaN, 1);
+    fn(0, 1);       // 0隐式转化为false; a="默认值"， b=1
+    fn(false, 1);   // false为false; a="默认值"， b=1
+    fn(null , 1);   //  a="默认值"， b=1
+    fn(undefined , 1);  //  a="默认值"， b=1
+
+
+    fn('', null);   // a="默认值"， b=null
+    fn(NaN, undefined);  // a="默认值"， b=undefined
+    fn(0, NaN);    // a="默认值"， b=undefined
+    fn(false,); // a="默认值"， b=undefined
+    fn(null,);
+    fn(undefined,); // a="默认值"， b=undefined
+
+
+   console.log('es6中函数参数默认值－－－－－－－－');
+   console.log('es6中rest参数－－－－－－－－');
+
+
+
+
+
+
+</script>
+</body>
+</html>

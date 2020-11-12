@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>object的setPrototypeOf的用法</title>
+
+    <style>
+        body {
+            padding: 30px;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+        
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        pre {
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <pre>
+   1. Object.creat 含义和用法 （es 的用法）
+
+    该方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__;
+
+    对象 － 构造函数实例化的对象， 字面量定义的对象， 其它的形式的对象，例如数组、null
+
+
+
+    2. Object.setPrototypeOf 含义和用法（es6的用法）
+
+       该方法的作用与__proto__相同，用来设置一个对象的prototype对象，返回参数对象本身,
+
+       在对像继承的时候使用。
+
+       Object.setPrototypeOf(Derived.prototype,Base.prototype);
+
+       1）Object.getPrototypeOf 读取一个对象的原型对象
+
+
+    3. Object.creat 和 Object.setPrototypeOf 用法本质相同，语法格式不同，
+
+       在对象继承如何使用。
+
+
+
+
+    4. 原型的概念
+
+      1）什么是原型
+
+
+
+      2）原型的属性和方法是什么
+
+      3）原型链
+
+
+
+</pre>
+
+
+    <script>
+        /*Object.creat */
+
+        console.log('Object.creat的含义现象------------------------')
+
+        // 构造函数提供一个现有对象
+        let Parent = function() {
+            console.log('这是基类');
+            this.name = 'aa';
+            this.age = 18;
+
+        }
+
+        Parent.prototype.say = function() {
+            console.log('这是一个基类的方法')
+        }
+
+        Parent.prototype.str = '原型链上的属性';
+
+        // child 创建的新对象， 其__proto__是new Parent()提供的
+        // 使用构造函数提供新创建对象的__proto__意义不是很大
+        let child = Object.create(new Parent());
+
+        child.hello = 'hello world';
+        console.log('现有对象是构造函数实例化的,输出child对象－－－－－', child)
+
+        child.say();
+
+        // 这样使用
+        let obj = {
+            a: 1,
+            fn: function() {
+                console.log('这是一个obj的对象')
+            }
+        }
+
+        let new_obj = Object.create(obj);
+
+        console.log('现有对象是一个对象字面量－－－', new_obj)
+
+
+        let null_obj = Object.create(null);
+
+        console.log('现有对象是null--', null_obj);
+
+
+        console.log('Object.setPrototypeOf---------------------------------')
+
+        // 用法
+        const o = Object.setPrototypeOf({}, null); //创建一个没有原型属性__proto__的对象, Object.create()也可以实现
+
+        console.log('o---', o)
+
+        console.log('o的原型链---', o instanceof Object) // false
+
+        let obj1 = {
+            a: 1,
+            fn: function() {
+                console.log(this.a)
+            }
+        }
+        let subObj = {
+            b: 2,
+        };
+        Object.setPrototypeOf(subObj, obj1);
+        console.log('要改变__proto__的对象－－', subObj);
+        console.log('现有对象，用来设置要改变对象的__proro__属性：', obj1);
+
+        // setPrototypeOf 实现
+
+        function my_setPrototypeOf(obj, proto) {
+            obj.__proto__ = proto;
+            return obj
+        }
+
+        let myProto = my_setPrototypeOf({}, {
+            a: 1,
+            b: 2
+        });
+
+        console.log('自定义的setPrototypeOf', myProto);
+        console.log('自定义的setPrototypeOf的属性', myProto.a);
+
+        console.log('{}输出：', {});
+        console.log(Object.setPrototypeOf(1, {}));
+    </script>
+</body>
+
+</html>

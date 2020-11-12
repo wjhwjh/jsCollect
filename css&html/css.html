@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>css收集</title>
+    <style>
+        /*
+        box-sizing: border-box; 布局时border是如何设置的
+
+
+        */
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        /* overflow:hidden清除浮动时，元素可以不设置高度*/
+        .content {
+            width: 1000px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        pre {
+            font-size: 16px;
+        }
+
+        .wrap {
+            width: 700px;
+            margin: 10px auto;
+            height: 300px;
+            overflow: hidden;
+
+            border: 1px solid #000;
+        }
+
+        .left {
+            background: #f00;
+        }
+
+        .middle {
+            background: #fcad02;
+        }
+
+        .right {
+            background: #000;
+        }
+
+        .wrap {
+            color: #fff;
+        }
+
+        /*＊＊＊＊＊＊＊＊＊flex 布局*/
+        /*使用弹性布局，子元素的高度自动继承父容器的高度*/
+        .wrap1 {
+            display: flex;
+        }
+
+        .wrap1 .left {
+            /*3个值分别是 放大比例  缩小比例  项目本身大小*/
+            flex: 0 0 200px;
+        }
+
+        /**/
+        .wrap1 .right {
+            padding: 20px;
+            flex: auto;
+
+        }
+
+        /*＊＊＊＊＊＊＊＊＊浮动  height:100%*/
+        /*子元素的高度不会自动继承父容器的高度*/
+
+        .wrap2 .left {
+            float: left;
+            width: 200px;
+            height: 300px;
+        }
+
+        .wrap2 .right {
+            margin-left: 200px;
+            width: auto;
+        }
+
+        /*＊＊＊＊＊＊＊＊＊position 绝对定位*/
+        /*子元素的高度不会自动继承父容器的高度*/
+
+
+        .wrap3 {
+            position: relative;
+        }
+
+        .wrap3 .left {
+            position: absolute;
+            width: 200px;
+            left: 0;
+            top: 0;
+            height: 100%;
+        }
+
+        /*
+           这种情况class="right"的容器宽度根据内容而定
+        */
+        .wrap3 .right {
+            margin-left: 200px;
+        }
+
+
+        /*＊＊＊＊＊＊＊＊＊position again*/
+        .wrap4 {
+            position: relative;
+        }
+
+        .wrap4 .left {
+            width: 200px;
+        }
+
+        /*
+         在绝对定位时，left:0; right:0; 等价于 width:100%
+         top, bottom同样的道理
+         这里同时设置了left和right， 也就是相当于宽度100%
+        */
+        .wrap4 .right {
+            position: absolute;
+            top: 0;
+            left: 200px;
+            right: 0;
+            height: 100%;
+        }
+
+
+        /*＊＊＊＊＊＊＊＊＊3栏 flex 布局*/
+        .wrap5 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wrap5 .left {
+            flex: 0 0 200px;
+        }
+
+        /*flex 自适应的容器要设置flex:auto*/
+        .wrap5 .middle {
+            flex: auto;
+        }
+
+        .wrap5 .right {
+            flex: 0 0 200px;
+        }
+
+        /*＊＊＊＊＊＊＊＊＊3栏 绝对定位布局*/
+        .wrap6 {
+            position: relative;
+        }
+
+        .wrap6 .left {
+            position: absolute;
+            left: 0;
+            width: 200px;
+        }
+
+        .wrap6 .middle {
+            margin: 0 200px;
+            /*height: 100%;*/
+        }
+
+        .wrap6 .right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+
+        }
+
+
+        /*＊＊＊＊＊＊＊＊＊3栏 浮动布局*/
+        .wrap7 {
+
+        }
+
+        .wrap7 .left {
+            float: left;
+            width: 200px;
+        }
+
+        /*
+           在html里 这个要放到最后，要设置margin，不设置的时候中间的高度高于两端的高度时，内容会
+           横向占整个容器。
+
+           没有一句代码是无用的，不写无用的代码
+
+        */
+        .wrap7 .middle {
+            margin: 0 200px;
+        }
+
+        .wrap7 .right {
+            float: right;
+            width: 200px;
+        }
+
+
+        /*＊＊＊＊＊＊＊＊＊position 绝对定位，中间栏优先渲染*/
+        .wrap8 {
+            position: relative;
+        }
+
+        .wrap8 .left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+        }
+
+        .wrap8 .middle {
+            margin: 0 200px;
+        }
+
+        .wrap8 .right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+        }
+
+
+        /*＊＊＊＊＊＊＊＊＊双飞翼布局，中间栏优先渲染*/
+        .wrap9 {
+
+        }
+
+        .wrap9 .middle-wrapper,
+        .wrap9 .left,
+        .wrap9 .middle,
+        .wrap9 .right {
+            height: 100%;
+        }
+
+        .wrap9 .middle-wrapper {
+            width: 100%;
+            float: left;
+        }
+
+        /*
+           div都使用了float 浮动，后边的div 会换行，
+
+           使用margin-left 解决因为浮动而换行， 很有意思
+        */
+        .wrap9 .left {
+            width: 200px;
+            float: left;
+            margin-left: -100%;
+        }
+
+        .wrap9 .middle {
+            margin: 0 200px;
+        }
+
+        .wrap9 .right {
+            width: 200px;
+            float: left;
+            margin-left: -200px;
+        }
+
+        /*＊＊＊＊＊＊＊＊＊position 圣杯布局，中间栏优先渲染*/
+        /*
+           浮动和负边距实现
+        */
+
+        /*最上层父容器设置padding*/
+        .wrap10 {
+            padding: 0 200px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .wrap10 .middle,
+        .wrap10 .left,
+        .wrap10 .right {
+            height: 100%;
+        }
+
+
+        .wrap10 .middle {
+            width: 100%;
+            float: left;
+        }
+
+        .wrap10 .left {
+            width: 200px;
+            float: left;
+            position: relative;
+            margin-left: -100%;
+            left: -200px;
+
+        }
+
+        .wrap10 .right {
+            width: 200px;
+            float: left;
+            position: relative;
+            margin-left: -200px;
+            right: -200px;
+        }
+
+        /*清除浮动＊＊＊＊＊＊＊＊＊＊＊*/
+        .wrap-no－height {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #000000;
+
+        }
+
+        .clearFloat:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+
+        /*伪元素清除浮动*/
+        .wrap11 {
+            float: left;
+            margin-right: 30px;
+        }
+
+        .wrap11 .left {
+            width: 100px;
+            float: left;
+        }
+
+        .wrap11 .right {
+            width: 200px;
+            float: left;
+        }
+
+        /* overflow hidden 清除浮动 */
+        .wrap12 {
+            overflow: hidden;
+        }
+
+        .wrap12 .left {
+            width: 100px;
+            float: left;
+        }
+
+        .wrap12 .right {
+            width: 200px;
+            float: left;
+        }
+
+
+        /*三角形*＊＊＊＊＊＊＊＊＊＊＊*＊＊＊＊＊＊＊＊＊＊＊*/
+        .wrap-border {
+            width: 1000px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .wrap-border .box1,
+        .wrap-border .box2,
+        .wrap-border .box3,
+        .wrap-border .box4,
+        .wrap-border .box5 {
+            width: 0;
+            height: 0;
+            margin: 0 20px;
+            float: left;
+        }
+
+
+        /**/
+        .wrap-border .box1 {
+            border-left: 50px solid #000;
+            border-top: 50px solid #ff0000;
+            border-right: 50px solid #000;
+            border-bottom: 50px solid #ff0000;
+
+        }
+
+        .wrap-border .box2 {
+            border-left: 50px solid #000;
+            border-top: 50px solid #ff0000;
+            border-right: 50px solid #000;
+        }
+
+        .wrap-border .box3 {
+            border-style: solid;
+            border-width: 50px;
+            border-color: #ff0000 transparent transparent transparent;
+        }
+
+        .wrap-border .box4 {
+            border-top: 50px solid #ff0000;
+            border-right: 50px solid #000;
+        }
+
+        .wrap-border .box5 {
+            border-top: 50px solid #ff0000;
+            border-right: 50px solid transparent;
+        }
+
+        /*垂直居中*＊＊＊＊＊＊＊＊＊＊＊*＊＊＊＊＊＊＊＊＊＊＊*/
+
+        .wrap-inner {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            position: relative;
+            margin: 10px;
+            float: left;
+        }
+
+        .wrap-inner .inner {
+            width: 150px;
+            height: 150px;
+            background: red;
+        }
+
+        /*flex 居中*/
+        .inner1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*position和margin*/
+        .inner2 .inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -75px;
+            margin-top: -75px;
+        }
+
+        /*position和margin:auto居中*/
+        /* 如果不设置子元素的宽高， 子元素的大小和父容器的相同*/
+        .inner3 .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+        }
+
+
+        /*position和transform*/
+        .inner4 .inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        /*正方形形*＊＊＊＊＊＊＊＊＊＊＊*＊＊＊＊＊＊＊＊＊＊＊*/
+        .wrap-square {
+            width: 1000px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .wrap-square > div {
+            float: left;
+            margin-right: 20px;
+        }
+
+        /*
+          相对于屏幕宽度的比例
+        */
+        .wrap-square .box1 {
+            width: 10%;
+            height: 10vw;
+            background: red;
+        }
+
+        /*margin／padding 百分比是相对父级元素的*/
+        /*
+        利用padding 实现一个宽高自适应的正方形，
+        里边的所有的子元素的内容都要position绝对定位
+        */
+        .wrap-square .box2 {
+            width: 10%;
+            height: 0;
+            padding-top: 10%;
+            background: red;
+        }
+
+
+        /*
+          通过子元素的 margin
+
+          第一次见到第一个子元素设置margin起到正面作用
+
+        */
+        .wrap-square .box3 {
+            width: 10%;
+            overflow: hidden;
+            background: red;
+        }
+
+        .wrap-square .box3:after {
+            content: '';
+            display: block;
+            margin-top: 100%;
+        }
+
+        /*扇形*＊＊＊＊＊＊＊＊＊＊＊*＊＊＊＊＊＊＊＊＊＊＊*/
+        .sector {
+            float: left;
+            overflow: hidden;
+
+            margin-right: 20px;
+        }
+
+        /*
+          利用三角行实行扇形
+        */
+        .sector1 {
+            overflow: hidden;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .sector1 span {
+            width: 0;
+            height: 0;
+            border-top: 100px solid #ff0000;
+            border-right: 100px solid transparent;
+            display: block;
+        }
+
+        /*
+           通过border 和 border－radius 实现1/4圆
+        */
+        .sector2 {
+            width: 0;
+            height: 0;
+            border: 100px solid;
+            border-radius: 50%;
+            border-color: #f00 #000 #f00 #000;
+
+        }
+
+        /*
+          通过子元素 rotateZ 和父元素 overflow:hidden 实现任意弧度的扇形
+
+        */
+
+        .sector3 {
+            width: 100px;
+            height: 100px;
+            border-top-left-radius: 100px;
+            overflow: hidden;
+            /*  background: #ff0000;*/
+        }
+
+        .sector3:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: #000;
+            transform: rotateZ(-30deg);
+            transform-origin: left bottom;
+        }
+
+
+        /*通过 skewY 实现一个60°的扇形*/
+
+        .sector4 {
+            width: 100px;
+            height: 100px;
+            border-top-left-radius: 100px;
+            overflow: hidden;
+            /*  background: #ff0000;*/
+        }
+
+        .sector4:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 100px;
+            background: #000;
+            transform: skewY(-30deg);
+            transform-origin: left bottom;
+        }
+
+
+        /**/
+        .sector5 {
+        }
+
+
+        /*模拟弹框*/
+
+        .login-wrap {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+        }
+
+        .login-wrap .login-main {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            border-radius: 6px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+
+        /*滚动条******************/
+        .nav-wrap{
+           width: 600px;
+           height: 200px;
+            overflow-x: auto;
+            background: #000;
+            margin:0 auto 40px;
+            padding-top: 20px;
+        }
+        .nav-wrap::-webkit-scrollbar{
+            display: none;
+        }
+        /*利用flex实现＊＊＊＊*/
+        .nav-wrap1{
+            display: flex;
+        }
+        .nav-wrap1 .item{
+          flex: 0 0 150px;
+          height: 150px;
+          background: red;
+          margin-right: 20px;
+        }
+
+         /*使用white-space 和inline-block*/
+         /*
+         多个子元素设置inline-block，则不需要使用浮动float:left
+
+         使用block和浮动float:left,子元素内容宽度大于父元素的内容，父元素不会出现横向滚动条，会出现垂直方向的滚动条
+         */
+        .nav-wrap2{
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+        .nav-wrap2 .item{
+            height: 150px;
+            width: 200px;
+            background: red;
+            margin-right: 20px;
+            display: inline-block;
+            /*float: left;*/
+        }
+
+        /*浮动 float和block 出现纵向滚动条*/
+        .nav-wrap3{
+
+
+        }
+        .nav-wrap3 .item{
+            height: 120px;
+            width: 180px;
+            background: red;
+            margin-right: 20px;
+            display:block;
+            float: left;
+            margin-bottom: 10px;
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>两栏布局：要求垂直两栏，左边固定右边自适应</h2>
+<div class="content">
+
+    <pre>
+        1.
+
+    </pre>
+    <div class="wrap wrap1">
+        <div class="left">
+            固定
+        </div>
+        <div class="right">
+            Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        </div>
+
+    </div>
+
+    <div class="wrap wrap2">
+        <div class="left">
+            固定
+        </div>
+        <div class="right">
+            Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        </div>
+
+    </div>
+
+
+    <div class="wrap wrap3">
+        <div class="left">
+            固定
+        </div>
+        <div class="right">
+            Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        </div>
+
+    </div>
+
+
+    <div class="wrap wrap4">
+        <div class="left">
+            固定
+        </div>
+        <div class="right">
+            Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        </div>
+    </div>
+</div>
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>三栏布局：要求垂直三栏布局，左右两栏宽度固定，中间自适应</h2>
+<div>
+    <!--flex 布局-->
+    <div class="wrap wrap5">
+        <div class="left">
+            flex 布局-左边
+        </div>
+        <div class="middle">
+            中间:Flex布局，
+        </div>
+        <div class="right">
+            右边
+        </div>
+    </div>
+
+
+    <!--position 绝对定位布局-->
+    <div class="wrap wrap6">
+        <div class="left">
+            左边
+        </div>
+        <div class="middle">
+            Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+        </div>
+        <div class="right">
+            右边
+        </div>
+    </div>
+
+
+    <!--浮动布局-->
+    <div class="wrap wrap7">
+        <div class="left">
+            1-左边
+        </div>
+        <div class="right">
+            3-右边
+        </div>
+        <div class="middle">
+            2-中间: Flex布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持。 Flex是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型提供最大的灵活性。
+
+        </div>
+    </div>
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+<h2>圣杯布局和双飞翼布局: 和三栏布局要求相同，不过中间列要写在前面保证优先渲染</h2>
+
+<div>
+    <!--圣杯布局-->
+    <div class="wrap wrap8">
+        <div class="middle">
+            中间:Flex布局，
+        </div>
+        <div class="left">
+            flex 布局-左边
+        </div>
+        <div class="right">
+            右边
+        </div>
+    </div>
+
+    <!--双飞翼-->
+    <div class="wrap wrap9">
+        <div class="middle-wrapper">
+            <div class="middle">
+                中间:Flex布局，
+            </div>
+        </div>
+        <div class="left">
+            flex 布局-左边
+        </div>
+        <div class="right">
+            右边
+        </div>
+    </div>
+
+    <!--圣杯布局-->
+    <div class="wrap wrap10">
+
+        <div class="middle">
+            中间:Flex布局，
+        </div>
+
+        <div class="left">
+            flex 布局-左边
+        </div>
+        <div class="right">
+            右边
+        </div>
+    </div>
+
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+<h2>清除浮动</h2>
+<div class="content">
+   <pre>
+     清除浮动3种方式。
+
+     1. 伪元素
+     2. 创建BFC
+    </pre>
+
+    <div class="wrap-no－height wrap11 clearFloat">
+        <div class="left">左边</div>
+        <div class="right">右边</div>
+    </div>
+
+
+    <div class="wrap-no－height wrap12 clearFloat">
+        <div class="left">左边</div>
+        <div class="right">右边</div>
+    </div>
+
+
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>水平垂直局中：实现子元素水平垂直局中</h2>
+<div class="content">
+  <pre>
+    1. flex布局
+    2. position绝对定位布局 和 margin居中，需要知道子元素的长宽
+    3. position和margin居中
+    4. position和transform居中
+
+    5. css里transform属性的作用
+
+    </pre>
+
+    <div class="wrap-inner inner1">
+        <div class="inner ">
+            自元素居中
+        </div>
+    </div>
+
+    <div class="wrap-inner inner2">
+        <div class="inner">
+            自元素居中
+        </div>
+    </div>
+
+    <div class="wrap-inner inner3">
+        <div class="inner ">
+            自元素居中
+        </div>
+    </div>
+    <div class="wrap-inner inner4">
+        <div class="inner">
+            自元素居中
+        </div>
+    </div>
+
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+<h2>三角形</h2>
+<div class="wrap-border clearFloat">
+<pre>
+
+    border-left: 50px solid ＃000;
+    border-top: 50px solid #ff0000;
+    border-right: 50px solid ＃0000;
+    border-bottom: 50px solid ＃0ff;
+
+    如果不需要其它部分style-color设置为transparent
+
+    1. 等腰直角:  如果4个方向都设置了border，这个三角是100px正方形的一部分；
+
+    2. 等腰直角:  如果不设置border－bottom， 三角是宽度100px长方行的一部分
+
+    3. 如果只设置其中的两个属性，则显示的是类似正方形的一个角
+
+
+</pre>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+
+    <div class="box4"></div>
+    <div class="box5"></div>
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>正方行: 使用css实现一个宽高自适应的正方形</h2>
+<pre>
+
+
+</pre>
+
+<div class="content wrap-square">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>扇形</h2>
+<div class="content">
+<pre>
+    1. 在三角写法的基础上，为父级元素设置border－radius和overflow
+
+    2.
+
+    3.
+
+</pre>
+
+    <div class="sector sector1">
+        <span></span>
+    </div>
+
+    <div class="sector sector2">
+    </div>
+
+    <div class="sector sector3">
+    </div>
+
+
+    <div class="sector sector4">
+    </div>
+
+    <div class="sector sector5">
+    </div>
+
+
+</div>
+
+
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>弹出框：使用css写一个弹出框的效果</h2>
+<!--
+css3的使用
+-->
+<div class="content">
+        <pre>
+            1. 模拟普通的弹出框， 相对于屏幕绝对定位，水平垂直居中
+        </pre>
+</div>
+
+<div class="login-wrap">
+    <div class="login-main">
+        这是一个弹出框
+    </div>
+</div>
+
+<h2>-------------------------------------------------------------------------------</h2>
+
+<h2>导航栏：一个div内部放很多水平div, 并可以横向滚动</h2>
+<!--
+  浏览器自带滚动条，
+  自定义滚动条
+
+-->
+<div class="content">
+    <pre>
+        1. overflow:auto时出现滚动条，浏览器默认滚动条。 ::-webkit-scrollbar重置默认滚动条的样式
+
+        2. 重写浏览器默认滚动条
+
+        3. flex 实现
+
+        4. white-space和inline-block实现
+
+        5. 浮动float和block 出现垂直方向滚动条
+    </pre>
+
+
+    <div class="nav-wrap nav-wrap1">
+        <div class="item">
+            1
+        </div>
+        <div class="item">
+            1
+        </div>
+        <div class="item">
+            1
+        </div>
+        <div class="item">
+            1
+        </div>
+        <div class="item">
+            1
+        </div>
+    </div>
+
+
+    <div class="nav-wrap nav-wrap2">
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+        <div class="item">
+            2
+        </div>
+    </div>
+
+
+    <div class="nav-wrap nav-wrap3">
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+        <div class="item">
+            3
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+</script>
+</body>
+</html>
