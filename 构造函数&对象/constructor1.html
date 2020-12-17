@@ -20,27 +20,41 @@
  如果不使用new关键字，this值指向包含构造函数外面的对象。
 
  自定义构造函数和JavaScript内置构造函数的模式是一样的。
-
-
-
-
-
-
-
-
-
-
  */
 
 
  /*
  js内置的构造函数
+String  Number  Boolean  Array  Object Date RegExp Error  Function
+*/
+function Parent(name){
+  this.name = name||'huizi';
+  console.log(this.name)
+}
+let obj = new Parent();
+console.log(obj.name);  //huizi
 
- String  Number  Boolean  Array  Object Date RegExp Error  Function
+
+function Parent1(){
+    //this.name=name;
+}
+Parent1.prototype.name="aa"
+
+let obj1 = new Parent1();
+console.log(obj1.name);  //aa
 
 
- * */
+function Parent2(){
+    this.name=name;
+}
+let obj2 = new Parent2();
+console.log(obj2.name); //"" 是一个空字符串
 
+function Parent3(){
+    this.name;
+}
+let obj3 = new Parent3();
+console.log(obj3.name); //undefined 是一个空字符串
 
 
 </script>

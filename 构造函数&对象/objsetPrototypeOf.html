@@ -75,6 +75,30 @@
 
 
     <script>
+        //创建有原型的对象和无原型的对象
+        // 创建无原型的对象
+        // creat
+        let objNoprototy=Object.create(null);
+        console.log('创建无原型对象',objNoprototy);  // {}
+        console.log({});
+
+        //setPrototypeOf，相当于objNoprototy1是一个空对象｛｝，其原型设置为null
+        let objNoprototy1=Object.setPrototypeOf({},null);
+        console.log('创建无原型对象',objNoprototy1);
+        
+        
+        let aa={a:1};
+        let bb={a:33};
+        let c=new Number();
+        // bb对象作为aa对象的原型，赋值给objNoprototy2
+        let objNoprototy2=Object.setPrototypeOf(aa, c);
+        console.log('创建无原型对象2',objNoprototy2);
+        objNoprototy2.a=22;
+        console.log('创建无原型对象2',objNoprototy2[1]);
+        //总结，任何对象都可以作为另一个对象的原型,null、Array、Number
+
+
+
         /*Object.creat */
 
         console.log('Object.creat的含义现象------------------------')
@@ -84,13 +108,10 @@
             console.log('这是基类');
             this.name = 'aa';
             this.age = 18;
-
         }
-
         Parent.prototype.say = function() {
             console.log('这是一个基类的方法')
         }
-
         Parent.prototype.str = '原型链上的属性';
 
         // child 创建的新对象， 其__proto__是new Parent()提供的

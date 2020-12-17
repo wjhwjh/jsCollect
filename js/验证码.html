@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script language="javascript">
+    function change()
+    {
+        var img =document.getElementById("codeimg");
+        img.src=img.src+"?";
+    }
+</script>
+<a href="javascript:change();">看不清,换一张 </a>
+
+<img alt="" src="" style="cursor:pointer;" id="codeimg" onclick="this.src='validate.aspx?time=' + Math.random();" /> <script language="javascript" type="text/javascript">document.getElementById('codeimg').src = 'validate.aspx?time=' + Math.random(); </script>
+
+
+</body>
+</html>

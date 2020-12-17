@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>仿栈与队列实现查询</title>
+</head>
+<body>
+<ul>
+    <li id="a">aoo</li>
+    <li id="b">bar</li>
+    <li id="c">car</li>
+</ul>
+<ol>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ol>
+<h1>打印出$$("li").get(1)</h1>
+<div id="aaron"></div>
+ <script src="jquery-2.1.1.min.js"></script>
+<script>
+    var $$ = ajQuery = function (selector) {
+        return new ajQuery.fn.init(selector);
+    };
+
+    //通过prototype原型构造进行初始化
+    //this指向
+    ajQuery.fn = ajQuery.prototype = {
+        init:function (selector) {   //初始化，设置一个init方法，用来处理并返回获取的元素
+            this.selector = selector;
+
+            var results = document.querySelectorAll(selector);  //获取所有匹配的DOM元素
+            for (var i = 0; i < results.length; i++) {
+                this[i] = results[i];
+              // console.log(this[i]);
+            }
+            //console.log('返回所有被选元素的数组' + this); //返回的是init这个对象
+            return this;  //把获取的所有的DOM元素返回，并作为一个对象返回
+        },
+        constructor:ajQuery
+    }
+
+    // init能访问fn里的属性，fn也能够访问init的属性，相当于把init的prototype属性挂在在了ajQuery下
+    ajQuery.fn.init.prototype = ajQuery.fn;
+
+    //extend方法核心代码，用来处理新添加的方法
+    ajQuery.extend = ajQuery.fn.extend = function() {  //整个方法处理的对象是所传递过来的参数
+        var options, src, copy,
+                target = arguments[0] || {},  //把第一个参数存储在target中，target作为存有处理函数并返回
+                i = 1,
+                length = arguments.length;   //获取设置的参数个数
+        //console.log(length);
+        //console.log(arguments[0]);
+        //console.log(target);
+        if (i == length){
+            target = this;  //把当前的extend这个方法也加入到ajQuery的方法链中
+            i--;
+        }
+        //console.log(i);
+        for(;i<length; i++){
+           if ((options = arguments[i]) != null){
+               console.log(options);
+
+               for (name in options){   //for in的用法？？？？？？？？？？？？
+                   copy = options[name]; //获取每一个具体的方法
+
+                   target[name] = copy;  //拷贝，浅拷贝
+
+                   console.log(options[name]);
+               }
+
+           }
+            //console.log(arguments[i]); //这里是对extend的扩展方法进行处理
+        }
+         console.log('扩展方法返回'+this);  //这里的this只是一个对象
+         console.log(target);
+        return target;
+    }
+
+    //这是为extend设置参数
+    ajQuery.fn.extend({
+        get: function(num) {
+            if (num != null) {
+                console.log(this[num]);
+                return (num < 0 ? this[num + this.length] : this[num])
+            } else {
+                return [].slice.call(this);
+            }
+        },
+        getName: function() {
+            $("#aaron").html(this.myName)
+            return this;
+        }
+    })
+
+    //console.log($$('li'));
+    $("#aaron").html($$('li').get(1));
+
+/*
+* 为什么会把元素本身移除掉？？？？？？？？？？？？？？？？？？
+* 添加的各个方法是如何协同调用的~~~~~~~~~
+*
+* */
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var o = {
+        a:10,
+        b:{
+            a:12,
+            fn:function () {
+                //console.log(this.a);
+                //console.log(this);
+
+                return this;
+            }
+        }
+    }
+    o.b.fn();
+   /* var j = o.b.fn;
+    j();*/
+
+</script>
+</body>
+</html>

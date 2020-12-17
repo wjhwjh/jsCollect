@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+链式调用$$().setName('慕课网-Aaron').getName()的结果：
+<div id="aaron"></div>
+
+
+<script src="jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+
+    var $$ = ajQuery = function(selector) {
+        return new ajQuery.fn.init(selector);
+    }
+
+    ajQuery.fn = ajQuery.prototype = {
+        name: 'aaron',
+        init: function(selector) {
+            this.selector = selector;
+            return this;
+        },
+        constructor: ajQuery
+    }
+
+    ajQuery.fn.init.prototype = ajQuery.fn
+
+    ajQuery.fn.setName = function(myName) {
+        this.myName = myName
+        return this;
+    }
+
+    ajQuery.fn.getName = function() {
+        //$("#aaron").html(this.myName)
+        console.log(this.myName);
+        return this;
+    }
+
+    $$().setName('慕课网-Aaron').getName();
+
+</script>
+</body>
+</html>
