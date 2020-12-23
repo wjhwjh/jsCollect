@@ -9,7 +9,7 @@
         body {
             padding: 30px;
         }
-        
+
         * {
             padding: 0;
             margin: 0;
@@ -17,12 +17,12 @@
             border: none;
             box-sizing: border-box;
         }
-        
+
         h2 {
             text-align: center;
             padding: 15px 0;
         }
-        
+
         pre {
             font-size: 16px;
         }
@@ -78,23 +78,23 @@
         //创建有原型的对象和无原型的对象
         // 创建无原型的对象
         // creat
-        let objNoprototy=Object.create(null);
-        console.log('创建无原型对象',objNoprototy);  // {}
+        let objNoprototy = Object.create(null);
+        console.log('创建无原型对象', objNoprototy);  // {}
         console.log({});
 
         //setPrototypeOf，相当于objNoprototy1是一个空对象｛｝，其原型设置为null
-        let objNoprototy1=Object.setPrototypeOf({},null);
-        console.log('创建无原型对象',objNoprototy1);
-        
-        
-        let aa={a:1};
-        let bb={a:33};
-        let c=new Number();
+        let objNoprototy1 = Object.setPrototypeOf({}, null);
+        console.log('创建无原型对象', objNoprototy1);
+
+
+        let aa = { a: 1 };
+        let bb = { a: 33 };
+        let c = new Number();
         // bb对象作为aa对象的原型，赋值给objNoprototy2
-        let objNoprototy2=Object.setPrototypeOf(aa, c);
-        console.log('创建无原型对象2',objNoprototy2);
-        objNoprototy2.a=22;
-        console.log('创建无原型对象2',objNoprototy2[1]);
+        let objNoprototy2 = Object.setPrototypeOf(aa, c);
+        console.log('创建无原型对象2', objNoprototy2);
+        objNoprototy2.a = 22;
+        console.log('创建无原型对象2', objNoprototy2[1]);
         //总结，任何对象都可以作为另一个对象的原型,null、Array、Number
 
 
@@ -104,12 +104,12 @@
         console.log('Object.creat的含义现象------------------------')
 
         // 构造函数提供一个现有对象
-        let Parent = function() {
+        let Parent = function () {
             console.log('这是基类');
             this.name = 'aa';
             this.age = 18;
         }
-        Parent.prototype.say = function() {
+        Parent.prototype.say = function () {
             console.log('这是一个基类的方法')
         }
         Parent.prototype.str = '原型链上的属性';
@@ -126,7 +126,7 @@
         // 这样使用
         let obj = {
             a: 1,
-            fn: function() {
+            fn: function () {
                 console.log('这是一个obj的对象')
             }
         }
@@ -152,7 +152,7 @@
 
         let obj1 = {
             a: 1,
-            fn: function() {
+            fn: function () {
                 console.log(this.a)
             }
         }
